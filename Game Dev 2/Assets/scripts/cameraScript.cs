@@ -25,11 +25,6 @@ public class cameraScript : MonoBehaviour {
 	 
 	// Update is called once per frame
 	void LateUpdate () {
-
-        float horizontal = Input.GetAxis("Horizontal") * camRotateSpeed;
-        player.Rotate(0, horizontal, 0);
-        pivot.Rotate(0, 0, 0);
-
         float yAngle = player.eulerAngles.y;
         float xAngle = pivot.eulerAngles.x;
         rotation = Quaternion.Euler(xAngle, yAngle, 0f);
