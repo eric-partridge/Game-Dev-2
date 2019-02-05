@@ -7,7 +7,8 @@ public class playerController : MonoBehaviour {
     public float speed;
     public float maxSpeed;
     public float sensitivity;
-    public GameObject shipGroup;
+    public float deacceleration;
+
     Rigidbody rb;
 
 	// Use this for initialization
@@ -19,7 +20,7 @@ public class playerController : MonoBehaviour {
 	void FixedUpdate () {
         float leftStickX = Input.GetAxis("Horizontal");
         bool gas = Input.GetButton("R2");
-        bool reverse = Input.GetButton("L2");
+        bool brake = Input.GetButton("R1");
         Vector3 force = new Vector3(0,0,0);
         if (gas)
         {
@@ -38,10 +39,23 @@ public class playerController : MonoBehaviour {
                 rb.velocity = new Vector3(maxSpeed, 0f, maxSpeed);
             }
         }
-        else if (reverse)
+        else if (brake)
         {
-            rb.AddForce(transform.forward * -speed * Time.deltaTime, ForceMode.VelocityChange);
+            if(leftStickX != 0)
+            {
+                sensitivity += 100;
+            }
+            else
+            {
+                rb.velocity = rb.velocity * deacceleration;
+            }
         }
+        if(leftStickX != 0 && !brake)
+        {
+            sensitivity = 150;
+        }
+
+        print(sensitivity);
 
         float rotDegrees = 180f;
         Vector3 newVelocity = Vector3.RotateTowards(rb.velocity, transform.forward, rotDegrees * Time.deltaTime * Mathf.Deg2Rad, 0);

@@ -334,7 +334,7 @@ MonoBehaviour:
   player: {fileID: 1690955431}
   pivot: {fileID: 1154654803}
   camRotateSpeed: 2
-  offset: {x: 0, y: -10.5, z: 27}
+  offset: {x: 0, y: -5, z: 15}
   useOffset: 1
 --- !u!1 &652982127
 GameObject:
@@ -930,7 +930,7 @@ MonoBehaviour:
   speed: 75
   maxSpeed: 75
   sensitivity: 150
-  shipGroup: {fileID: 0}
+  deacceleration: 0.99
 --- !u!65 &1690955433
 BoxCollider:
   m_ObjectHideFlags: 0
