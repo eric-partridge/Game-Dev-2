@@ -5,7 +5,9 @@ using UnityEngine;
 public class playerController : MonoBehaviour {
 
     public float speed;
+    public float maxSpeed;
     public float sensitivity;
+    public GameObject shipGroup;
     Rigidbody rb;
 
 	// Use this for initialization
@@ -21,16 +23,32 @@ public class playerController : MonoBehaviour {
         Vector3 force = new Vector3(0,0,0);
         if (gas)
         {
-            //force = new Vector3(speed * transform.forward, 0f, 0f);
-            rb.AddForce(transform.forward * speed, ForceMode.VelocityChange);
+            rb.AddForce(transform.forward * speed * Time.deltaTime, ForceMode.VelocityChange);
+
+            if (rb.velocity.x > maxSpeed && rb.velocity.z < maxSpeed)
+            {
+                rb.velocity = new Vector3(maxSpeed, 0f, rb.velocity.z);
+            }
+            else if (rb.velocity.z > maxSpeed && rb.velocity.x < maxSpeed)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, 0f, maxSpeed);
+            }
+            else if (rb.velocity.x > maxSpeed && rb.velocity.z > maxSpeed)
+            {
+                rb.velocity = new Vector3(maxSpeed, 0f, maxSpeed);
+            }
         }
         else if (reverse)
         {
-            rb.AddForce(transform.forward * -speed, ForceMode.VelocityChange);
+            rb.AddForce(transform.forward * -speed * Time.deltaTime, ForceMode.VelocityChange);
         }
 
-        //Quaternion deltaRotation = Quaternion.AngleAxis(leftStickX*sensitivity*Time.deltaTime, transform.up);
+        float rotDegrees = 180f;
+        Vector3 newVelocity = Vector3.RotateTowards(rb.velocity, transform.forward, rotDegrees * Time.deltaTime * Mathf.Deg2Rad, 0);
+        rb.velocity = newVelocity;
+        transform.Rotate(0, leftStickX * sensitivity * Time.deltaTime, 0);
 
-        //rb.rotation = deltaRotation;
+        //Quaternion rotateAmount =  Quaternion.Euler(0, leftStickX * sensitivity * Time.deltaTime, 0);
+        //rb.MoveRotation(rotateAmount);
 	}
 }

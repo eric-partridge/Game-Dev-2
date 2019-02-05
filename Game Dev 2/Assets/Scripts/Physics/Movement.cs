@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour {
-    private float Max_speed = 8750;
+    private float Max_speed = 10;
     private float Max_speed_holder;
     private float Max_Boost;
     private float Acceleration = 1875;
@@ -22,7 +22,7 @@ public class Movement : MonoBehaviour {
     private bool boosting = false;
     float Turn;
     private GameObject bike;
-    private GameObject bikeModel;
+    public GameObject bikeModel;
     private Rigidbody bikeBody;
     private Vector3 startPos;
     bool air = false;
@@ -51,9 +51,8 @@ public class Movement : MonoBehaviour {
     void Start () {
         startPos = transform.position;
         bike = GameObject.Find("Main");
-        bikeBody = bike.GetComponent<Rigidbody>();
-        bikeModel = GameObject.Find("bike");
-        Turn = Input.GetAxis("LS Horizontal");
+        bikeBody = GetComponent<Rigidbody>();
+        Turn = Input.GetAxis("Horizontal");
         Max_Boost = Max_speed * 2f;
         Decceleration = Acceleration * 6f;
         Max_speed_holder = Max_speed;
@@ -64,11 +63,11 @@ public class Movement : MonoBehaviour {
         Acceleration = 3750;
         if (!air)
         {
-            Gas_Pedal = Input.GetAxis("Right Trigger Axis");
+            Gas_Pedal = Input.GetAxis("R2");
 
             if (drifting && drift_direction == 1)
             {
-                Turn = Input.GetAxis("LS Horizontal") + 0.6f;
+                Turn = Input.GetAxis("Horizontal") + 0.6f;
                 Turn /= 1.6f;
                 tempQuatR = new Quaternion(rightRotate50.x, rightRotate50.y, rightRotate50.z * Turn, rightRotate50.w);
                 bikeModel.transform.localRotation = Quaternion.RotateTowards(bikeModel.transform.localRotation, tempQuatR, 3f);
@@ -76,7 +75,7 @@ public class Movement : MonoBehaviour {
 
             if (drifting && drift_direction == -1)
             {
-                Turn = Input.GetAxis("LS Horizontal") - 0.6f;
+                Turn = Input.GetAxis("Horizontal") - 0.6f;
                 Turn /= 1.6f;
                 tempQuatL = new Quaternion(leftRotate50.x, leftRotate50.y, leftRotate50.z * -Turn, leftRotate50.w);
                 bikeModel.transform.localRotation = Quaternion.RotateTowards(bikeModel.transform.localRotation, tempQuatL, 3f);
@@ -84,7 +83,7 @@ public class Movement : MonoBehaviour {
 
             if (!drifting)
             {
-                Turn = Input.GetAxis("LS Horizontal");
+                Turn = Input.GetAxis("Horizontal");
             }
 
             Max_Turn = 1.2f;
