@@ -929,7 +929,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 75
   maxSpeed: 75
-  sensitivity: 150
+  sensitivity: 3
+  driftSensitivity: 5
   deacceleration: 0.99
 --- !u!65 &1690955433
 BoxCollider:
