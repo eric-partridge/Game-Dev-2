@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 578fbd3b1b5456e4d8a85fe6f7e96e8f
+guid: 867c6a74e3e428249a28de22676310f5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: straight_0
+    100000: Split_0-0
     100002: //RootNode
-    400000: straight_0
+    400000: Split_0-0
     400002: //RootNode
     2100000: palette
-    2300000: straight_0
-    3300000: straight_0
-    4300000: straight_0
+    2300000: Split_0-0
+    3300000: Split_0-0
+    4300000: Split_0-0
   externalObjects: {}
   materials:
     importMaterials: 1

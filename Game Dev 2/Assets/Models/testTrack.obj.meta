@@ -1,16 +1,21 @@
 fileFormatVersion: 2
-guid: 578fbd3b1b5456e4d8a85fe6f7e96e8f
+guid: 0cf0a7a4d2ee2c84cac3426f2ad99533
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: straight_0
-    100002: //RootNode
-    400000: straight_0
-    400002: //RootNode
-    2100000: palette
-    2300000: straight_0
-    3300000: straight_0
-    4300000: straight_0
+    100000: pb-MergedObject-3675348_0
+    100002: pb-MergedObject-3675348_1
+    100004: //RootNode
+    400000: pb-MergedObject-3675348_0
+    400002: pb-MergedObject-3675348_1
+    400004: //RootNode
+    2100000: Default_Prototype
+    2300000: pb-MergedObject-3675348_0
+    2300002: pb-MergedObject-3675348_1
+    3300000: pb-MergedObject-3675348_0
+    3300002: pb-MergedObject-3675348_1
+    4300000: pb-MergedObject-3675348_0
+    4300002: pb-MergedObject-3675348_1
   externalObjects: {}
   materials:
     importMaterials: 1

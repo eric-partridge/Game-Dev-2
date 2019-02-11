@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 578fbd3b1b5456e4d8a85fe6f7e96e8f
+guid: 8c1083e1dae8feb4fa1f040bf844b91f
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: straight_0
-    100002: //RootNode
-    400000: straight_0
-    400002: //RootNode
-    2100000: palette
-    2300000: straight_0
-    3300000: straight_0
-    4300000: straight_0
+    100000: //RootNode
+    100002: Pipe
+    400000: //RootNode
+    400002: Pipe
+    2100000: Default_Prototype
+    2300000: Pipe
+    3300000: Pipe
+    4300000: Pipe
   externalObjects: {}
   materials:
     importMaterials: 1
