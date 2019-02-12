@@ -8267,6 +8267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 540299888}
   - component: {fileID: 540299887}
+  - component: {fileID: 540299889}
   m_Layer: 0
   m_Name: Master
   m_TagString: Untagged
@@ -8284,7 +8285,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8927f233995feec4e99f02a66a9d7210, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -8382,6 +8383,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &540299889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 540299886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c997309d9b5e50d498216958edb290a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BPM: 175
+  aud: {fileID: 540299887}
 --- !u!43 &560335531
 Mesh:
   m_ObjectHideFlags: 0
@@ -8537,6 +8551,24 @@ Mesh:
   m_MeshMetrics[0]: 1
   m_MeshMetrics[1]: 1
   m_MeshOptimized: 0
+--- !u!1 &578489459 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1443544190239726, guid: 222eba68ef4c79c469e88e1f19e3a391,
+    type: 2}
+  m_PrefabInternal: {fileID: 347387642}
+--- !u!114 &578489463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 578489459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1609fd212a7aafc4b889afd54ea75394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {r: 0, g: 0.94368553, b: 1, a: 0}
+  rate: 0.75
 --- !u!1 &693254316
 GameObject:
   m_ObjectHideFlags: 0
@@ -8699,6 +8731,24 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 0cf0a7a4d2ee2c84cac3426f2ad99533, type: 3}
+--- !u!1 &1160113290 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1952884035411046, guid: 222eba68ef4c79c469e88e1f19e3a391,
+    type: 2}
+  m_PrefabInternal: {fileID: 347387642}
+--- !u!114 &1160113291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1160113290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1609fd212a7aafc4b889afd54ea75394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {r: 0, g: 0.94368553, b: 1, a: 0}
+  rate: 0.75
 --- !u!1 &1262284196
 GameObject:
   m_ObjectHideFlags: 0
@@ -8707,7 +8757,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1262284197}
-  - component: {fileID: 1262284198}
   - component: {fileID: 1262284200}
   - component: {fileID: 1262284201}
   - component: {fileID: 1262284199}
@@ -8732,18 +8781,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1262284198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1262284196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7815e6c13b4491443b718c1556ca6aeb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bikeModel: {fileID: 2070964080}
 --- !u!135 &1262284199
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8755,7 +8792,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.4353418
-  m_Center: {x: 0, y: 0.44826972, z: -0.19038391}
+  m_Center: {x: 0, y: -20, z: -0.19038391}
 --- !u!54 &1262284200
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -8787,6 +8824,7 @@ MonoBehaviour:
   sensitivity: 1
   driftSensitivity: 2.5
   deacceleration: 0.99
+  shipModel: {fileID: 2070964080}
 --- !u!1 &1849834802
 GameObject:
   m_ObjectHideFlags: 0
