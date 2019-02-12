@@ -164,7 +164,7 @@ public class playerController : MonoBehaviour {
     public bool isGrounded()
     {
         RaycastHit hit;
-        bool ret = Physics.Raycast(transform.position, -Vector3.up, out hit, 1.5f, ~(1 << 9));
+        bool ret = Physics.Raycast(transform.position, -Vector3.up, out hit, 2f, ~(1 << 9));
         if (ret)
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.green);
