@@ -11,6 +11,8 @@ public class playerController : MonoBehaviour {
     public float deacceleration;
     public GameObject shipModel;
     public LayerMask ignoreLayer;
+    public float normalGravity;
+    public float airGravity;
 
     private bool drifting = false;
     Rigidbody rb;
@@ -168,13 +170,13 @@ public class playerController : MonoBehaviour {
         if (ret)
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.green);
-            Physics.gravity = new Vector3(0f, -20f, -0f);
+            Physics.gravity = new Vector3(0f, normalGravity, -0f);
         }
         else
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.red);
             print(change + " Not Grounded");
-            Physics.gravity = new Vector3(0f, -150f, -0f);
+            Physics.gravity = new Vector3(0f, airGravity, -0f);
         }
         change++;
 
