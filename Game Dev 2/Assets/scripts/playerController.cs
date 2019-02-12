@@ -50,6 +50,7 @@ public class playerController : MonoBehaviour {
         }
         if (brake)
         {
+            //if turning and braking ie. drifitng increase turning senesitivity
             if(leftStickX != 0)
             {
                 if(leftStickX > 0)
@@ -66,13 +67,16 @@ public class playerController : MonoBehaviour {
             else if(!gas)
             {
                 rb.velocity = rb.velocity * deacceleration;
+                sensitivity = defaultSensitivity;
             }
         }
+        //once done braking, reset sensitivity to default
         if(!brake)
         {
             sensitivity = defaultSensitivity;
         }
 
+        //ensure vehicle doesn't exceed max speed
         if (rb.velocity.x > maxSpeed && rb.velocity.z < maxSpeed)
         {
             rb.velocity = new Vector3(maxSpeed, rb.velocity.y, rb.velocity.z);
@@ -85,7 +89,6 @@ public class playerController : MonoBehaviour {
         {
             rb.velocity = new Vector3(maxSpeed, rb.velocity.y, maxSpeed);
         }
-
         if (rb.velocity.x < -maxSpeed && rb.velocity.z < maxSpeed)
         {
             rb.velocity = new Vector3(-maxSpeed, rb.velocity.y, rb.velocity.z);
