@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -52,8 +52,8 @@ LightmapSettings:
     m_AlbedoBoost: 1
     m_TemporalCoherenceThreshold: 1
     m_EnvironmentLightingMode: 0
-    m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 1
+    m_EnableBakedLightmaps: 0
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 10
     m_Resolution: 2
@@ -6727,7 +6727,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-3626826
+  m_Name: pb_Mesh4412
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -46818,7 +46818,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-3654914
+  m_Name: pb_Mesh5100
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -53925,12 +53925,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba48ec74b6c2744692e81f93ef3b8b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
-  maxSpeed: 25
+  speed: 75
+  maxSpeed: 75
   sensitivity: 3
   driftSensitivity: 5
-  deacceleration: 0.99
-  ship: {fileID: 0}
+  deacceleration: 0.5
+  shipModel: {fileID: 1292145630}
 --- !u!43 &1518985012
 Mesh:
   m_ObjectHideFlags: 0
@@ -55674,7 +55674,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-3619932
+  m_Name: pb_Mesh4838
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -55829,7 +55829,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-3639336
+  m_Name: pb_Mesh4558
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -61213,7 +61213,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-3554226
+  m_Name: pb_Mesh4634
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -61371,7 +61371,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1507814341}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -56.771656, y: -21.04, z: -50.29915}
+  m_LocalPosition: {x: -57.52, y: -21.04, z: -50.29915}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 1292145631}
