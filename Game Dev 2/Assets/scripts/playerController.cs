@@ -10,6 +10,7 @@ public class playerController : MonoBehaviour {
     public float driftSensitivity;
     public float deacceleration;
     public GameObject shipModel;
+    public LayerMask ignoreLayer;
 
     private bool drifting = false;
     Rigidbody rb;
@@ -43,88 +44,88 @@ public class playerController : MonoBehaviour {
         bool brake = Input.GetButton("R1");
         Vector3 force = new Vector3(0,0,0);
 
-        if (gas && isGrounded())
-        {
-            rb.AddForce(transform.forward * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
-        }
-        if (brake)
-        {
-            //if turning and braking ie. drifitng increase turning senesitivity
-            if(leftStickX != 0)
-            {
-                if(leftStickX > 0)
-                {
-                    drift_direction = 1;
-                }
-                else
-                {
-                    drift_direction = -1;
-                }
-                sensitivity = driftSensitivity;
-                drifting = true;
-            }
-            else if(!gas)
-            {
-                rb.velocity = rb.velocity * deacceleration;
-                sensitivity = defaultSensitivity;
-            }
-        }
-        //once done braking, reset sensitivity to default
-        if(!brake)
-        {
-            sensitivity = defaultSensitivity;
-        }
-
-        //ensure vehicle doesn't exceed max speed
-        if (rb.velocity.x > maxSpeed && rb.velocity.z < maxSpeed)
-        {
-            rb.velocity = new Vector3(maxSpeed, rb.velocity.y, rb.velocity.z);
-        }
-        else if (rb.velocity.z > maxSpeed && rb.velocity.x < maxSpeed)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, maxSpeed);
-        }
-        else if (rb.velocity.x > maxSpeed && rb.velocity.z > maxSpeed)
-        {
-            rb.velocity = new Vector3(maxSpeed, rb.velocity.y, maxSpeed);
-        }
-        if (rb.velocity.x < -maxSpeed && rb.velocity.z < maxSpeed)
-        {
-            rb.velocity = new Vector3(-maxSpeed, rb.velocity.y, rb.velocity.z);
-        }
-        else if (rb.velocity.z < -maxSpeed && rb.velocity.x < maxSpeed)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, -maxSpeed);
-        }
-        else if (rb.velocity.x < -maxSpeed && rb.velocity.z < -maxSpeed)
-        {
-            rb.velocity = new Vector3(-maxSpeed, rb.velocity.y, maxSpeed);
-        }
-
-        if(drifting)
-        {
-            drift_boost += Mathf.Abs(leftStickX * sensitivity * Time.fixedDeltaTime * 50);
-            print(drift_boost);
-        }
-
-        if(!brake)
-        {
-            if(drift_boost >= 100)
-            {
-                boost();
-            }
-            drift_boost = 0;
-            drifting = false;
-            drift_direction = 0;
-        }
 
         if (isGrounded())
         {
+            if (gas)
+            {
+                rb.AddForce(transform.forward * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            }
+            if (brake)
+            {
+                //if turning and braking ie. drifitng increase turning senesitivity
+                if (leftStickX != 0)
+                {
+                    if (leftStickX > 0)
+                    {
+                        drift_direction = 1;
+                    }
+                    else
+                    {
+                        drift_direction = -1;
+                    }
+                    sensitivity = driftSensitivity;
+                    drifting = true;
+                }
+                else if (!gas)
+                {
+                    rb.velocity = rb.velocity * deacceleration;
+                    sensitivity = defaultSensitivity;
+                }
+            }
+            //once done braking, reset sensitivity to default
+            if (!brake)
+            {
+                sensitivity = defaultSensitivity;
+            }
+            //ensure vehicle doesn't exceed max speed
+            if (rb.velocity.x > maxSpeed && rb.velocity.z < maxSpeed)
+            {
+                rb.velocity = new Vector3(maxSpeed, rb.velocity.y, rb.velocity.z);
+            }
+            else if (rb.velocity.z > maxSpeed && rb.velocity.x < maxSpeed)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, maxSpeed);
+            }
+            else if (rb.velocity.x > maxSpeed && rb.velocity.z > maxSpeed)
+            {
+                rb.velocity = new Vector3(maxSpeed, rb.velocity.y, maxSpeed);
+            }
+            if (rb.velocity.x < -maxSpeed && rb.velocity.z < maxSpeed)
+            {
+                rb.velocity = new Vector3(-maxSpeed, rb.velocity.y, rb.velocity.z);
+            }
+            else if (rb.velocity.z < -maxSpeed && rb.velocity.x < maxSpeed)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, -maxSpeed);
+            }
+            else if (rb.velocity.x < -maxSpeed && rb.velocity.z < -maxSpeed)
+            {
+                rb.velocity = new Vector3(-maxSpeed, rb.velocity.y, maxSpeed);
+            }
+
+            if (drifting)
+            {
+                drift_boost += Mathf.Abs(leftStickX * sensitivity * Time.fixedDeltaTime * 50);
+                print(drift_boost);
+            }
+
+            if (!brake)
+            {
+                if (drift_boost >= 100)
+                {
+                    boost();
+                }
+                drift_boost = 0;
+                drifting = false;
+                drift_direction = 0;
+            }
+
             float rotDegrees = 180f;
             Vector3 newVelocity = Vector3.RotateTowards(rb.velocity, transform.forward, rotDegrees * Time.deltaTime * Mathf.Deg2Rad, 0);
             rb.velocity = newVelocity;
         }
-        
+
         if (drifting && drift_direction == 1)
         {
             leftStickX = Input.GetAxis("Horizontal") + 0.6f;
@@ -139,7 +140,7 @@ public class playerController : MonoBehaviour {
             tempQuatL = new Quaternion(rightRotate50.x, rightRotate50.y, rightRotate50.z * -leftStickX / 1.6f, rightRotate50.w);
             shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, tempQuatL, 3f);
         }
-        else if(leftStickX != 0)
+        else if (leftStickX != 0)
         {
             transform.Rotate(0, leftStickX * sensitivity, 0);
             if (leftStickX > 0)
@@ -159,7 +160,20 @@ public class playerController : MonoBehaviour {
 
     public bool isGrounded()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, 1f);
+        RaycastHit hit;
+        bool ret = Physics.Raycast(transform.position, -Vector3.up, out hit, Mathf.Infinity, ~(1 << 9));
+        if (ret)
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.green);
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.red);
+            print(change + " Not Grounded");
+        }
+        change++;
+
+        return ret;
     }
 
     void boost()
