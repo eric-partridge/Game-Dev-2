@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 012bae6af1411324f8de38e376f580d8
+guid: bea21effeb250c945b54645d1d74e89d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: 45_0
+    100000: 90_Large-3
     100002: //RootNode
-    400000: 45_0
+    400000: 90_Large-3
     400002: //RootNode
-    2100000: 45_0Mat
-    2300000: 45_0
-    3300000: 45_0
-    4300000: 45_0
+    2100000: palette
+    2300000: 90_Large-3
+    3300000: 90_Large-3
+    4300000: 90_Large-3
   externalObjects: {}
   materials:
     importMaterials: 1
