@@ -120,10 +120,13 @@ public class playerController : MonoBehaviour {
                 drifting = false;
                 drift_direction = 0;
             }
-
-            float rotDegrees = 180f;
-            Vector3 newVelocity = Vector3.RotateTowards(rb.velocity, transform.forward, rotDegrees * Time.deltaTime * Mathf.Deg2Rad, 0);
-            rb.velocity = newVelocity;
+        }
+        float rotDegrees = 180f;
+        Vector3 newVelocity = Vector3.RotateTowards(rb.velocity, transform.forward, rotDegrees * Time.deltaTime * Mathf.Deg2Rad, 0);
+        rb.velocity = newVelocity;
+        if (!gas)
+        {
+            rb.velocity = rb.velocity * deacceleration;
         }
 
         if (drifting && drift_direction == 1)
@@ -155,21 +158,23 @@ public class playerController : MonoBehaviour {
         else
         {
             shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, Quaternion.identity, 1f);
-        }
+        }   
     }
 
     public bool isGrounded()
     {
         RaycastHit hit;
-        bool ret = Physics.Raycast(transform.position, -Vector3.up, out hit, Mathf.Infinity, ~(1 << 9));
+        bool ret = Physics.Raycast(transform.position, -Vector3.up, out hit, 1.5f, ~(1 << 9));
         if (ret)
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.green);
+            Physics.gravity = new Vector3(0f, -20f, -0f);
         }
         else
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.red);
             print(change + " Not Grounded");
+            Physics.gravity = new Vector3(0f, -150f, -0f);
         }
         change++;
 
