@@ -43,7 +43,7 @@ public class playerController : MonoBehaviour {
         bool brake = Input.GetButton("R1");
         Vector3 force = new Vector3(0,0,0);
 
-        if (gas)
+        if (gas && isGrounded())
         {
             rb.AddForce(transform.forward * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
@@ -107,7 +107,7 @@ public class playerController : MonoBehaviour {
             print(drift_boost);
         }
 
-        if(Input.GetButtonUp("R1"))
+        if(!brake)
         {
             if(drift_boost >= 100)
             {
@@ -157,9 +157,9 @@ public class playerController : MonoBehaviour {
         }
     }
 
-    bool isGrounded()
+    public bool isGrounded()
     {
-        return Physics.Raycast(transform.position, -Vector3.up, 10f);
+        return Physics.Raycast(transform.position, -Vector3.up, 1f);
     }
 
     void boost()
