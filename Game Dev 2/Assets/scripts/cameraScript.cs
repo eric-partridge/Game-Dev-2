@@ -8,7 +8,7 @@ public class cameraScript : MonoBehaviour {
     public Transform pivot;
     public float camRotateSpeed = 10f;
     public Vector3 offset;
-    public bool useOffset;
+    public bool useOffset;      
 
     private Quaternion rotation;
 

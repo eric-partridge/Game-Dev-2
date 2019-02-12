@@ -33,8 +33,6 @@ public class playerController : MonoBehaviour {
 
     void Update()
     {
-        print("Time: " + change + " sens: " + sensitivity);
-        change++;
     }
 
     // Update is called once per frame
@@ -44,12 +42,14 @@ public class playerController : MonoBehaviour {
         bool gas = Input.GetButton("R2");
         bool brake = Input.GetButton("R1");
         Vector3 force = new Vector3(0,0,0);
+
         if (gas)
         {
             rb.AddForce(transform.forward * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
         if (brake)
         {
+            //if turning and braking ie. drifitng increase turning senesitivity
             if(leftStickX != 0)
             {
                 if(leftStickX > 0)
@@ -66,13 +66,16 @@ public class playerController : MonoBehaviour {
             else if(!gas)
             {
                 rb.velocity = rb.velocity * deacceleration;
+                sensitivity = defaultSensitivity;
             }
         }
+        //once done braking, reset sensitivity to default
         if(!brake)
         {
             sensitivity = defaultSensitivity;
         }
 
+        //ensure vehicle doesn't exceed max speed
         if (rb.velocity.x > maxSpeed && rb.velocity.z < maxSpeed)
         {
             rb.velocity = new Vector3(maxSpeed, rb.velocity.y, rb.velocity.z);
@@ -85,7 +88,6 @@ public class playerController : MonoBehaviour {
         {
             rb.velocity = new Vector3(maxSpeed, rb.velocity.y, maxSpeed);
         }
-
         if (rb.velocity.x < -maxSpeed && rb.velocity.z < maxSpeed)
         {
             rb.velocity = new Vector3(-maxSpeed, rb.velocity.y, rb.velocity.z);
@@ -116,9 +118,13 @@ public class playerController : MonoBehaviour {
             drift_direction = 0;
         }
 
-        float rotDegrees = 180f;
-        Vector3 newVelocity = Vector3.RotateTowards(rb.velocity, transform.forward, rotDegrees * Time.deltaTime * Mathf.Deg2Rad, 0);
-        rb.velocity = newVelocity;
+        if (isGrounded())
+        {
+            float rotDegrees = 180f;
+            Vector3 newVelocity = Vector3.RotateTowards(rb.velocity, transform.forward, rotDegrees * Time.deltaTime * Mathf.Deg2Rad, 0);
+            rb.velocity = newVelocity;
+        }
+        
         if (drifting && drift_direction == 1)
         {
             leftStickX = Input.GetAxis("Horizontal") + 0.6f;
@@ -149,6 +155,11 @@ public class playerController : MonoBehaviour {
         {
             shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, Quaternion.identity, 1f);
         }
+    }
+
+    bool isGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, 10f);
     }
 
     void boost()
