@@ -22,7 +22,6 @@ public class BeatColorResponse : MonoBehaviour {
         {
             myColor = new Color(rate * target.r, rate * target.g, rate * target.b);
             rend.material.SetColor("_EmissionColor", myColor);
-            print("YES");
         }
         else
         {

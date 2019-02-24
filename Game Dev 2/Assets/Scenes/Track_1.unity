@@ -4513,6 +4513,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 41778497}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!4 &849075507 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4362439840024592, guid: 13f7b0753fecb024ea9ff3cb793c3bb7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1839663386}
 --- !u!1 &855536592
 GameObject:
   m_ObjectHideFlags: 0
@@ -8846,7 +8851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc7342f119fc654fa62b2944ac9e45d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 849075507}
   pivot: {fileID: 339040405}
   camRotateSpeed: 2
   offset: {x: 0, y: -5, z: 15}
@@ -10190,6 +10195,26 @@ Prefab:
     - target: {fileID: 4362439840024592, guid: 13f7b0753fecb024ea9ff3cb793c3bb7, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114545625328408908, guid: 13f7b0753fecb024ea9ff3cb793c3bb7,
+        type: 2}
+      propertyPath: lapTime
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114918045578418204, guid: 13f7b0753fecb024ea9ff3cb793c3bb7,
+        type: 2}
+      propertyPath: airGravity
+      value: -300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114918045578418204, guid: 13f7b0753fecb024ea9ff3cb793c3bb7,
+        type: 2}
+      propertyPath: normalGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114918045578418204, guid: 13f7b0753fecb024ea9ff3cb793c3bb7,
+        type: 2}
+      propertyPath: driftSensitivity
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13f7b0753fecb024ea9ff3cb793c3bb7, type: 2}
@@ -12177,6 +12202,11 @@ Prefab:
       propertyPath: currentTime
       value: 
       objectReference: {fileID: 840471264}
+    - target: {fileID: 82743514743964752, guid: 98a4578853b1b4a43844ea059ebed649,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 164aa4fff36b1d0409f99f41e24096b9, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98a4578853b1b4a43844ea059ebed649, type: 2}
   m_IsPrefabAsset: 0
