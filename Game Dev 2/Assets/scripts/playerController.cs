@@ -46,6 +46,9 @@ public class playerController : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate () {
 
+        print(Input.GetAxis("RSX"));
+        //print(Input.GetAxis("RSY"));
+
         float leftStickX = Input.GetAxis("Horizontal");
         bool gas = Input.GetButton("R2");
         bool brake = Input.GetButton("R1");
@@ -191,6 +194,48 @@ public class playerController : MonoBehaviour {
         }
         change++;
         return ret;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "Boost")
+        {
+            // UP
+            if(other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
+            {
+                if(Input.GetAxis("RSY") > 0.3)
+                {
+                    rb.AddForce(transform.forward * 2 * speed , ForceMode.VelocityChange);
+                }
+            }
+            // DOWN
+            if (other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == -1)
+            {
+                if (Input.GetAxis("RSY") < -0.3)
+                {
+                    rb.AddForce(-transform.forward * 2 * speed, ForceMode.VelocityChange);
+                }
+            }
+            // LEFT
+            if (other.GetComponent<Boost_Pad>().GetType2() == "RIGHT" && other.GetComponent<Boost_Pad>().GetDirection() == -1)
+            {
+                if (Input.GetAxis("RSX") < -0.3)
+                {
+                    rb.velocity = new Vector3(0, 0, 0);
+                    rb.AddForce(new Vector3(-1,0,0) * 1.5f * speed, ForceMode.VelocityChange);
+                    //rb.velocity = rb.velocity - Vector3.Project(rb.velocity,  transform.forward);
+                }
+            }
+            // RIGHT
+            if (other.GetComponent<Boost_Pad>().GetType2() == "RIGHT" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
+            {
+                if (Input.GetAxis("RSX") > 0.3)
+                {
+                    rb.velocity = new Vector3(0, 0, 0);
+                    rb.AddForce(new Vector3(1, 0, 0) * 1.5f * speed, ForceMode.VelocityChange);
+                }
+            }
+        }
     }
 
     void boost()
