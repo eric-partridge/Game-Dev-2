@@ -13,6 +13,8 @@ public class playerController : MonoBehaviour {
     public LayerMask ignoreLayer;
     public float normalGravity;
     public float airGravity;
+    public float boostChange;
+    public GameObject camReference;
 
     private bool drifting = false;
     Rigidbody rb;
@@ -20,11 +22,14 @@ public class playerController : MonoBehaviour {
     private float change = 0f;
     private float drift_boost;
     private int drift_direction;
+    private bool boosting = false;
+    private float boostTime = -2f;
 
     Quaternion leftRotate30 = Quaternion.AngleAxis(-30, Vector3.forward);
     Quaternion rightRotate30 = Quaternion.AngleAxis(30, Vector3.forward);
     Quaternion leftRotate50 = Quaternion.AngleAxis(-50, Vector3.forward);
     Quaternion rightRotate50 = Quaternion.AngleAxis(50, Vector3.forward);
+    Quaternion upRotate10 = Quaternion.AngleAxis(-50, Vector3.forward);
     Quaternion tempQuatR;
     Quaternion tempQuatL;
 
@@ -112,7 +117,7 @@ public class playerController : MonoBehaviour {
             if (drifting)
             {
                 drift_boost += Mathf.Abs(leftStickX * sensitivity * Time.fixedDeltaTime * 50);
-                print(drift_boost);
+                //print(drift_boost);
             }
 
             if (!brake)
@@ -132,6 +137,12 @@ public class playerController : MonoBehaviour {
         if (!gas)
         {
             rb.velocity = rb.velocity * deacceleration;
+        }
+
+        if((boostTime + 0.75f) <= Time.fixedTime && boosting){
+            maxSpeed /= boostChange;
+            boosting = false;
+            //camReference.GetComponent<cameraScript>().rotateCamera(-5f);
         }
 
         if (drifting && drift_direction == 1)
@@ -163,7 +174,8 @@ public class playerController : MonoBehaviour {
         else
         {
             shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, Quaternion.identity, 1f);
-        }   
+        }
+        print("Boosting?" + boosting);
     }
 
     public bool isGrounded()
@@ -178,11 +190,9 @@ public class playerController : MonoBehaviour {
         else
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.red);
-            print(change + " Not Grounded");
             Physics.gravity = new Vector3(0f, airGravity, -0f);
         }
         change++;
-
         return ret;
     }
 
@@ -230,6 +240,8 @@ public class playerController : MonoBehaviour {
 
     void boost()
     {
-
+        maxSpeed = maxSpeed * boostChange;
+        boostTime = Time.fixedTime;
+        boosting = true;
     }
 }

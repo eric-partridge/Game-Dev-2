@@ -1,17 +1,16 @@
 fileFormatVersion: 2
-guid: 2de4709b8595e3a48a6657dc76da1d64
+guid: 3294bc5847b2d8d479c6ddbe1c3cac72
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Incline_90_right
+    100000: lamp
     100002: //RootNode
-    400000: Incline_90_right
+    400000: lamp
     400002: //RootNode
     2100000: palette
-    2100002: Incline_90_rightMat
-    2300000: Incline_90_right
-    3300000: Incline_90_right
-    4300000: Incline_90_right
+    2300000: lamp
+    3300000: lamp
+    4300000: lamp
   externalObjects: {}
   materials:
     importMaterials: 1
