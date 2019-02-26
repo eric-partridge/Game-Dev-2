@@ -46,7 +46,7 @@ public class playerController : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate () {
 
-        print(Input.GetAxis("RSX"));
+       // print(Input.GetAxis("RSX"));
         //print(Input.GetAxis("RSY"));
 
         float leftStickX = Input.GetAxis("Horizontal");
@@ -142,6 +142,7 @@ public class playerController : MonoBehaviour {
         if((boostTime + 0.75f) <= Time.fixedTime && boosting){
             maxSpeed /= boostChange;
             boosting = false;
+            print("Not boosting");
             //camReference.GetComponent<cameraScript>().rotateCamera(-5f);
         }
 
@@ -193,6 +194,7 @@ public class playerController : MonoBehaviour {
             Physics.gravity = new Vector3(0f, airGravity, -0f);
         }
         change++;
+        print("Is grounded: " + ret);
         return ret;
     }
 
@@ -200,6 +202,7 @@ public class playerController : MonoBehaviour {
     {
         if(other.tag == "Boost")
         {
+            /*
             // UP
             if(other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
@@ -234,14 +237,17 @@ public class playerController : MonoBehaviour {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(new Vector3(1, 0, 0) * 1.5f * speed, ForceMode.VelocityChange);
                 }
-            }
+            }*/
+            boost();
         }
     }
 
     void boost()
     {
-        maxSpeed = maxSpeed * boostChange;
-        boostTime = Time.fixedTime;
-        boosting = true;
+        if (!boosting){
+            maxSpeed = maxSpeed * boostChange;
+            boostTime = Time.fixedTime;
+            boosting = true;
+        }        
     }
 }
