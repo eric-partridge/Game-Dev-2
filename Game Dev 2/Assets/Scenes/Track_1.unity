@@ -8176,6 +8176,7 @@ Transform:
   - {fileID: 1628249614}
   - {fileID: 798987300}
   - {fileID: 187024321}
+  - {fileID: 1406759392}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21431,6 +21432,57 @@ Transform:
   m_Father: {fileID: 1723241128}
   m_RootOrder: 69
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1001 &1406759391
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 487903592}
+    m_Modifications:
+    - target: {fileID: 4816723052242190, guid: 9513d3c21f556d9418af956e84d0664b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 117.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816723052242190, guid: 9513d3c21f556d9418af956e84d0664b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816723052242190, guid: 9513d3c21f556d9418af956e84d0664b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -373.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816723052242190, guid: 9513d3c21f556d9418af956e84d0664b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816723052242190, guid: 9513d3c21f556d9418af956e84d0664b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816723052242190, guid: 9513d3c21f556d9418af956e84d0664b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816723052242190, guid: 9513d3c21f556d9418af956e84d0664b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816723052242190, guid: 9513d3c21f556d9418af956e84d0664b, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1948815936280482, guid: 9513d3c21f556d9418af956e84d0664b, type: 2}
+      propertyPath: m_Name
+      value: Incline_90_right (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9513d3c21f556d9418af956e84d0664b, type: 2}
+  m_IsPrefabAsset: 0
+--- !u!4 &1406759392 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4816723052242190, guid: 9513d3c21f556d9418af956e84d0664b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1406759391}
 --- !u!1 &1409574618
 GameObject:
   m_ObjectHideFlags: 0
