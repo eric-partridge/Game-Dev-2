@@ -224,7 +224,7 @@ public class playerController : MonoBehaviour {
                 if (Input.GetAxis("RSX") < -0.3)
                 {
                     rb.velocity = new Vector3(0, 0, 0);
-                    rb.AddForce(new Vector3(-1,0,0) * 1.5f * speed, ForceMode.VelocityChange);
+                    rb.AddForce(-other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
                     //rb.velocity = rb.velocity - Vector3.Project(rb.velocity,  transform.forward);
                 }
             }
@@ -234,7 +234,7 @@ public class playerController : MonoBehaviour {
                 if (Input.GetAxis("RSX") > 0.3)
                 {
                     rb.velocity = new Vector3(0, 0, 0);
-                    rb.AddForce(new Vector3(1, 0, 0) * 1.5f * speed, ForceMode.VelocityChange);
+                    rb.AddForce(other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
                 }
             }
         }
