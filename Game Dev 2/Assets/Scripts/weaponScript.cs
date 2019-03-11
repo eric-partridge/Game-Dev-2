@@ -5,7 +5,9 @@ using UnityEngine;
 public class weaponScript : MonoBehaviour {
 
     public GameObject projectile;
-    public Transform frontBarrel;
+    public Transform frontBarrelM;
+    public Transform frontBarrelL;
+    public Transform frontBarrelR;
     public Transform sideBarrelR;
     public Transform sideBarrelL;
     public Transform backBarrel;
@@ -14,7 +16,10 @@ public class weaponScript : MonoBehaviour {
     public float backwardSpeed;
     public float currEnergy;
     public float coolDownTime;
-    Rigidbody rb;
+    public bool useSpread;
+    Rigidbody rbM;
+    Rigidbody rbL;
+    Rigidbody rbR;
 
     private float shootTime = 0f;
 
@@ -27,41 +32,51 @@ public class weaponScript : MonoBehaviour {
 	void FixedUpdate () {
         if (Input.GetButton("Triangle") && currEnergy > 0 && Time.time > shootTime)
         {
-            print("Shooting");
-            GameObject tempProjectile = Instantiate(projectile) as GameObject;
-            tempProjectile.transform.position = frontBarrel.position + (transform.forward);
-            rb = tempProjectile.GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 200f , ForceMode.VelocityChange);
+            GameObject tempProjectileM = Instantiate(projectile) as GameObject;
+            tempProjectileM.transform.position = frontBarrelM.position + (transform.forward);
+            rbM = tempProjectileM.GetComponent<Rigidbody>();
+            rbM.AddForce(frontBarrelM.transform.forward * 200f, ForceMode.VelocityChange);
+
+            if (useSpread)
+            {
+                GameObject tempProjectileL = Instantiate(projectile) as GameObject;
+                tempProjectileL.transform.position = frontBarrelL.position + (frontBarrelL.transform.forward);
+                rbL = tempProjectileL.GetComponent<Rigidbody>();
+                rbL.AddForce(frontBarrelL.transform.forward * 200f, ForceMode.VelocityChange);
+
+                GameObject tempProjectileR = Instantiate(projectile) as GameObject;
+                tempProjectileR.transform.position = frontBarrelR.position + (transform.forward);
+                rbR = tempProjectileR.GetComponent<Rigidbody>();
+                rbR.AddForce(frontBarrelR.transform.forward * 200f, ForceMode.VelocityChange);
+            }
+
             shootTime = Time.time + coolDownTime;
             currEnergy--;
         }
         if (Input.GetButton("Circle") && currEnergy > 0 && Time.time > shootTime)
         {
-            print("Shooting right");
             GameObject tempProjectile = Instantiate(projectile) as GameObject;
             tempProjectile.transform.position = sideBarrelR.position + (transform.right);
-            rb = tempProjectile.GetComponent<Rigidbody>();
-            rb.AddForce(transform.right * 100f, ForceMode.VelocityChange);
+            rbM = tempProjectile.GetComponent<Rigidbody>();
+            rbM.AddForce(transform.right * 100f, ForceMode.VelocityChange);
             shootTime = Time.time + coolDownTime;
             currEnergy--;
         }
         if (Input.GetButton("Square") && currEnergy > 0 && Time.time > shootTime)
         {
-            print("Shooting right");
             GameObject tempProjectile = Instantiate(projectile) as GameObject;
             tempProjectile.transform.position = sideBarrelL.position + (-transform.right);
-            rb = tempProjectile.GetComponent<Rigidbody>();
-            rb.AddForce(-transform.right * 100f, ForceMode.VelocityChange);
+            rbM = tempProjectile.GetComponent<Rigidbody>();
+            rbM.AddForce(-transform.right * 100f, ForceMode.VelocityChange);
             shootTime = Time.time + coolDownTime;
             currEnergy--;
         }
         if (Input.GetButton("X") && currEnergy > 0 && Time.time > shootTime)
         {
-            print("Shooting right");
             GameObject tempProjectile = Instantiate(projectile) as GameObject;
             tempProjectile.transform.position = backBarrel.position + (-transform.forward);
-            rb = tempProjectile.GetComponent<Rigidbody>();
-            rb.AddForce(-transform.forward * 100f, ForceMode.VelocityChange);
+            rbM = tempProjectile.GetComponent<Rigidbody>();
+            rbM.AddForce(-transform.forward * 100f, ForceMode.VelocityChange);
             shootTime = Time.time + coolDownTime;
             currEnergy--;
         }
