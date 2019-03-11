@@ -202,7 +202,6 @@ public class playerController : MonoBehaviour {
     {
         if(other.tag == "Boost")
         {
-            /*
             // UP
             if(other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
@@ -237,8 +236,7 @@ public class playerController : MonoBehaviour {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(new Vector3(1, 0, 0) * 1.5f * speed, ForceMode.VelocityChange);
                 }
-            }*/
-            boost();
+            }
         }
     }
 

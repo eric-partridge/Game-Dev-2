@@ -772,8 +772,10 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 512
-  normalGravity: 0
-  airGravity: 0
+  normalGravity: -20
+  airGravity: -350
+  boostChange: 2
+  camReference: {fileID: 0}
 --- !u!135 &135459225712519580
 SphereCollider:
   m_ObjectHideFlags: 1
