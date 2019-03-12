@@ -19181,6 +19181,15 @@ PrefabInstance:
       propertyPath: lapTime
       value: 
       objectReference: {fileID: 1976758867}
+    - target: {fileID: 4391599059149156, guid: 13f7b0753fecb024ea9ff3cb793c3bb7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 65550531260192346, guid: 13f7b0753fecb024ea9ff3cb793c3bb7,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 18.12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13f7b0753fecb024ea9ff3cb793c3bb7, type: 3}
 --- !u!4 &1858084689 stripped

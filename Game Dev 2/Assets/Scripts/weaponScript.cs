@@ -43,15 +43,18 @@ public class weaponScript : MonoBehaviour {
                 tempProjectileL.transform.position = frontBarrelL.position + (frontBarrelL.transform.forward);
                 rbL = tempProjectileL.GetComponent<Rigidbody>();
                 rbL.AddForce(frontBarrelL.transform.forward * 200f, ForceMode.VelocityChange);
+                Destroy(tempProjectileL, 5f);
 
                 GameObject tempProjectileR = Instantiate(projectile) as GameObject;
                 tempProjectileR.transform.position = frontBarrelR.position + (transform.forward);
                 rbR = tempProjectileR.GetComponent<Rigidbody>();
                 rbR.AddForce(frontBarrelR.transform.forward * 200f, ForceMode.VelocityChange);
+                Destroy(tempProjectileR, 5f);
             }
 
             shootTime = Time.time + coolDownTime;
             currEnergy--;
+            Destroy(tempProjectileM, 5f);
         }
         if (Input.GetButton("Circle") && currEnergy > 0 && Time.time > shootTime)
         {
@@ -61,6 +64,7 @@ public class weaponScript : MonoBehaviour {
             rbM.AddForce(transform.right * 100f, ForceMode.VelocityChange);
             shootTime = Time.time + coolDownTime;
             currEnergy--;
+            Destroy(tempProjectile, 5f);
         }
         if (Input.GetButton("Square") && currEnergy > 0 && Time.time > shootTime)
         {
@@ -70,6 +74,7 @@ public class weaponScript : MonoBehaviour {
             rbM.AddForce(-transform.right * 100f, ForceMode.VelocityChange);
             shootTime = Time.time + coolDownTime;
             currEnergy--;
+            Destroy(tempProjectile, 5f);
         }
         if (Input.GetButton("X") && currEnergy > 0 && Time.time > shootTime)
         {
@@ -79,7 +84,7 @@ public class weaponScript : MonoBehaviour {
             rbM.AddForce(-transform.forward * 100f, ForceMode.VelocityChange);
             shootTime = Time.time + coolDownTime;
             currEnergy--;
+            Destroy(tempProjectile, 5f);
         }
-        //rb.velocity = Camera.main.transform.forward * projectileSpeed;
     }
 }
