@@ -31,6 +31,9 @@ public class weaponScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+
+        float leftStickX = Input.GetAxis("Horizontal");
+
         if (Input.GetButton("Triangle") && currEnergy > 0 && Time.time > shootTime)
         {
             GameObject tempProjectileM = Instantiate(projectile) as GameObject;
@@ -64,7 +67,16 @@ public class weaponScript : MonoBehaviour {
             tempProjectile.transform.position = sideBarrelR.position + (transform.right);
             rbM = tempProjectile.GetComponent<Rigidbody>();
             rbM.AddForce(transform.right * 100f, ForceMode.VelocityChange);
-            Vector3 newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity)*.75f, transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
+            Vector3 newVelocity;
+            if(leftStickX > 0)
+            {
+                newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity) * .75f, transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
+            }
+            else
+            {
+                newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity), transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
+            }
+
             rbM.velocity = newVelocity;
             shootTime = Time.time + coolDownTime;
             currEnergy--;
@@ -76,7 +88,15 @@ public class weaponScript : MonoBehaviour {
             tempProjectile.transform.position = sideBarrelL.position + (-transform.right);
             rbM = tempProjectile.GetComponent<Rigidbody>();
             rbM.AddForce(-transform.right * 100f, ForceMode.VelocityChange);
-            Vector3 newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity) * .75f, -transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
+            Vector3 newVelocity;
+            if (leftStickX < 0)
+            {
+                newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity) * .75f, -transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
+            }
+            else
+            {
+                newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity), -transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
+            }
             rbM.velocity = newVelocity;
             shootTime = Time.time + coolDownTime;
             currEnergy--;
