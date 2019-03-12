@@ -187,6 +187,12 @@ public class playerController : MonoBehaviour {
             Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.green);
             Physics.gravity = new Vector3(0, normalGravity, 0); //new Vector3(-hit.normal.x, normalGravity * hit.normal.y, -hit.normal.z);
             print(hit.normal);
+
+            Vector3 diff = transform.up - hit.normal;
+            print(diff);
+
+            Vector3 new_rot = tranform.rotation.
+
             //Quaternion normalRotate = Quaternion.Euler(hit.normal);
             //print(normalRotate);
             //transform.localRotation = Quaternion.RotateTowards(transform.localRotation, normalRotate, 1f);
