@@ -5,6 +5,7 @@ using UnityEngine;
 public class weaponScript : MonoBehaviour {
 
     public GameObject projectile;
+    public GameObject player;
     public Transform frontBarrelM;
     public Transform frontBarrelL;
     public Transform frontBarrelR;
@@ -37,6 +38,7 @@ public class weaponScript : MonoBehaviour {
             rbM = tempProjectileM.GetComponent<Rigidbody>();
             rbM.AddForce(frontBarrelM.transform.forward * 200f, ForceMode.VelocityChange);
 
+
             if (useSpread)
             {
                 GameObject tempProjectileL = Instantiate(projectile) as GameObject;
@@ -62,6 +64,8 @@ public class weaponScript : MonoBehaviour {
             tempProjectile.transform.position = sideBarrelR.position + (transform.right);
             rbM = tempProjectile.GetComponent<Rigidbody>();
             rbM.AddForce(transform.right * 100f, ForceMode.VelocityChange);
+            Vector3 newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity)*.75f, transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
+            rbM.velocity = newVelocity;
             shootTime = Time.time + coolDownTime;
             currEnergy--;
             Destroy(tempProjectile, 5f);
@@ -72,6 +76,8 @@ public class weaponScript : MonoBehaviour {
             tempProjectile.transform.position = sideBarrelL.position + (-transform.right);
             rbM = tempProjectile.GetComponent<Rigidbody>();
             rbM.AddForce(-transform.right * 100f, ForceMode.VelocityChange);
+            Vector3 newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity) * .75f, -transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
+            rbM.velocity = newVelocity;
             shootTime = Time.time + coolDownTime;
             currEnergy--;
             Destroy(tempProjectile, 5f);
