@@ -70,11 +70,11 @@ public class weaponScript : MonoBehaviour {
             Vector3 newVelocity;
             if(leftStickX > 0)
             {
-                newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity) * .75f, transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
+                newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity) * .5f, transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
             }
             else
             {
-                newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity), transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
+                newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity) * 1.5f, transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
             }
 
             rbM.velocity = newVelocity;
@@ -91,11 +91,11 @@ public class weaponScript : MonoBehaviour {
             Vector3 newVelocity;
             if (leftStickX < 0)
             {
-                newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity) * .75f, -transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
+                newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity) * .5f, -transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
             }
             else
             {
-                newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity), -transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
+                newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity) * 1.5f, -transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
             }
             rbM.velocity = newVelocity;
             shootTime = Time.time + coolDownTime;
