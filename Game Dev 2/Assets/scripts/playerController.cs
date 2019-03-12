@@ -10,11 +10,14 @@ public class playerController : MonoBehaviour {
     public float driftSensitivity;
     public float deacceleration;
     public GameObject shipModel;
+    public GameObject pitchGO;
     public LayerMask ignoreLayer;
     public float normalGravity;
     public float airGravity;
     public float boostChange;
     public GameObject camReference;
+    public bool grounded;
+    public Vector3 rayNormal;
 
     private bool drifting = false;
     Rigidbody rb;
@@ -181,21 +184,45 @@ public class playerController : MonoBehaviour {
     public bool isGrounded()
     {
         RaycastHit hit;
-        bool ret = Physics.Raycast(transform.position, -Vector3.up, out hit, 2f, ~(1 << 9));
+        bool ret = Physics.Raycast(transform.position, -Vector3.up, out hit, 3f, ~(1 << 9));
         if (ret)
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.green);
+            Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.green);
             Physics.gravity = new Vector3(0, normalGravity, 0); //new Vector3(-hit.normal.x, normalGravity * hit.normal.y, -hit.normal.z);
-            print(hit.normal);
+            print("Normal: " + hit.normal);
 
-            Vector3 diff = transform.up - hit.normal;
-            print(diff);
+            Quaternion t = pitchGO.transform.rotation * Quaternion.FromToRotation(pitchGO.transform.up, hit.normal);
+            pitchGO.transform.rotation = Quaternion.RotateTowards(pitchGO.transform.rotation, t, 1f);
 
-            Vector3 new_rot = tranform.rotation.
+            /*Vector3 diff = pitchGO.transform.up - hit.normal;
+            print("Diff: " + diff);
+
+            Vector3 new_rot = pitchGO.transform.rotation.eulerAngles + diff;
+
+            Vector3 newVelocity = Vector3.RotateTowards(rb.velocity, transform.forward + diff, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
+            //rb.velocity = newVelocity;
+
+            Vector3 tempX = new Vector3(hit.normal.x, transform.up.y, transform.up.z);
+            Vector3 tempY = new Vector3(transform.up.x, hit.normal.y, transform.up.z);
+            Vector3 tempZ = new Vector3(transform.up.x, transform.up.y, hit.normal.z);
+
+
+            float angleX = Vector3.Angle(tempX, transform.up);
+            float angleY = Vector3.Angle(tempY, transform.up);
+            float angleZ = Vector3.Angle(tempZ, transform.up);
+
+            Vector3 newAngle = new Vector3(angleX, angleY, angleZ);
+
+            Quaternion newQuat = Quaternion.Euler(newAngle);
+
+            //Vector3 pitchRot = pitchGO.transform.rotation.eulerAngles + diff;
+            //pitchGO.transform.Rotate(Vector3.Angle(hit.normal, pitchGO.transform.up)*Vector3.up);
+            rayNormal = hit.normal;
+
 
             //Quaternion normalRotate = Quaternion.Euler(hit.normal);
             //print(normalRotate);
-            //transform.localRotation = Quaternion.RotateTowards(transform.localRotation, normalRotate, 1f);
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, transform.localRotation*newQuat, 1f);*/
         }
         else
         {
@@ -204,6 +231,7 @@ public class playerController : MonoBehaviour {
         }
         change++;
         print("Is grounded: " + ret);
+        grounded = ret;
         return ret;
     }
 
