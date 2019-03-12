@@ -176,7 +176,6 @@ public class playerController : MonoBehaviour {
         {
             shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, Quaternion.identity, 1f);
         }
-        print("Boosting?" + boosting);
     }
 
     public bool isGrounded()
@@ -186,7 +185,11 @@ public class playerController : MonoBehaviour {
         if (ret)
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.green);
-            Physics.gravity = new Vector3(0f, normalGravity, -0f);
+            Physics.gravity = new Vector3(0, normalGravity, 0); //new Vector3(-hit.normal.x, normalGravity * hit.normal.y, -hit.normal.z);
+            print(hit.normal);
+            //Quaternion normalRotate = Quaternion.Euler(hit.normal);
+            //print(normalRotate);
+            //transform.localRotation = Quaternion.RotateTowards(transform.localRotation, normalRotate, 1f);
         }
         else
         {
