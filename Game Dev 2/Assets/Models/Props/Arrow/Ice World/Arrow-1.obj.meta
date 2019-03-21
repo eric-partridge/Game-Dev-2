@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 8bb53aed21c9c034b87000ee16cc0da2
+guid: c5e25dc1fedcce744a4db331fbbc06fd
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: Arrow
+    100000: Arrow-1
     100002: //RootNode
-    400000: Arrow
+    400000: Arrow-1
     400002: //RootNode
     2100000: palette
-    2300000: Arrow
-    3300000: Arrow
-    4300000: Arrow
+    2300000: Arrow-1
+    3300000: Arrow-1
+    4300000: Arrow-1
   externalObjects: {}
   materials:
     importMaterials: 1

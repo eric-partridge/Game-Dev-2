@@ -2,6 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum WeaponType
+{
+    none,
+    single,
+    spread,
+}
+
+[System.Serializable]
+public class WeaponDefinition
+{
+    public WeaponType type = WeaponType.none;
+    public float velocity = 0;
+    public float damage = 0;
+    public GameObject projectilePrefab;
+    public Transform barrell;
+}
+
 public class weaponScript : MonoBehaviour {
 
     public GameObject projectile;
@@ -17,17 +34,36 @@ public class weaponScript : MonoBehaviour {
     public float backwardSpeed;
     public float currEnergy;
     public float coolDownTime;
-    public bool useSpread;
-    Rigidbody rbM;
-    Rigidbody rbL;
-    Rigidbody rbR;
+    public WeaponType _type = WeaponType.none;
+    WeaponDefinition def;
 
     private float shootTime = 0f;
+    private float checkPointTime = 0f;
 
 	// Use this for initialization
 	void Start () {
-		
+        SetType(_type);
 	}
+
+    public WeaponType type
+    {
+        get { return (_type);  }
+        set { SetType(value);  }
+    }
+
+    public void SetType(WeaponType wt)
+    {
+        _type = wt;
+        if(type == WeaponType.none)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.gameObject.SetActive(true);
+        }
+        def = main.GetWeaponDefinition(_type);
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -36,36 +72,48 @@ public class weaponScript : MonoBehaviour {
 
         if (Input.GetButton("Triangle") && currEnergy > 0 && Time.time > shootTime)
         {
-            GameObject tempProjectileM = Instantiate(projectile) as GameObject;
-            tempProjectileM.transform.position = frontBarrelM.position + (transform.forward);
-            rbM = tempProjectileM.GetComponent<Rigidbody>();
-            rbM.AddForce(frontBarrelM.transform.forward * 200f, ForceMode.VelocityChange);
-
-
-            if (useSpread)
+            switch (_type)
             {
-                GameObject tempProjectileL = Instantiate(projectile) as GameObject;
-                tempProjectileL.transform.position = frontBarrelL.position + (frontBarrelL.transform.forward);
-                rbL = tempProjectileL.GetComponent<Rigidbody>();
-                rbL.AddForce(frontBarrelL.transform.forward * 200f, ForceMode.VelocityChange);
-                Destroy(tempProjectileL, 5f);
+                case WeaponType.single:
+                    GameObject tempProjectile = Instantiate(def.projectilePrefab) as GameObject;
+                    tempProjectile.transform.position = def.barrell.position + (transform.forward);
+                    Rigidbody rb = tempProjectile.GetComponent<Rigidbody>();
+                    rb.AddForce(def.barrell.forward * def.velocity, ForceMode.VelocityChange);
+                    Destroy(tempProjectile, 5f);
+                    break;
 
-                GameObject tempProjectileR = Instantiate(projectile) as GameObject;
-                tempProjectileR.transform.position = frontBarrelR.position + (transform.forward);
-                rbR = tempProjectileR.GetComponent<Rigidbody>();
-                rbR.AddForce(frontBarrelR.transform.forward * 200f, ForceMode.VelocityChange);
-                Destroy(tempProjectileR, 5f);
+                case WeaponType.spread:
+                    GameObject tempProjectileM = Instantiate(def.projectilePrefab) as GameObject;
+                    tempProjectileM.transform.position = def.barrell.position + (def.barrell.forward);
+                    Rigidbody rbM = tempProjectileM.GetComponent<Rigidbody>();
+                    rbM.AddForce(def.barrell.forward * def.velocity, ForceMode.VelocityChange);
+                    Destroy(tempProjectileM, 5f);
+
+                    GameObject tempProjectileL = Instantiate(def.projectilePrefab) as GameObject;
+                    def.barrell.Rotate(0, -5, 0, Space.Self);
+                    tempProjectileL.transform.position = def.barrell.position + (def.barrell.forward);
+                    Rigidbody rbL = tempProjectileL.GetComponent<Rigidbody>();
+                    rbL.AddForce(def.barrell.forward * def.velocity, ForceMode.VelocityChange);
+                    Destroy(tempProjectileL, 5f);
+
+                    GameObject tempProjectileR = Instantiate(def.projectilePrefab) as GameObject;
+                    def.barrell.Rotate(0, 10, 0, Space.Self);
+                    tempProjectileR.transform.position = def.barrell.position + (def.barrell.forward);
+                    Rigidbody rbR = tempProjectileR.GetComponent<Rigidbody>();
+                    rbR.AddForce(def.barrell.forward * def.velocity, ForceMode.VelocityChange);
+                    Destroy(tempProjectileR, 5f);
+
+                    def.barrell.Rotate(0, -5, 0, Space.Self);
+                    break;
             }
-
             shootTime = Time.time + coolDownTime;
             currEnergy--;
-            Destroy(tempProjectileM, 5f);
         }
         if (Input.GetButton("Circle") && currEnergy > 0 && Time.time > shootTime)
         {
             GameObject tempProjectile = Instantiate(projectile) as GameObject;
             tempProjectile.transform.position = sideBarrelR.position + (transform.right);
-            rbM = tempProjectile.GetComponent<Rigidbody>();
+            Rigidbody rbM = tempProjectile.GetComponent<Rigidbody>();
             rbM.AddForce(transform.right * 100f, ForceMode.VelocityChange);
             Vector3 newVelocity;
             if(leftStickX > 0)
@@ -86,7 +134,7 @@ public class weaponScript : MonoBehaviour {
         {
             GameObject tempProjectile = Instantiate(projectile) as GameObject;
             tempProjectile.transform.position = sideBarrelL.position + (-transform.right);
-            rbM = tempProjectile.GetComponent<Rigidbody>();
+            Rigidbody rbM = tempProjectile.GetComponent<Rigidbody>();
             rbM.AddForce(-transform.right * 100f, ForceMode.VelocityChange);
             Vector3 newVelocity;
             if (leftStickX < 0)
@@ -106,11 +154,23 @@ public class weaponScript : MonoBehaviour {
         {
             GameObject tempProjectile = Instantiate(projectile) as GameObject;
             tempProjectile.transform.position = backBarrel.position + (-transform.forward);
-            rbM = tempProjectile.GetComponent<Rigidbody>();
+            Rigidbody rbM = tempProjectile.GetComponent<Rigidbody>();
             rbM.AddForce(-transform.forward * 100f, ForceMode.VelocityChange);
             shootTime = Time.time + coolDownTime;
             currEnergy--;
             Destroy(tempProjectile, 5f);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "CheckPoint")
+        {
+            if(Time.time > shootTime)
+            {
+                currEnergy++;
+                shootTime = Time.time + coolDownTime;
+            }
         }
     }
 }
