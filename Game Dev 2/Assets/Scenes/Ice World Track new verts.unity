@@ -7577,7 +7577,7 @@ MonoBehaviour:
   backwardSpeed: 50
   currEnergy: 100
   coolDownTime: 2
-  _type: 1
+  _type: 2
 --- !u!1001 &318014279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15717,18 +15717,30 @@ MonoBehaviour:
   - type: 1
     velocity: 200
     damage: 10
+    projectilePrefab: {fileID: 1379714929606247246, guid: 030e65c859528ee4c9e6e327ff143031,
+      type: 3}
+    barrell: {fileID: 124048023}
   - type: 2
-    velocity: 100
+    velocity: 200
     damage: 5
+    projectilePrefab: {fileID: 1379714929606247246, guid: 030e65c859528ee4c9e6e327ff143031,
+      type: 3}
+    barrell: {fileID: 124048023}
   - type: 0
     velocity: 0
     damage: 0
+    projectilePrefab: {fileID: 0}
+    barrell: {fileID: 0}
   - type: 0
     velocity: 0
     damage: 0
+    projectilePrefab: {fileID: 0}
+    barrell: {fileID: 0}
   - type: 0
     velocity: 0
     damage: 0
+    projectilePrefab: {fileID: 0}
+    barrell: {fileID: 0}
 --- !u!1001 &1252183676
 PrefabInstance:
   m_ObjectHideFlags: 0
