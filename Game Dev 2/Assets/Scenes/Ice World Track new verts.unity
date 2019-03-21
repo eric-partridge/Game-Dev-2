@@ -7575,9 +7575,9 @@ MonoBehaviour:
   forwardSpeed: 100
   sideSpeed: 50
   backwardSpeed: 50
-  currEnergy: 1000
+  currEnergy: 100
   coolDownTime: 2
-  useSpread: 0
+  _type: 1
 --- !u!1001 &318014279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9845,7 +9845,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-9522
+  m_Name: pb_Mesh-9274
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -15701,6 +15701,34 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1157311767}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1251268121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251268120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50dc5a350a53f9149817a686a6d4f718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponDefinitions:
+  - type: 1
+    velocity: 200
+    damage: 10
+  - type: 2
+    velocity: 100
+    damage: 5
+  - type: 0
+    velocity: 0
+    damage: 0
+  - type: 0
+    velocity: 0
+    damage: 0
+  - type: 0
+    velocity: 0
+    damage: 0
 --- !u!1001 &1252183676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20207,6 +20235,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 135459225712519580, guid: 13f7b0753fecb024ea9ff3cb793c3bb7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65550531260192346, guid: 13f7b0753fecb024ea9ff3cb793c3bb7,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 10.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13f7b0753fecb024ea9ff3cb793c3bb7, type: 3}

@@ -191,10 +191,10 @@ public class playerController : MonoBehaviour {
             Physics.gravity = new Vector3(0, normalGravity, 0); //new Vector3(-hit.normal.x, normalGravity * hit.normal.y, -hit.normal.z);
             print("Normal: " + hit.normal);
 
-            Quaternion t = pitchGO.transform.rotation * Quaternion.FromToRotation(pitchGO.transform.up, hit.normal);
+            /*Quaternion t = pitchGO.transform.rotation * Quaternion.FromToRotation(pitchGO.transform.up, hit.normal);
             pitchGO.transform.rotation = Quaternion.RotateTowards(pitchGO.transform.rotation, t, 1f);
 
-            /*Vector3 diff = pitchGO.transform.up - hit.normal;
+            Vector3 diff = pitchGO.transform.up - hit.normal;
             print("Diff: " + diff);
 
             Vector3 new_rot = pitchGO.transform.rotation.eulerAngles + diff;
