@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4922495278842234}
   - component: {fileID: 33108663829012332}
   - component: {fileID: 23908698099086112}
-  - component: {fileID: 114563433212796346}
+  - component: {fileID: 6154516946740807674}
   m_Layer: 0
   m_Name: ship_0-2
   m_TagString: Untagged
@@ -140,7 +140,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &114563433212796346
+--- !u!114 &6154516946740807674
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,11 +149,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1237589842014256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1609fd212a7aafc4b889afd54ea75394, type: 3}
+  m_Script: {fileID: 11500000, guid: fe718564b14ced64582695c0b0992222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {r: 0, g: 1, b: 0.8759382, a: 0}
-  rate: 0.75
+  freqBand: 0
+  target: {r: 0.6339288, g: 0, b: 1, a: 0}
 --- !u!1 &1272017631678556
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 4699923955780810}
   - component: {fileID: 33331710028403662}
   - component: {fileID: 23968853141176196}
+  - component: {fileID: 8268763113264645151}
   m_Layer: 0
   m_Name: ship_0-4
   m_TagString: Untagged
@@ -262,6 +263,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &8268763113264645151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403457263266678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe718564b14ced64582695c0b0992222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freqBand: 4
+  target: {r: 1, g: 0, b: 0.30589104, a: 0}
 --- !u!1 &1411881593924866
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +288,7 @@ GameObject:
   - component: {fileID: 4793322182292858}
   - component: {fileID: 33867643798011310}
   - component: {fileID: 23136438377913612}
+  - component: {fileID: 3375530386735895314}
   m_Layer: 0
   m_Name: ship_0-5
   m_TagString: Untagged
@@ -339,6 +355,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3375530386735895314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411881593924866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe718564b14ced64582695c0b0992222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freqBand: 2
+  target: {r: 1, g: 0, b: 0.73583317, a: 0}
 --- !u!1 &1446946829977462
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +472,7 @@ GameObject:
   - component: {fileID: 4303955333285736}
   - component: {fileID: 33853663754892890}
   - component: {fileID: 23854979341609050}
+  - component: {fileID: 1784154203377909657}
   m_Layer: 0
   m_Name: ship_0-3
   m_TagString: Untagged
@@ -508,6 +539,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1784154203377909657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498237205738096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe718564b14ced64582695c0b0992222, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freqBand: 6
+  target: {r: 1, g: 0.06666667, b: 0, a: 0}
 --- !u!1 &1523378144724100
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +829,7 @@ MonoBehaviour:
   driftSensitivity: 3
   deacceleration: 0.99
   shipModel: {fileID: 1601359492895528}
+  pitchGO: {fileID: 0}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 512
