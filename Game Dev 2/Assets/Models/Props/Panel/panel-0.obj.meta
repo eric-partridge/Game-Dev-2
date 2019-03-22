@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 31f7525de2ec10646a3b09f41c830185
+guid: 71ef8fbaf81e9ab40a25971c824cec4b
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: panel
+    100000: panel-0
     100002: //RootNode
-    400000: panel
+    400000: panel-0
     400002: //RootNode
     2100000: palette
-    2300000: panel
-    3300000: panel
-    4300000: panel
+    2300000: panel-0
+    3300000: panel-0
+    4300000: panel-0
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -45,6 +45,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -69,6 +70,9 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -83,7 +87,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
