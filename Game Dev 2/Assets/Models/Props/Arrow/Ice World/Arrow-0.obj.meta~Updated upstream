@@ -1,17 +1,16 @@
 fileFormatVersion: 2
-guid: facac239a6a46ed47a9db1020c97acc9
+guid: ebb538e18bac088458edd4c4050a7d35
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: house-0
+    100000: Arrow-0
     100002: //RootNode
-    400000: house-0
+    400000: Arrow-0
     400002: //RootNode
     2100000: palette
-    2300000: house-0
-    3300000: house-0
-    4300000: house-0
-    9500000: //RootNode
+    2300000: Arrow-0
+    3300000: Arrow-0
+    4300000: Arrow-0
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -65,7 +64,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -92,7 +91,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
