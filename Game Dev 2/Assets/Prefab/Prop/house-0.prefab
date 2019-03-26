@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &4711827527985183833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6675033163409668289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc6eee62004d81418ea2312b30f069c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freqBand: 6
+  target: {r: 1, g: 0.43164754, b: 0, a: 0}
+  maxIntensity: 3
+  minIntensity: 0
 --- !u!1 &6675033163801654656
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +211,7 @@ PrefabInstance:
     - target: {fileID: 2300000, guid: aa7c1066f6cc4d14fa2b56e954261d25, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 022d181877728774eb902e38e18e0bcb, type: 2}
+      objectReference: {fileID: 2100000, guid: bf4bad71727202145bee3e09c564b5b7, type: 2}
     - target: {fileID: 2300000, guid: aa7c1066f6cc4d14fa2b56e954261d25, type: 3}
       propertyPath: m_ScaleInLightmap
       value: 1
@@ -205,6 +221,12 @@ PrefabInstance:
 --- !u!4 &6675033163409630435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: aa7c1066f6cc4d14fa2b56e954261d25,
+    type: 3}
+  m_PrefabInstance: {fileID: 6675033163409768033}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6675033163409668289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: aa7c1066f6cc4d14fa2b56e954261d25,
     type: 3}
   m_PrefabInstance: {fileID: 6675033163409768033}
   m_PrefabAsset: {fileID: 0}
