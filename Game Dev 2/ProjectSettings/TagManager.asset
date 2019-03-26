@@ -7,6 +7,10 @@ TagManager:
   - Track
   - CheckPoint
   - Boost
+  - P1
+  - P2
+  - Cam1
+  - Cam2
   layers:
   - Default
   - TransparentFX
