@@ -23,9 +23,7 @@ public class weaponScript : MonoBehaviour {
 
     public GameObject projectile;
     public GameObject player;
-    public Transform frontBarrelM;
-    public Transform frontBarrelL;
-    public Transform frontBarrelR;
+    public Transform frontBarrel;
     public Transform sideBarrelR;
     public Transform sideBarrelL;
     public Transform backBarrel;
@@ -35,15 +33,28 @@ public class weaponScript : MonoBehaviour {
     public float currEnergy;
     public float coolDownTime;
     public WeaponType _type = WeaponType.none;
+    public int playerNum;
+
     WeaponDefinition def;
 
     private float shootTime = 0f;
     private float checkPointTime = 0f;
+    private string Horizontal;
+    private string Triangle;
+    private string Square;
+    private string Circle;
+    private string X;
 
 	// Use this for initialization
 	void Start () {
         SetType(_type);
-	}
+
+        Horizontal = "Horizontal P" + playerNum.ToString();
+        Triangle = "Triangle P" + playerNum.ToString();
+        Square = "Square P" + playerNum.ToString();
+        Circle = "Circle P" + playerNum.ToString();
+        X = "X P" + playerNum.ToString();
+    }
 
     public WeaponType type
     {
@@ -68,17 +79,17 @@ public class weaponScript : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        float leftStickX = Input.GetAxis("Horizontal");
+        float leftStickX = Input.GetAxis(Horizontal);
 
-        if (Input.GetButton("Triangle") && currEnergy > 0 && Time.time > shootTime)
+        if (Input.GetButton(Triangle) && currEnergy > 0 && Time.time > shootTime)
         {
             switch (_type)
             {
                 case WeaponType.single:
                     GameObject tempProjectile = Instantiate(def.projectilePrefab) as GameObject;
-                    tempProjectile.transform.position = def.barrell.position + (transform.forward);
+                    tempProjectile.transform.position = frontBarrel.position + (transform.forward);
                     Rigidbody rb = tempProjectile.GetComponent<Rigidbody>();
-                    rb.AddForce(def.barrell.forward * def.velocity, ForceMode.VelocityChange);
+                    rb.AddForce(frontBarrel.forward * def.velocity, ForceMode.VelocityChange);
                     Destroy(tempProjectile, 5f);
                     break;
 
@@ -109,7 +120,7 @@ public class weaponScript : MonoBehaviour {
             shootTime = Time.time + coolDownTime;
             currEnergy--;
         }
-        if (Input.GetButton("Circle") && currEnergy > 0 && Time.time > shootTime)
+        if (Input.GetButton(Circle) && currEnergy > 0 && Time.time > shootTime)
         {
             GameObject tempProjectile = Instantiate(projectile) as GameObject;
             tempProjectile.transform.position = sideBarrelR.position + (transform.right);
@@ -130,7 +141,7 @@ public class weaponScript : MonoBehaviour {
             currEnergy--;
             Destroy(tempProjectile, 5f);
         }
-        if (Input.GetButton("Square") && currEnergy > 0 && Time.time > shootTime)
+        if (Input.GetButton(Square) && currEnergy > 0 && Time.time > shootTime)
         {
             GameObject tempProjectile = Instantiate(projectile) as GameObject;
             tempProjectile.transform.position = sideBarrelL.position + (-transform.right);
@@ -150,7 +161,7 @@ public class weaponScript : MonoBehaviour {
             currEnergy--;
             Destroy(tempProjectile, 5f);
         }
-        if (Input.GetButton("X") && currEnergy > 0 && Time.time > shootTime)
+        if (Input.GetButton(X) && currEnergy > 0 && Time.time > shootTime)
         {
             GameObject tempProjectile = Instantiate(projectile) as GameObject;
             tempProjectile.transform.position = backBarrel.position + (-transform.forward);

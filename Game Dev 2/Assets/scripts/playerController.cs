@@ -28,6 +28,11 @@ public class playerController : MonoBehaviour {
     private int drift_direction;
     private bool boosting = false;
     private float boostTime = -2f;
+    private string R2Button;
+    private string R1Button;
+    private string Horizontal;
+    private string RSX;
+    private string RSY;
 
     Quaternion leftRotate30 = Quaternion.AngleAxis(-30, Vector3.forward);
     Quaternion rightRotate30 = Quaternion.AngleAxis(30, Vector3.forward);
@@ -41,8 +46,12 @@ public class playerController : MonoBehaviour {
     void Start () {
         rb = this.GetComponent<Rigidbody>();
         defaultSensitivity = sensitivity;
-        print("Controller name for player: " + (playerNum-1).ToString() + " is: " + Input.GetJoystickNames()[playerNum-1]);
-	}
+        R2Button = "R2 P" + playerNum.ToString();
+        R1Button = "R1 P" + playerNum.ToString();
+        Horizontal = "Horizontal P" + playerNum.ToString();
+        RSX = "RSX P" + playerNum.ToString();
+        RSY = "RSY P" + playerNum.ToString();
+    }
 
     void Update()
     {
@@ -53,12 +62,9 @@ public class playerController : MonoBehaviour {
 
         // print(Input.GetAxis("RSX"));
         //print(Input.GetAxis("RSY"));
-        string R2Button = "R2 " + this.tag;
-        print("New R2: " + R2Button);
-
-        float leftStickX = Input.GetAxis("Horizontal");
-        bool gas = Input.GetButton("R2 P" + playerNum.ToString());
-        bool brake = Input.GetButton("R1");
+        float leftStickX = Input.GetAxis(Horizontal);
+        bool gas = Input.GetButton(R2Button);
+        bool brake = Input.GetButton(R1Button);
         Vector3 force = new Vector3(0,0,0);
 
 
@@ -66,7 +72,6 @@ public class playerController : MonoBehaviour {
         {
             if (gas)
             {
-                print("R2: " + R2Button + " with player: " + this.tag);
                 rb.AddForce(transform.forward * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
             }
             if (brake)
@@ -156,14 +161,14 @@ public class playerController : MonoBehaviour {
 
         if (drifting && drift_direction == 1)
         {
-            leftStickX = Input.GetAxis("Horizontal") + 0.6f;
+            leftStickX = Input.GetAxis(Horizontal) + 0.6f;
             transform.Rotate(0, leftStickX / 1.6f * sensitivity, 0);
             tempQuatR = new Quaternion(leftRotate50.x, leftRotate50.y, leftRotate50.z * leftStickX / 1.6f, leftRotate50.w);
             shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, tempQuatR, 3f);
         }
         else if (drifting && drift_direction == -1)
         {
-            leftStickX = Input.GetAxis("Horizontal") - 0.6f;
+            leftStickX = Input.GetAxis(Horizontal) - 0.6f;
             transform.Rotate(0, leftStickX / 1.6f * sensitivity, 0);
             tempQuatL = new Quaternion(rightRotate50.x, rightRotate50.y, rightRotate50.z * -leftStickX / 1.6f, rightRotate50.w);
             shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, tempQuatL, 3f);
@@ -189,10 +194,10 @@ public class playerController : MonoBehaviour {
     public bool isGrounded()
     {
         RaycastHit hit;
-        bool ret = Physics.Raycast(transform.position, -Vector3.up, out hit, 3f, ~(1 << 9));
+        bool ret = Physics.Raycast(this.transform.position, -Vector3.up, out hit, 3f, ~(1 << 9));
         if (ret)
         {
-            Debug.DrawRay(transform.position, Vector3.down * hit.distance, Color.green);
+            Debug.DrawRay(this.transform.position, Vector3.down * hit.distance, Color.green);
             Physics.gravity = new Vector3(0, normalGravity, 0); //new Vector3(-hit.normal.x, normalGravity * hit.normal.y, -hit.normal.z);
             print("Normal: " + hit.normal);
 
@@ -247,7 +252,7 @@ public class playerController : MonoBehaviour {
             // UP
             if(other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
-                if(Input.GetAxis("RSY") > 0.3)
+                if(Input.GetAxis(RSY) > 0.3)
                 {
                     rb.AddForce(transform.forward * 2 * speed , ForceMode.VelocityChange);
                 }
@@ -255,7 +260,7 @@ public class playerController : MonoBehaviour {
             // DOWN
             if (other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == -1)
             {
-                if (Input.GetAxis("RSY") < -0.3)
+                if (Input.GetAxis(RSY) < -0.3)
                 {
                     rb.AddForce(-transform.forward * 2 * speed, ForceMode.VelocityChange);
                 }
@@ -263,7 +268,7 @@ public class playerController : MonoBehaviour {
             // LEFT
             if (other.GetComponent<Boost_Pad>().GetType2() == "RIGHT" && other.GetComponent<Boost_Pad>().GetDirection() == -1)
             {
-                if (Input.GetAxis("RSX") < -0.3)
+                if (Input.GetAxis(RSX) < -0.3)
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(-other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
@@ -273,7 +278,7 @@ public class playerController : MonoBehaviour {
             // RIGHT
             if (other.GetComponent<Boost_Pad>().GetType2() == "RIGHT" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
-                if (Input.GetAxis("RSX") > 0.3)
+                if (Input.GetAxis(RSX) > 0.3)
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
