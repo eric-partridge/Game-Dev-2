@@ -18,6 +18,7 @@ public class playerController : MonoBehaviour {
     public GameObject camReference;
     public bool grounded;
     public Vector3 rayNormal;
+    public int playerNum;
 
     private bool drifting = false;
     Rigidbody rb;
@@ -38,8 +39,9 @@ public class playerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        rb = GetComponent<Rigidbody>();
+        rb = this.GetComponent<Rigidbody>();
         defaultSensitivity = sensitivity;
+        print("Controller name for player: " + (playerNum-1).ToString() + " is: " + Input.GetJoystickNames()[playerNum-1]);
 	}
 
     void Update()
@@ -49,11 +51,13 @@ public class playerController : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate () {
 
-       // print(Input.GetAxis("RSX"));
+        // print(Input.GetAxis("RSX"));
         //print(Input.GetAxis("RSY"));
+        string R2Button = "R2 " + this.tag;
+        print("New R2: " + R2Button);
 
         float leftStickX = Input.GetAxis("Horizontal");
-        bool gas = Input.GetButton("R2");
+        bool gas = Input.GetButton("R2 P" + playerNum.ToString());
         bool brake = Input.GetButton("R1");
         Vector3 force = new Vector3(0,0,0);
 
@@ -62,6 +66,7 @@ public class playerController : MonoBehaviour {
         {
             if (gas)
             {
+                print("R2: " + R2Button + " with player: " + this.tag);
                 rb.AddForce(transform.forward * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
             }
             if (brake)
