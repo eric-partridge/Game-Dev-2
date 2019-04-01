@@ -67,6 +67,9 @@ public class playerController : MonoBehaviour {
         bool brake = Input.GetButton(R1Button);
         Vector3 force = new Vector3(0,0,0);
 
+        print("is Gas: " + gas);
+        print("R2 string: " + R2Button);
+
 
         if (isGrounded())
         {
