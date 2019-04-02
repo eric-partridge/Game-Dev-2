@@ -15,10 +15,11 @@ public class playerController : MonoBehaviour {
     public float normalGravity;
     public float airGravity;
     public float boostChange;
-    public GameObject camReference;
+    public float hitChange;
     public bool grounded;
     public Vector3 rayNormal;
     public int playerNum;
+    public GameObject otherPlayer;
 
     private bool drifting = false;
     Rigidbody rb;
@@ -27,7 +28,9 @@ public class playerController : MonoBehaviour {
     private float drift_boost;
     private int drift_direction;
     private bool boosting = false;
+    private bool hitByEnemy = false;
     private float boostTime = -2f;
+    private float hitTime = -2f;
     private string R2Button;
     private string R1Button;
     private string Horizontal;
@@ -51,6 +54,7 @@ public class playerController : MonoBehaviour {
         Horizontal = "Horizontal P" + playerNum.ToString();
         RSX = "RSX P" + playerNum.ToString();
         RSY = "RSY P" + playerNum.ToString();
+        Physics.IgnoreCollision(this.GetComponent<SphereCollider>(), otherPlayer.GetComponent<SphereCollider>());
     }
 
     void Update()
@@ -160,6 +164,13 @@ public class playerController : MonoBehaviour {
             boosting = false;
             print("Not boosting");
             //camReference.GetComponent<cameraScript>().rotateCamera(-5f);
+        }
+
+        if((hitTime + .75f) <= Time.fixedTime && hitByEnemy)
+        {
+            maxSpeed /= hitChange;
+            hitByEnemy = false;
+            print("Not slowed");
         }
 
         if (drifting && drift_direction == 1)
@@ -297,5 +308,26 @@ public class playerController : MonoBehaviour {
             boostTime = Time.fixedTime;
             boosting = true;
         }        
+    }
+
+    void slowDown()
+    {
+        if (!hitByEnemy)
+        {
+            maxSpeed = maxSpeed * hitChange;
+            hitTime = Time.fixedTime;
+            hitByEnemy = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Missile")
+        {
+            print("Player: " + this.tag + " Hit by: " + collision.gameObject.tag);
+            Destroy(collision.gameObject);
+            slowDown();
+        }
+
     }
 }

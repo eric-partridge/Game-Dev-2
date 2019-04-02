@@ -16,12 +16,11 @@ public class WeaponDefinition
     public float velocity = 0;
     public float damage = 0;
     public GameObject projectilePrefab;
-    public Transform barrell;
+    //public Transform barrell;
 }
 
 public class weaponScript : MonoBehaviour {
 
-    public GameObject projectile;
     public GameObject player;
     public Transform frontBarrelM;
     public Transform frontBarrelL;
@@ -89,6 +88,8 @@ public class weaponScript : MonoBehaviour {
             {
                 case WeaponType.single:
                     GameObject tempProjectile = Instantiate(def.projectilePrefab) as GameObject;
+                    Physics.IgnoreCollision(tempProjectile.GetComponent<BoxCollider>(), player.GetComponent<BoxCollider>());
+                    Physics.IgnoreCollision(tempProjectile.GetComponent<BoxCollider>(), player.GetComponent<SphereCollider>());
                     tempProjectile.transform.position = frontBarrelM.position + (transform.forward);
                     Rigidbody rb = tempProjectile.GetComponent<Rigidbody>();
                     rb.AddForce(frontBarrelM.forward * def.velocity, ForceMode.VelocityChange);
@@ -97,18 +98,24 @@ public class weaponScript : MonoBehaviour {
 
                 case WeaponType.spread:
                     GameObject tempProjectileM = Instantiate(def.projectilePrefab) as GameObject;
+                    Physics.IgnoreCollision(tempProjectileM.GetComponent<BoxCollider>(), player.GetComponent<BoxCollider>());
+                    Physics.IgnoreCollision(tempProjectileM.GetComponent<BoxCollider>(), player.GetComponent<SphereCollider>());
                     tempProjectileM.transform.position = frontBarrelM.position + (frontBarrelM.forward);
                     Rigidbody rbM = tempProjectileM.GetComponent<Rigidbody>();
                     rbM.AddForce(frontBarrelM.forward * def.velocity, ForceMode.VelocityChange);
                     Destroy(tempProjectileM, 5f);
 
                     GameObject tempProjectileL = Instantiate(def.projectilePrefab) as GameObject;
+                    Physics.IgnoreCollision(tempProjectileL.GetComponent<BoxCollider>(), player.GetComponent<BoxCollider>());
+                    Physics.IgnoreCollision(tempProjectileL.GetComponent<BoxCollider>(), player.GetComponent<SphereCollider>());
                     tempProjectileL.transform.position = frontBarrelL.position + (frontBarrelL.forward);
                     Rigidbody rbL = tempProjectileL.GetComponent<Rigidbody>();
                     rbL.AddForce(frontBarrelL.forward * def.velocity, ForceMode.VelocityChange);
                     Destroy(tempProjectileL, 5f);
 
                     GameObject tempProjectileR = Instantiate(def.projectilePrefab) as GameObject;
+                    Physics.IgnoreCollision(tempProjectileR.GetComponent<BoxCollider>(), player.GetComponent<BoxCollider>());
+                    Physics.IgnoreCollision(tempProjectileR.GetComponent<BoxCollider>(), player.GetComponent<SphereCollider>());
                     tempProjectileR.transform.position = frontBarrelR.position + (frontBarrelR.forward);
                     Rigidbody rbR = tempProjectileR.GetComponent<Rigidbody>();
                     rbR.AddForce(frontBarrelR.forward * def.velocity, ForceMode.VelocityChange);
@@ -122,6 +129,8 @@ public class weaponScript : MonoBehaviour {
         if (Input.GetButton(Circle) && currEnergy > 0 && Time.time > shootTime)
         {
             GameObject tempProjectile = Instantiate(def.projectilePrefab) as GameObject;
+            Physics.IgnoreCollision(tempProjectile.GetComponent<BoxCollider>(), player.GetComponent<BoxCollider>());
+            Physics.IgnoreCollision(tempProjectile.GetComponent<BoxCollider>(), player.GetComponent<SphereCollider>());
             tempProjectile.transform.position = sideBarrelR.position + (transform.right);
             Rigidbody rbM = tempProjectile.GetComponent<Rigidbody>();
             rbM.AddForce(transform.right * 100f, ForceMode.VelocityChange);
@@ -143,6 +152,8 @@ public class weaponScript : MonoBehaviour {
         if (Input.GetButton(Square) && currEnergy > 0 && Time.time > shootTime)
         {
             GameObject tempProjectile = Instantiate(def.projectilePrefab) as GameObject;
+            Physics.IgnoreCollision(tempProjectile.GetComponent<BoxCollider>(), player.GetComponent<BoxCollider>());
+            Physics.IgnoreCollision(tempProjectile.GetComponent<BoxCollider>(), player.GetComponent<SphereCollider>());
             tempProjectile.transform.position = sideBarrelL.position + (-transform.right);
             Rigidbody rbM = tempProjectile.GetComponent<Rigidbody>();
             rbM.AddForce(-transform.right * 100f, ForceMode.VelocityChange);
@@ -163,6 +174,8 @@ public class weaponScript : MonoBehaviour {
         if (Input.GetButton(X) && currEnergy > 0 && Time.time > shootTime)
         {
             GameObject tempProjectile = Instantiate(def.projectilePrefab) as GameObject;
+            Physics.IgnoreCollision(tempProjectile.GetComponent<BoxCollider>(), player.GetComponent<BoxCollider>());
+            Physics.IgnoreCollision(tempProjectile.GetComponent<BoxCollider>(), player.GetComponent<SphereCollider>());
             tempProjectile.transform.position = backBarrel.position + (-transform.forward);
             Rigidbody rbM = tempProjectile.GetComponent<Rigidbody>();
             rbM.AddForce(-transform.forward * 100f, ForceMode.VelocityChange);
@@ -181,15 +194,6 @@ public class weaponScript : MonoBehaviour {
                 currEnergy++;
                 shootTime = Time.time + coolDownTime;
             }
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Missile P1" && playerNum != 1)
-        {
-            print("Player: " + this.tag + " Hit by: " + collision.gameObject.tag);
-            Destroy(collision.gameObject);
         }
     }
 }

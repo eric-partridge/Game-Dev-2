@@ -34247,7 +34247,6 @@ GameObject:
   - component: {fileID: 65550531260192346}
   - component: {fileID: 135459225712519580}
   - component: {fileID: 317068705}
-  - component: {fileID: 1252028923546451359}
   m_Layer: 0
   m_Name: Player_ship_0
   m_TagString: P1
@@ -34273,12 +34272,6 @@ Transform:
   - {fileID: 506091625}
   - {fileID: 1087989366}
   - {fileID: 7691148577247742981}
-  - {fileID: 3973841327550645276}
-  - {fileID: 8273612449721950290}
-  - {fileID: 5445945173825008856}
-  - {fileID: 3919050696461095096}
-  - {fileID: 5346757686529555559}
-  - {fileID: 4123549073093313676}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -34380,32 +34373,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 1024320085100490, guid: 4aa013fcc95c5f949a8f2e18788641bc, type: 3}
   player: {fileID: 1924928866572514}
-  frontBarrel: {fileID: 0}
-  sideBarrelR: {fileID: 3919050696461095096}
-  sideBarrelL: {fileID: 5346757686529555559}
-  backBarrel: {fileID: 4123549073093313676}
-  forwardSpeed: 100
-  sideSpeed: 50
-  backwardSpeed: 50
-  currEnergy: 100
-  coolDownTime: 2
-  _type: 2
-  playerNum: 0
---- !u!114 &1252028923546451359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924928866572514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cb793f8457281a40abad3271ec4e31f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectile: {fileID: 1024320085100490, guid: 4aa013fcc95c5f949a8f2e18788641bc, type: 3}
-  player: {fileID: 1924928866572514}
-  frontBarrel: {fileID: 0}
+  frontBarrelM: {fileID: 124048023}
+  frontBarrelL: {fileID: 1446230408}
+  frontBarrelR: {fileID: 364876778}
   sideBarrelR: {fileID: 1100990934}
   sideBarrelL: {fileID: 506091625}
   backBarrel: {fileID: 1087989366}
@@ -34447,36 +34417,6 @@ Transform:
   m_Father: {fileID: 4362439840024592}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6313792362754299471
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5445945173825008856}
-  m_Layer: 0
-  m_Name: frontBarrelR
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5445945173825008856
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6313792362754299471}
-  m_LocalRotation: {x: 0, y: 0.043619405, z: 0, w: 0.9990483}
-  m_LocalPosition: {x: 0, y: 12.5, z: 30.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4362439840024592}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 5, z: 0}
 --- !u!1 &8890813314703351987
 GameObject:
   m_ObjectHideFlags: 0
