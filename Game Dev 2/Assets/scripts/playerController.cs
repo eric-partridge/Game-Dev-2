@@ -315,6 +315,7 @@ public class playerController : MonoBehaviour {
         if (!hitByEnemy)
         {
             maxSpeed = maxSpeed * hitChange;
+            rb.velocity = new Vector3(0, 0, 0);
             hitTime = Time.fixedTime;
             hitByEnemy = true;
         }
