@@ -28798,10 +28798,9 @@ GameObject:
   - component: {fileID: 4895745436776614942}
   - component: {fileID: 4825871054804202456}
   - component: {fileID: 4835123640107487205}
-  - component: {fileID: 4836612988542255783}
   m_Layer: 0
   m_Name: Player_ship_1
-  m_TagString: Player
+  m_TagString: P2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28866,7 +28865,7 @@ MonoBehaviour:
   sensitivity: 1.5
   driftSensitivity: 2.75
   deacceleration: 0.99
-  shipModel: {fileID: 0}
+  shipModel: {fileID: 8897037926808955023}
   pitchGO: {fileID: 1100509157793712286}
   ignoreLayer:
     serializedVersion: 2
@@ -28877,7 +28876,7 @@ MonoBehaviour:
   camReference: {fileID: 0}
   grounded: 0
   rayNormal: {x: 0, y: 0, z: 0}
-  playerNum: 0
+  playerNum: 2
 --- !u!114 &4796120259156443912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28931,7 +28930,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 1024320085100490, guid: 4aa013fcc95c5f949a8f2e18788641bc, type: 3}
   player: {fileID: 4836612988542255782}
-  frontBarrel: {fileID: 0}
+  frontBarrelM: {fileID: 4835123640283531475}
+  frontBarrelL: {fileID: 4835123638961628108}
+  frontBarrelR: {fileID: 4835123640060791214}
   sideBarrelR: {fileID: 4835123639320482706}
   sideBarrelL: {fileID: 4835123640171168301}
   backBarrel: {fileID: 4835123639333174322}
