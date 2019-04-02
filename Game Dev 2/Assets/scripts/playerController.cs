@@ -166,7 +166,7 @@ public class playerController : MonoBehaviour {
             //camReference.GetComponent<cameraScript>().rotateCamera(-5f);
         }
 
-        if((hitTime + .75f) <= Time.fixedTime && hitByEnemy)
+        if((hitTime + 0.75f) <= Time.fixedTime && hitByEnemy)
         {
             maxSpeed /= hitChange;
             hitByEnemy = false;

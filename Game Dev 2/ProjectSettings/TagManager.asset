@@ -11,8 +11,7 @@ TagManager:
   - P2
   - Cam1
   - Cam2
-  - Missile P1
-  - Missile P2
+  - Missile
   layers:
   - Default
   - TransparentFX
