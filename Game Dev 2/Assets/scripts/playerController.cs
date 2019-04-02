@@ -251,7 +251,7 @@ public class playerController : MonoBehaviour {
         else
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.red);
-            Physics.gravity = new Vector3(0f, airGravity, -0f);
+            rb.AddForce(new Vector3(0f, airGravity, -0f), ForceMode.Acceleration);
         }
         change++;
         print("Is grounded: " + ret);
