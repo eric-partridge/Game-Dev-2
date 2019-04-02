@@ -285,7 +285,7 @@ public class playerController : MonoBehaviour {
             // LEFT
             if (other.GetComponent<Boost_Pad>().GetType2() == "RIGHT" && other.GetComponent<Boost_Pad>().GetDirection() == -1)
             {
-                if (Input.GetAxis(RSX) < -0.3)
+                if (Input.GetAxis(RSX) < -0.1)
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(-other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
@@ -295,7 +295,7 @@ public class playerController : MonoBehaviour {
             // RIGHT
             if (other.GetComponent<Boost_Pad>().GetType2() == "RIGHT" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
-                if (Input.GetAxis(RSX) > 0.3)
+                if (Input.GetAxis(RSX) > 0.1)
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
