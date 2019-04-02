@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -55,6 +56,7 @@ public class playerController : MonoBehaviour {
         RSX = "RSX P" + playerNum.ToString();
         RSY = "RSY P" + playerNum.ToString();
         Physics.IgnoreCollision(this.GetComponent<SphereCollider>(), otherPlayer.GetComponent<SphereCollider>());
+        print("len: " + Input.GetJoystickNames().Length);
     }
 
     void Update()
@@ -263,6 +265,7 @@ public class playerController : MonoBehaviour {
     {
         if(other.tag == "Boost")
         {
+            print("Test out: " + Input.GetAxis(RSX));
             // UP
             if(other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
@@ -315,6 +318,7 @@ public class playerController : MonoBehaviour {
         if (!hitByEnemy)
         {
             maxSpeed = maxSpeed * hitChange;
+            rb.velocity = new Vector3(0, 0, 0);
             hitTime = Time.fixedTime;
             hitByEnemy = true;
         }
