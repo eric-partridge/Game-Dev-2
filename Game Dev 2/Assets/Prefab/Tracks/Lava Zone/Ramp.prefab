@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4425879110950262}
   - component: {fileID: 65984221570614130}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017413227037212}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 305214822b74a5c4d9d7001e15d9ccfe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4529495612573632}
   - component: {fileID: 65512604335337702}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051866433786630}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 305214822b74a5c4d9d7001e15d9ccfe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -98,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4304150810125056}
   - component: {fileID: 65593126070100196}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191599677827864}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 305214822b74a5c4d9d7001e15d9ccfe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -268,7 +268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4013915165309974}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4795192419420264}
   - component: {fileID: 65250343852206420}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1596020787572498}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 305214822b74a5c4d9d7001e15d9ccfe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -380,7 +380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4287008177612522}
   - component: {fileID: 65295090489169348}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613608638499088}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 305214822b74a5c4d9d7001e15d9ccfe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -424,7 +424,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4443250097437900}
   - component: {fileID: 65539287472275962}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -452,7 +452,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1622437059579116}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 305214822b74a5c4d9d7001e15d9ccfe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -468,7 +468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4957914320201950}
   - component: {fileID: 65713193986269034}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -496,7 +496,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670753910978342}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 305214822b74a5c4d9d7001e15d9ccfe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -511,7 +511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4545856313293672}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4775096152287536}
   - component: {fileID: 65396220384430610}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724037955626472}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 305214822b74a5c4d9d7001e15d9ccfe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -592,7 +592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4120789475093606}
   - component: {fileID: 65014434927367016}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -620,7 +620,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1728078370265422}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 305214822b74a5c4d9d7001e15d9ccfe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -636,7 +636,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4630988912944744}
   - component: {fileID: 65623846278301344}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +664,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751374001333660}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 305214822b74a5c4d9d7001e15d9ccfe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -680,7 +680,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4093471314047658}
   - component: {fileID: 65206201004597628}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,7 +708,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843886107779478}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 305214822b74a5c4d9d7001e15d9ccfe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -801,7 +801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4123923396709416}
   - component: {fileID: 65994897909329200}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -829,7 +829,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1906209420262898}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 305214822b74a5c4d9d7001e15d9ccfe, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

@@ -34104,7 +34104,8 @@ GameObject:
   - component: {fileID: 4751073569889346}
   - component: {fileID: 33463174697434244}
   - component: {fileID: 23459879987862862}
-  m_Layer: 0
+  - component: {fileID: 5469755496204571401}
+  m_Layer: 10
   m_Name: ship_0-0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34170,6 +34171,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!135 &5469755496204571401
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629908658414918}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 40
+  m_Center: {x: 0, y: 30, z: 0}
 --- !u!1 &1741877986279760
 GameObject:
   m_ObjectHideFlags: 0
@@ -34245,7 +34259,6 @@ GameObject:
   - component: {fileID: 114918045578418204}
   - component: {fileID: 114545625328408908}
   - component: {fileID: 65550531260192346}
-  - component: {fileID: 135459225712519580}
   - component: {fileID: 317068705}
   m_Layer: 0
   m_Name: Player_ship_0
@@ -34316,10 +34329,11 @@ MonoBehaviour:
   normalGravity: -1
   airGravity: -350
   boostChange: 2
-  camReference: {fileID: 0}
+  hitChange: 0
   grounded: 0
   rayNormal: {x: 0, y: 0, z: 0}
   playerNum: 1
+  otherPlayer: {fileID: 0}
 --- !u!114 &114545625328408908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34346,19 +34360,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 41.096245, y: 21.080654, z: 49.872513}
   m_Center: {x: 0.6469798, y: 10.7, z: -1.0677576}
---- !u!135 &135459225712519580
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924928866572514}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 40
-  m_Center: {x: 0, y: 30, z: 0}
 --- !u!114 &317068705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34371,7 +34372,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb793f8457281a40abad3271ec4e31f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 1024320085100490, guid: 4aa013fcc95c5f949a8f2e18788641bc, type: 3}
   player: {fileID: 1924928866572514}
   frontBarrelM: {fileID: 124048023}
   frontBarrelL: {fileID: 1446230408}
