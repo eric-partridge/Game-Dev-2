@@ -18,9 +18,7 @@ public class playerController : MonoBehaviour {
     public float boostChange;
     public float hitChange;
     public bool grounded;
-    public Vector3 rayNormal;
     public int playerNum;
-    public GameObject otherPlayer;
 
     private bool drifting = false;
     Rigidbody rb;
@@ -33,6 +31,7 @@ public class playerController : MonoBehaviour {
     private float boostTime = -2f;
     private float hitTime = -2f;
     private string R2Button;
+    private string R1Button;
     private string L2Button;
     private string L1Button;
     private string Horizontal;
@@ -52,12 +51,12 @@ public class playerController : MonoBehaviour {
         rb = this.GetComponent<Rigidbody>();
         defaultSensitivity = sensitivity;
         R2Button = "R2 P" + playerNum.ToString();
+        R1Button = "R1 P" + playerNum.ToString();
         L2Button = "L2 P" + playerNum.ToString();
         L1Button = "L1 P" + playerNum.ToString();
         Horizontal = "Horizontal P" + playerNum.ToString();
         RSX = "RSX P" + playerNum.ToString();
         RSY = "RSY P" + playerNum.ToString();
-        Physics.IgnoreCollision(this.GetComponent<Collider>(), otherPlayer.GetComponent<Collider>());
         print("len: " + Input.GetJoystickNames().Length);
     }
 
@@ -71,7 +70,7 @@ public class playerController : MonoBehaviour {
         // print(Input.GetAxis("RSX"));
         //print(Input.GetAxis("RSY"));
         float leftStickX = Input.GetAxis(Horizontal);
-        bool gas = Input.GetButton(R2Button);
+        bool gas = (Input.GetButton(R2Button) || Input.GetButton(R1Button));
         bool brake = (Input.GetButton(L2Button) || Input.GetButton(L1Button));
         Vector3 force = new Vector3(0,0,0);
 
