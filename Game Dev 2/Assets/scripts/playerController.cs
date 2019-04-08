@@ -51,7 +51,7 @@ public class playerController : MonoBehaviour {
         rb = this.GetComponent<Rigidbody>();
         defaultSensitivity = sensitivity;
         R2Button = "R2 P" + playerNum.ToString();
-        R1Button = "R1 P" + playerNum.ToString();
+        R1Button = "L2 P" + playerNum.ToString();
         Horizontal = "Horizontal P" + playerNum.ToString();
         RSX = "RSX P" + playerNum.ToString();
         RSY = "RSY P" + playerNum.ToString();
