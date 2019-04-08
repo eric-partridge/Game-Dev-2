@@ -34,6 +34,7 @@ public class playerController : MonoBehaviour {
     private float hitTime = -2f;
     private string R2Button;
     private string L2Button;
+    private string L1Button;
     private string Horizontal;
     private string RSX;
     private string RSY;
@@ -52,10 +53,11 @@ public class playerController : MonoBehaviour {
         defaultSensitivity = sensitivity;
         R2Button = "R2 P" + playerNum.ToString();
         L2Button = "L2 P" + playerNum.ToString();
+        L1Button = "L1 P" + playerNum.ToString();
         Horizontal = "Horizontal P" + playerNum.ToString();
         RSX = "RSX P" + playerNum.ToString();
         RSY = "RSY P" + playerNum.ToString();
-        Physics.IgnoreCollision(this.GetComponent<SphereCollider>(), otherPlayer.GetComponent<SphereCollider>());
+        Physics.IgnoreCollision(this.GetComponent<Collider>(), otherPlayer.GetComponent<Collider>());
         print("len: " + Input.GetJoystickNames().Length);
     }
 
@@ -70,7 +72,7 @@ public class playerController : MonoBehaviour {
         //print(Input.GetAxis("RSY"));
         float leftStickX = Input.GetAxis(Horizontal);
         bool gas = Input.GetButton(R2Button);
-        bool brake = Input.GetButton(L2Button);
+        bool brake = (Input.GetButton(L2Button) || Input.GetButton(L1Button));
         Vector3 force = new Vector3(0,0,0);
 
         print("is brake: " + brake);
