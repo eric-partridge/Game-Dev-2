@@ -23,9 +23,9 @@ TagManager:
   - 
   - PostProcessing
   - Player
-  - 
-  - 
-  - 
+  - PlayerSphere
+  - Walls
+  - PlayerBox
   - 
   - 
   - 
