@@ -34331,7 +34331,9 @@ MonoBehaviour:
   boostChange: 2
   hitChange: 0
   grounded: 0
+  rayNormal: {x: 0, y: 0, z: 0}
   playerNum: 1
+  otherPlayer: {fileID: 0}
 --- !u!114 &114545625328408908
 MonoBehaviour:
   m_ObjectHideFlags: 0
