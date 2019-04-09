@@ -12,6 +12,8 @@ TagManager:
   - Cam1
   - Cam2
   - Missile
+  - destinationMarker
+  - corner
   layers:
   - Default
   - TransparentFX
