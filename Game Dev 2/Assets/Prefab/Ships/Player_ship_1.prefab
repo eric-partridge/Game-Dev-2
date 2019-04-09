@@ -28617,7 +28617,7 @@ GameObject:
   - component: {fileID: 4796120259156443912}
   - component: {fileID: 4895745436776614942}
   - component: {fileID: 4836612988542255783}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Player_ship_1
   m_TagString: P2
   m_Icon: {fileID: 0}
@@ -28688,9 +28688,7 @@ MonoBehaviour:
   boostChange: 2
   hitChange: 0
   grounded: 0
-  rayNormal: {x: 0, y: 0, z: 0}
   playerNum: 2
-  otherPlayer: {fileID: 0}
 --- !u!114 &4796120259156443912
 MonoBehaviour:
   m_ObjectHideFlags: 0
