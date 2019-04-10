@@ -44,20 +44,23 @@ public class Resample : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            ResampleLoop();
+        }
     }
     public float ResampleLoop()
     {
         if (waitTime > LapTimer.timer)
         {
+            waitTime = LapTimer.timer + SPB + SPB / 4;
             Sampler.Play();
-            waitTime = LapTimer.timer + SPB;
             return waitTime;
         }
         else
         {
+            waitTime = LapTimer.timer + SPB + SPB / 4;
             Sampler.clip = MakeSubclip(file, LapTimer.timer, LapTimer.timer + SPB);
-            waitTime = LapTimer.timer + SPB;
             Sampler.Play();
             return waitTime;
         }
