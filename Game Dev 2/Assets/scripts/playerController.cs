@@ -21,6 +21,9 @@ public class playerController : MonoBehaviour {
     public Vector3 rayNormal;
     public int playerNum;
     public GameObject otherPlayer;
+    public GameObject Master;
+    public AudioSource BGM;
+    public AudioSource Sampler;
 
     private bool drifting = false;
     Rigidbody rb;
@@ -38,6 +41,7 @@ public class playerController : MonoBehaviour {
     private string Horizontal;
     private string RSX;
     private string RSY;
+    private float waitTime;
 
     Quaternion leftRotate30 = Quaternion.AngleAxis(-30, Vector3.forward);
     Quaternion rightRotate30 = Quaternion.AngleAxis(30, Vector3.forward);
@@ -78,7 +82,6 @@ public class playerController : MonoBehaviour {
         print("is brake: " + brake);
 
         drift_direction = 0;
-
 
         if (isGrounded())
         {
@@ -295,6 +298,7 @@ public class playerController : MonoBehaviour {
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(-other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
+                    waitTime = Master.GetComponent<Resample>().ResampleLoop();
                     //rb.velocity = rb.velocity - Vector3.Project(rb.velocity,  transform.forward);
                 }
             }
@@ -305,6 +309,7 @@ public class playerController : MonoBehaviour {
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
+                    waitTime = Master.GetComponent<Resample>().ResampleLoop();
                 }
             }
         }
