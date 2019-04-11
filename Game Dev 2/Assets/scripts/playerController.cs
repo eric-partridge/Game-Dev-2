@@ -21,6 +21,9 @@ public class playerController : MonoBehaviour {
     public Vector3 rayNormal;
     public int playerNum;
     public GameObject otherPlayer;
+    public GameObject Master;
+    public AudioSource BGM;
+    public AudioSource Sampler;
 
     private bool drifting = false;
     Rigidbody rb;
@@ -38,6 +41,7 @@ public class playerController : MonoBehaviour {
     private string Horizontal;
     private string RSX;
     private string RSY;
+    private float waitTime;
 
     Quaternion leftRotate30 = Quaternion.AngleAxis(-30, Vector3.forward);
     Quaternion rightRotate30 = Quaternion.AngleAxis(30, Vector3.forward);
@@ -77,9 +81,6 @@ public class playerController : MonoBehaviour {
 
         print("is brake: " + brake);
 
-        drift_direction = 0;
-
-
         if (isGrounded())
         {
             if (gas)
@@ -91,11 +92,11 @@ public class playerController : MonoBehaviour {
                 //if turning and braking ie. drifitng increase turning senesitivity
                 if (leftStickX != 0)
                 {
-                    if (leftStickX > 0)
+                    if (leftStickX > 0 && drift_direction == 0)
                     {
                         drift_direction = 1;
                     }
-                    else
+                    else if(leftStickX < 0 && drift_direction == 0)
                     {
                         drift_direction = -1;
                     }
@@ -109,9 +110,14 @@ public class playerController : MonoBehaviour {
                 }
             }
 
+            else
+            {
+                drift_direction = 0;
+            }
+
             if (drifting && drift_direction == 1)
             {
-                leftStickX = Input.GetAxis(Horizontal) + 0.6f;
+                leftStickX = leftStickX + 0.6f;
                 transform.Rotate(0, leftStickX / 1.6f * sensitivity, 0);
                 tempQuatR = new Quaternion(leftRotate50.x, leftRotate50.y, leftRotate50.z * leftStickX / 1.6f, leftRotate50.w);
                 shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, tempQuatR, 3f);
@@ -119,11 +125,28 @@ public class playerController : MonoBehaviour {
             }
             else if (drifting && drift_direction == -1)
             {
-                leftStickX = Input.GetAxis(Horizontal) - 0.6f;
+                leftStickX = leftStickX - 0.6f;
                 transform.Rotate(0, leftStickX / 1.6f * sensitivity, 0);
                 tempQuatL = new Quaternion(rightRotate50.x, rightRotate50.y, rightRotate50.z * -leftStickX / 1.6f, rightRotate50.w);
                 shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, tempQuatL, 3f);
                 print("Drifting LEFT");
+            }
+
+            else if (leftStickX != 0 && drift_direction == 0)
+            {
+                transform.Rotate(0, leftStickX * sensitivity, 0);
+                if (leftStickX > 0)
+                {
+                    shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, leftRotate30, 1.5f);
+                }
+                if (leftStickX < 0)
+                {
+                    shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, rightRotate30, 1.5f);
+                }
+            }
+            else
+            {
+                shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, Quaternion.identity, 1f);
             }
             //once done braking, reset sensitivity to default
             if (!brake)
@@ -194,23 +217,6 @@ public class playerController : MonoBehaviour {
             hitByEnemy = false;
             print("Not slowed");
         }
-
-        if (leftStickX != 0 && drift_direction == 0)
-        {
-            transform.Rotate(0, leftStickX * sensitivity, 0);
-            if (leftStickX > 0)
-            {
-                shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, leftRotate30, 1.5f);
-            }
-            if (leftStickX < 0)
-            {
-                shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, rightRotate30, 1.5f);
-            }
-        }
-        else
-        {
-            shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, Quaternion.identity, 1f);
-        }
     }
 
     public bool isGrounded()
@@ -222,6 +228,8 @@ public class playerController : MonoBehaviour {
             Debug.DrawRay(this.transform.position, Vector3.down * hit.distance, Color.green);
             Physics.gravity = new Vector3(0, normalGravity, 0); //new Vector3(-hit.normal.x, normalGravity * hit.normal.y, -hit.normal.z);
             print("Normal: " + hit.normal);
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal)), 0.5f);
 
             /*Quaternion t = pitchGO.transform.rotation * Quaternion.FromToRotation(pitchGO.transform.up, hit.normal);
             pitchGO.transform.rotation = Quaternion.RotateTowards(pitchGO.transform.rotation, t, 1f);
@@ -295,6 +303,7 @@ public class playerController : MonoBehaviour {
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(-other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
+                    waitTime = Master.GetComponent<Resample>().ResampleLoop();
                     //rb.velocity = rb.velocity - Vector3.Project(rb.velocity,  transform.forward);
                 }
             }
@@ -305,6 +314,7 @@ public class playerController : MonoBehaviour {
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
+                    waitTime = Master.GetComponent<Resample>().ResampleLoop();
                 }
             }
         }
