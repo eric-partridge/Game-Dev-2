@@ -229,6 +229,8 @@ public class playerController : MonoBehaviour {
             Physics.gravity = new Vector3(0, normalGravity, 0); //new Vector3(-hit.normal.x, normalGravity * hit.normal.y, -hit.normal.z);
             print("Normal: " + hit.normal);
 
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal)), 0.5f);
+
             /*Quaternion t = pitchGO.transform.rotation * Quaternion.FromToRotation(pitchGO.transform.up, hit.normal);
             pitchGO.transform.rotation = Quaternion.RotateTowards(pitchGO.transform.rotation, t, 1f);
 
