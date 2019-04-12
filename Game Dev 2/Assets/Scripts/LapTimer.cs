@@ -10,7 +10,7 @@ public class LapTimer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        timer = Time.time;
+        timer = BPM_Clock.currentTime;
 	}
 
     void FixedUpdate () {

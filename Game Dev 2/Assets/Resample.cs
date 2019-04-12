@@ -51,15 +51,15 @@ public class Resample : MonoBehaviour
     }
     public float ResampleLoop()
     {
-        if (waitTime > LapTimer.timer)
+        if (waitTime > LapTimer.timer && waitTime < LapTimer.timer + SPB/2)
         {
-            waitTime = LapTimer.timer + SPB + SPB / 4;
+            waitTime = LapTimer.timer + SPB;
             Sampler.Play();
             return waitTime;
         }
         else
         {
-            waitTime = LapTimer.timer + SPB + SPB / 4;
+            waitTime = LapTimer.timer + SPB;
             Sampler.clip = MakeSubclip(file, LapTimer.timer, LapTimer.timer + SPB);
             Sampler.Play();
             return waitTime;

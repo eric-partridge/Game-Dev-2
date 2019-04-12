@@ -26,6 +26,7 @@ public class playerController : MonoBehaviour {
     public AudioSource Sampler;
 
     private bool drifting = false;
+    private Resample Resampler;
     Rigidbody rb;
     private float defaultSensitivity;
     private float change = 0f;
@@ -53,6 +54,7 @@ public class playerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Resampler = Master.GetComponent<Resample>();
         rb = this.GetComponent<Rigidbody>();
         defaultSensitivity = sensitivity;
         R2Button = "R2 P" + playerNum.ToString();
@@ -86,6 +88,10 @@ public class playerController : MonoBehaviour {
             if (gas)
             {
                 rb.AddForce(transform.forward * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            }
+            if (!gas)
+            {
+                rb.velocity = rb.velocity * deacceleration;
             }
             if (brake)
             {
@@ -196,13 +202,21 @@ public class playerController : MonoBehaviour {
                 drift_direction = 0;
             }
         }
+        else
+        {
+            transform.Rotate(0, leftStickX * sensitivity/1.5f, 0);
+            if (leftStickX > 0)
+            {
+                shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, leftRotate30, 1.5f);
+            }
+            if (leftStickX < 0)
+            {
+                shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, rightRotate30, 1.5f);
+            }
+        }
         float rotDegrees = 180f;
         Vector3 newVelocity = Vector3.RotateTowards(rb.velocity, transform.forward, rotDegrees * Time.deltaTime * Mathf.Deg2Rad, 0);
         rb.velocity = newVelocity;
-        if (!gas)
-        {
-            rb.velocity = rb.velocity * deacceleration;
-        }
 
         if((boostTime + 0.75f) <= Time.fixedTime && boosting){
             maxSpeed /= boostChange;
@@ -268,6 +282,7 @@ public class playerController : MonoBehaviour {
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.red);
             rb.AddForce(new Vector3(0f, airGravity, -0f), ForceMode.Acceleration);
+
         }
         change++;
         print("Is grounded: " + ret);
@@ -303,7 +318,7 @@ public class playerController : MonoBehaviour {
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(-other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
-                    waitTime = Master.GetComponent<Resample>().ResampleLoop();
+                    waitTime = Resampler.ResampleLoop();
                     //rb.velocity = rb.velocity - Vector3.Project(rb.velocity,  transform.forward);
                 }
             }
@@ -314,7 +329,7 @@ public class playerController : MonoBehaviour {
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
-                    waitTime = Master.GetComponent<Resample>().ResampleLoop();
+                    waitTime = Resampler.ResampleLoop();
                 }
             }
         }
