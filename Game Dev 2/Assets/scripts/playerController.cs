@@ -24,6 +24,7 @@ public class playerController : MonoBehaviour {
     public GameObject Master;
     public AudioSource BGM;
     public AudioSource Sampler;
+    public RaceManager raceManager;
 
     private bool drifting = false;
     private Resample Resampler;
@@ -43,6 +44,8 @@ public class playerController : MonoBehaviour {
     private string RSX;
     private string RSY;
     private float waitTime;
+    private bool playerCheckpointPassed = false;
+    private float playerCheckpointTime;
 
     Quaternion leftRotate30 = Quaternion.AngleAxis(-30, Vector3.forward);
     Quaternion rightRotate30 = Quaternion.AngleAxis(30, Vector3.forward);
@@ -64,7 +67,7 @@ public class playerController : MonoBehaviour {
         RSX = "RSX P" + playerNum.ToString();
         RSY = "RSY P" + playerNum.ToString();
         Physics.IgnoreCollision(this.GetComponent<Collider>(), otherPlayer.GetComponent<Collider>());
-        print("len: " + Input.GetJoystickNames().Length);
+        //print("len: " + Input.GetJoystickNames().Length);
     }
 
     void Update()
@@ -81,7 +84,7 @@ public class playerController : MonoBehaviour {
         bool brake = (Input.GetButton(L2Button) || Input.GetButton(L1Button));
         Vector3 force = new Vector3(0,0,0);
 
-        print("is brake: " + brake);
+        //print("is brake: " + brake);
 
         if (isGrounded())
         {
@@ -221,7 +224,7 @@ public class playerController : MonoBehaviour {
         if((boostTime + 0.75f) <= Time.fixedTime && boosting){
             maxSpeed /= boostChange;
             boosting = false;
-            print("Not boosting");
+            //print("Not boosting");
             //camReference.GetComponent<cameraScript>().rotateCamera(-5f);
         }
 
@@ -229,7 +232,12 @@ public class playerController : MonoBehaviour {
         {
             maxSpeed /= hitChange;
             hitByEnemy = false;
-            print("Not slowed");
+            //print("Not slowed");
+        }
+
+        if(playerCheckpointTime + 3f <= Time.fixedTime)
+        {
+            playerCheckpointPassed = false;
         }
     }
 
@@ -241,7 +249,7 @@ public class playerController : MonoBehaviour {
         {
             Debug.DrawRay(this.transform.position, Vector3.down * hit.distance, Color.green);
             Physics.gravity = new Vector3(0, normalGravity, 0); //new Vector3(-hit.normal.x, normalGravity * hit.normal.y, -hit.normal.z);
-            print("Normal: " + hit.normal);
+            //print("Normal: " + hit.normal);
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal)), 0.5f);
 
@@ -294,7 +302,7 @@ public class playerController : MonoBehaviour {
     {
         if(other.tag == "Boost")
         {
-            print("Test out: " + Input.GetAxis(RSX));
+            //print("Test out: " + Input.GetAxis(RSX));
             // UP
             if(other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
@@ -364,5 +372,53 @@ public class playerController : MonoBehaviour {
             slowDown();
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "CheckPoint")
+        {
+            //if player 1 goes through a checkpoint
+            if(playerNum == 1 && !playerCheckpointPassed) {
+                raceManager.updatePlayer1Checkpoint();
+                playerCheckpointPassed = true;
+                playerCheckpointTime = Time.fixedTime;
+                print("Player: " + playerNum + " passed a checkpoint");
+            }
+            //if player 2 goes through a checkpoint
+            if(playerNum == 2 && !playerCheckpointPassed) {
+                raceManager.updatePlayer2Checkpoint();
+                playerCheckpointPassed = true;
+                playerCheckpointTime = Time.fixedTime;
+                print("Player: " + playerNum + " passed a checkpoint");
+            }
+        }
+        //if its the line
+        else if(other.tag == "Line" && other is BoxCollider)
+        {
+            //print("Name: " + raceManager.getFirstPlace().name);
+            if(raceManager.getFirstPlace().name == "Player_ship_0" && playerNum != 1)
+            {
+                this.gameObject.SetActive(false);
+                respawnPlayer();
+            }
+            else if(raceManager.getFirstPlace().name == "Player_ship_1" && playerNum != 2)
+            {
+                this.gameObject.SetActive(false);
+                respawnPlayer();
+            }
+            else
+            {
+                print("gotta descrease line speed");
+            }
+        }
+    }
+
+    private void respawnPlayer()
+    {
+        this.gameObject.transform.position = otherPlayer.transform.position;
+        this.gameObject.transform.rotation = otherPlayer.transform.rotation;
+        this.gameObject.SetActive(true);
+        slowDown();
     }
 }

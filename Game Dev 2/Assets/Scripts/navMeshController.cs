@@ -23,21 +23,17 @@ public class navMeshController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (agent.remainingDistance < distAway && agent.remainingDistance != 0 && !incremented)
+        //set next destination for line
+        if (agent.remainingDistance < 10f && agent.remainingDistance != 0 && !incremented)
         {
+            print("incremented to: " + i);
             i++;
-            print("I is: " + i);
             if(i == targets.Length)
             {
                 i = 0;
             }
             agent.SetDestination(targets[i].position);
             incremented = true;
-            if (i + 1 < targets.Length)
-            {
-                if (targets[i + 1].tag == "corner") { distAway = 5f; }
-            }
-            else { distAway = 10f; }
             
         }
         if(agent.remainingDistance > 10f)
