@@ -21,8 +21,13 @@ public class playerController : MonoBehaviour {
     public Vector3 rayNormal;
     public int playerNum;
     public GameObject otherPlayer;
+    public GameObject Master;
+    public AudioSource BGM;
+    public AudioSource Sampler;
+    public RaceManager raceManager;
 
     private bool drifting = false;
+    private Resample Resampler;
     Rigidbody rb;
     private float defaultSensitivity;
     private float change = 0f;
@@ -38,6 +43,9 @@ public class playerController : MonoBehaviour {
     private string Horizontal;
     private string RSX;
     private string RSY;
+    private float waitTime;
+    private bool playerCheckpointPassed = false;
+    private float playerCheckpointTime;
 
     Quaternion leftRotate30 = Quaternion.AngleAxis(-30, Vector3.forward);
     Quaternion rightRotate30 = Quaternion.AngleAxis(30, Vector3.forward);
@@ -49,6 +57,7 @@ public class playerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Resampler = Master.GetComponent<Resample>();
         rb = this.GetComponent<Rigidbody>();
         defaultSensitivity = sensitivity;
         R2Button = "R2 P" + playerNum.ToString();
@@ -58,7 +67,7 @@ public class playerController : MonoBehaviour {
         RSX = "RSX P" + playerNum.ToString();
         RSY = "RSY P" + playerNum.ToString();
         Physics.IgnoreCollision(this.GetComponent<Collider>(), otherPlayer.GetComponent<Collider>());
-        print("len: " + Input.GetJoystickNames().Length);
+        //print("len: " + Input.GetJoystickNames().Length);
     }
 
     void Update()
@@ -75,10 +84,7 @@ public class playerController : MonoBehaviour {
         bool brake = (Input.GetButton(L2Button) || Input.GetButton(L1Button));
         Vector3 force = new Vector3(0,0,0);
 
-        print("is brake: " + brake);
-
-        drift_direction = 0;
-
+        //print("is brake: " + brake);
 
         if (isGrounded())
         {
@@ -86,16 +92,20 @@ public class playerController : MonoBehaviour {
             {
                 rb.AddForce(transform.forward * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
             }
+            if (!gas)
+            {
+                rb.velocity = rb.velocity * deacceleration;
+            }
             if (brake)
             {
                 //if turning and braking ie. drifitng increase turning senesitivity
                 if (leftStickX != 0)
                 {
-                    if (leftStickX > 0)
+                    if (leftStickX > 0 && drift_direction == 0)
                     {
                         drift_direction = 1;
                     }
-                    else
+                    else if(leftStickX < 0 && drift_direction == 0)
                     {
                         drift_direction = -1;
                     }
@@ -109,9 +119,14 @@ public class playerController : MonoBehaviour {
                 }
             }
 
+            else
+            {
+                drift_direction = 0;
+            }
+
             if (drifting && drift_direction == 1)
             {
-                leftStickX = Input.GetAxis(Horizontal) + 0.6f;
+                leftStickX = leftStickX + 0.6f;
                 transform.Rotate(0, leftStickX / 1.6f * sensitivity, 0);
                 tempQuatR = new Quaternion(leftRotate50.x, leftRotate50.y, leftRotate50.z * leftStickX / 1.6f, leftRotate50.w);
                 shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, tempQuatR, 3f);
@@ -119,11 +134,28 @@ public class playerController : MonoBehaviour {
             }
             else if (drifting && drift_direction == -1)
             {
-                leftStickX = Input.GetAxis(Horizontal) - 0.6f;
+                leftStickX = leftStickX - 0.6f;
                 transform.Rotate(0, leftStickX / 1.6f * sensitivity, 0);
                 tempQuatL = new Quaternion(rightRotate50.x, rightRotate50.y, rightRotate50.z * -leftStickX / 1.6f, rightRotate50.w);
                 shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, tempQuatL, 3f);
                 print("Drifting LEFT");
+            }
+
+            else if (leftStickX != 0 && drift_direction == 0)
+            {
+                transform.Rotate(0, leftStickX * sensitivity, 0);
+                if (leftStickX > 0)
+                {
+                    shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, leftRotate30, 1.5f);
+                }
+                if (leftStickX < 0)
+                {
+                    shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, rightRotate30, 1.5f);
+                }
+            }
+            else
+            {
+                shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, Quaternion.identity, 1f);
             }
             //once done braking, reset sensitivity to default
             if (!brake)
@@ -173,31 +205,9 @@ public class playerController : MonoBehaviour {
                 drift_direction = 0;
             }
         }
-        float rotDegrees = 180f;
-        Vector3 newVelocity = Vector3.RotateTowards(rb.velocity, transform.forward, rotDegrees * Time.deltaTime * Mathf.Deg2Rad, 0);
-        rb.velocity = newVelocity;
-        if (!gas)
+        else
         {
-            rb.velocity = rb.velocity * deacceleration;
-        }
-
-        if((boostTime + 0.75f) <= Time.fixedTime && boosting){
-            maxSpeed /= boostChange;
-            boosting = false;
-            print("Not boosting");
-            //camReference.GetComponent<cameraScript>().rotateCamera(-5f);
-        }
-
-        if((hitTime + 1.5f) <= Time.fixedTime && hitByEnemy)
-        {
-            maxSpeed /= hitChange;
-            hitByEnemy = false;
-            print("Not slowed");
-        }
-
-        if (leftStickX != 0 && drift_direction == 0)
-        {
-            transform.Rotate(0, leftStickX * sensitivity, 0);
+            transform.Rotate(0, leftStickX * sensitivity/1.5f, 0);
             if (leftStickX > 0)
             {
                 shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, leftRotate30, 1.5f);
@@ -206,10 +216,32 @@ public class playerController : MonoBehaviour {
             {
                 shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, rightRotate30, 1.5f);
             }
+            if(boosting)
+            {
+                rb.AddForce(new Vector3(0f, airGravity, -0f), ForceMode.Acceleration);
+            }
         }
-        else
+        float rotDegrees = 180f;
+        Vector3 newVelocity = Vector3.RotateTowards(rb.velocity, transform.forward, rotDegrees * Time.deltaTime * Mathf.Deg2Rad, 0);
+        rb.velocity = newVelocity;
+
+        if((boostTime + 0.75f) <= Time.fixedTime && boosting){
+            maxSpeed /= boostChange;
+            boosting = false;
+            //print("Not boosting");
+            //camReference.GetComponent<cameraScript>().rotateCamera(-5f);
+        }
+
+        if((hitTime + 1.5f) <= Time.fixedTime && hitByEnemy)
         {
-            shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, Quaternion.identity, 1f);
+            maxSpeed /= hitChange;
+            hitByEnemy = false;
+            //print("Not slowed");
+        }
+
+        if(playerCheckpointTime + 3f <= Time.fixedTime)
+        {
+            playerCheckpointPassed = false;
         }
     }
 
@@ -221,7 +253,9 @@ public class playerController : MonoBehaviour {
         {
             Debug.DrawRay(this.transform.position, Vector3.down * hit.distance, Color.green);
             Physics.gravity = new Vector3(0, normalGravity, 0); //new Vector3(-hit.normal.x, normalGravity * hit.normal.y, -hit.normal.z);
-            print("Normal: " + hit.normal);
+            //print("Normal: " + hit.normal);
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.Cross(transform.right, hit.normal)), 0.5f);
 
             /*Quaternion t = pitchGO.transform.rotation * Quaternion.FromToRotation(pitchGO.transform.up, hit.normal);
             pitchGO.transform.rotation = Quaternion.RotateTowards(pitchGO.transform.rotation, t, 1f);
@@ -271,7 +305,7 @@ public class playerController : MonoBehaviour {
     {
         if(other.tag == "Boost")
         {
-            print("Test out: " + Input.GetAxis(RSX));
+            //print("Test out: " + Input.GetAxis(RSX));
             // UP
             if(other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
@@ -295,6 +329,7 @@ public class playerController : MonoBehaviour {
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(-other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
+                    waitTime = Resampler.ResampleLoop();
                     //rb.velocity = rb.velocity - Vector3.Project(rb.velocity,  transform.forward);
                 }
             }
@@ -305,6 +340,7 @@ public class playerController : MonoBehaviour {
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
+                    waitTime = Resampler.ResampleLoop();
                 }
             }
         }
@@ -339,5 +375,53 @@ public class playerController : MonoBehaviour {
             slowDown();
         }
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "CheckPoint")
+        {
+            //if player 1 goes through a checkpoint
+            if(playerNum == 1 && !playerCheckpointPassed) {
+                raceManager.updatePlayer1Checkpoint();
+                playerCheckpointPassed = true;
+                playerCheckpointTime = Time.fixedTime;
+                print("Player: " + playerNum + " passed a checkpoint");
+            }
+            //if player 2 goes through a checkpoint
+            if(playerNum == 2 && !playerCheckpointPassed) {
+                raceManager.updatePlayer2Checkpoint();
+                playerCheckpointPassed = true;
+                playerCheckpointTime = Time.fixedTime;
+                print("Player: " + playerNum + " passed a checkpoint");
+            }
+        }
+        //if its the line
+        else if(other.tag == "Line" && other is BoxCollider)
+        {
+            //print("Name: " + raceManager.getFirstPlace().name);
+            if(raceManager.getFirstPlace().name == "Player_ship_0" && playerNum != 1)
+            {
+                this.gameObject.SetActive(false);
+                respawnPlayer();
+            }
+            else if(raceManager.getFirstPlace().name == "Player_ship_1" && playerNum != 2)
+            {
+                this.gameObject.SetActive(false);
+                respawnPlayer();
+            }
+            else
+            {
+                print("gotta descrease line speed");
+            }
+        }
+    }
+
+    private void respawnPlayer()
+    {
+        this.gameObject.transform.position = otherPlayer.transform.position;
+        this.gameObject.transform.rotation = otherPlayer.transform.rotation;
+        this.gameObject.SetActive(true);
+        slowDown();
     }
 }

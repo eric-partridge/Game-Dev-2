@@ -8,18 +8,15 @@ public class LapTimer : MonoBehaviour {
     public static float timer;
     public Text currentTime;
 
-	// Use this for initialization
-	void Start () {
-        timer = Time.time;
-	}
-
-    void FixedUpdate () {
-        timer += Time.fixedDeltaTime;
+    // Use this for initialization
+    private void Awake()
+    {
 	}
 
     // Update is called once per frame
     private void Update()
     {
+        timer += Time.deltaTime;
         currentTime.text = string.Format("{0:0.00}", timer);
     }
 }
