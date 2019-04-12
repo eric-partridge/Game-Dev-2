@@ -26,6 +26,7 @@ public class navMeshController : MonoBehaviour
         if (agent.remainingDistance < distAway && agent.remainingDistance != 0 && !incremented)
         {
             i++;
+            print("I is: " + i);
             if(i == targets.Length)
             {
                 i = 0;
