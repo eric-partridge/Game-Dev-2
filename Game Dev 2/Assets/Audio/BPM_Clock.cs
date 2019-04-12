@@ -16,13 +16,14 @@ public class BPM_Clock : MonoBehaviour {
     private void Awake()
     {
         currentTime = Time.time;
-        aud.Play();
     }
 
     void Start () {
         BPS = BPM / 60;
         SPB = 60 / BPM;
-	}
+        LapTimer.timer = 0;
+        aud.Play();
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {

@@ -216,6 +216,10 @@ public class playerController : MonoBehaviour {
             {
                 shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, rightRotate30, 1.5f);
             }
+            if(boosting)
+            {
+                rb.AddForce(new Vector3(0f, airGravity, -0f), ForceMode.Acceleration);
+            }
         }
         float rotDegrees = 180f;
         Vector3 newVelocity = Vector3.RotateTowards(rb.velocity, transform.forward, rotDegrees * Time.deltaTime * Mathf.Deg2Rad, 0);
@@ -290,7 +294,6 @@ public class playerController : MonoBehaviour {
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.red);
             rb.AddForce(new Vector3(0f, airGravity, -0f), ForceMode.Acceleration);
-
         }
         change++;
         print("Is grounded: " + ret);
