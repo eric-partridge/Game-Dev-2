@@ -51470,6 +51470,11 @@ PrefabInstance:
       propertyPath: Sampler
       value: 
       objectReference: {fileID: 758604042}
+    - target: {fileID: 114918045578418204, guid: 13f7b0753fecb024ea9ff3cb793c3bb7,
+        type: 3}
+      propertyPath: airGravity
+      value: -350
+      objectReference: {fileID: 0}
     - target: {fileID: 114545625328408908, guid: 13f7b0753fecb024ea9ff3cb793c3bb7,
         type: 3}
       propertyPath: lapTime
@@ -55729,6 +55734,11 @@ PrefabInstance:
       propertyPath: Sampler
       value: 
       objectReference: {fileID: 758604042}
+    - target: {fileID: 4792263279079490136, guid: 71f7edc186e90dc46a6e5ded703fed3c,
+        type: 3}
+      propertyPath: airGravity
+      value: -400
+      objectReference: {fileID: 0}
     - target: {fileID: 4796120259156443912, guid: 71f7edc186e90dc46a6e5ded703fed3c,
         type: 3}
       propertyPath: lapTime
