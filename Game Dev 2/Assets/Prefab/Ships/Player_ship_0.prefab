@@ -39126,6 +39126,7 @@ MonoBehaviour:
   BGM: {fileID: 0}
   Sampler: {fileID: 0}
   raceManager: {fileID: 0}
+  boostParticles: {fileID: 2050610819}
 --- !u!114 &114545625328408908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39176,7 +39177,9 @@ MonoBehaviour:
   backwardSpeed: 50
   currEnergy: 100
   coolDownTime: 2
-  _type: 1
+  Front_type: 1
+  Side_type: 2
+  Back_type: 1
   playerNum: 1
 --- !u!1 &5502277701694558938
 GameObject:
