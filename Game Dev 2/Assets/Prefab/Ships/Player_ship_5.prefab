@@ -79,7 +79,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -24219,6 +24219,7 @@ MonoBehaviour:
   BGM: {fileID: 0}
   Sampler: {fileID: 0}
   raceManager: {fileID: 0}
+  boostParticles: {fileID: 2019754625}
 --- !u!114 &6135139431101834832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24269,7 +24270,9 @@ MonoBehaviour:
   backwardSpeed: 50
   currEnergy: 100
   coolDownTime: 2
-  _type: 1
+  Front_type: 1
+  Side_type: 1
+  Back_type: 2
   playerNum: 1
 --- !u!1 &6104389603608505396
 GameObject:
@@ -24447,10 +24450,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6106050206984167032}
     m_Modifications:
-    - target: {fileID: 100002, guid: dab8b7c84a63fbd46b11b84fd6ce9ad7, type: 3}
-      propertyPath: m_Name
-      value: Ship_5-2
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: dab8b7c84a63fbd46b11b84fd6ce9ad7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -24494,6 +24493,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: dab8b7c84a63fbd46b11b84fd6ce9ad7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: dab8b7c84a63fbd46b11b84fd6ce9ad7, type: 3}
+      propertyPath: m_Name
+      value: Ship_5-2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dab8b7c84a63fbd46b11b84fd6ce9ad7, type: 3}

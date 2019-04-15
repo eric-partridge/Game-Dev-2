@@ -79,7 +79,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -33539,6 +33539,7 @@ MonoBehaviour:
   BGM: {fileID: 0}
   Sampler: {fileID: 0}
   raceManager: {fileID: 0}
+  boostParticles: {fileID: 1617458330}
 --- !u!114 &6707889653095109482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33589,7 +33590,9 @@ MonoBehaviour:
   backwardSpeed: 50
   currEnergy: 100
   coolDownTime: 2
-  _type: 1
+  Front_type: 1
+  Side_type: 1
+  Back_type: 2
   playerNum: 2
 --- !u!1 &7268998041002293485
 GameObject:
@@ -33814,10 +33817,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7272175668346024303}
     m_Modifications:
-    - target: {fileID: 100002, guid: 2a8e8957523f2784fac88b310790e680, type: 3}
-      propertyPath: m_Name
-      value: Ship_2-4
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 2a8e8957523f2784fac88b310790e680, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -33861,6 +33860,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 2a8e8957523f2784fac88b310790e680, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 2a8e8957523f2784fac88b310790e680, type: 3}
+      propertyPath: m_Name
+      value: Ship_2-4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a8e8957523f2784fac88b310790e680, type: 3}
@@ -34084,10 +34087,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7272175668346024303}
     m_Modifications:
-    - target: {fileID: 100002, guid: 7a3a235703bb8924695fe1b465f0fdbb, type: 3}
-      propertyPath: m_Name
-      value: Ship_2-2
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 7a3a235703bb8924695fe1b465f0fdbb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -34131,6 +34130,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 7a3a235703bb8924695fe1b465f0fdbb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 7a3a235703bb8924695fe1b465f0fdbb, type: 3}
+      propertyPath: m_Name
+      value: Ship_2-2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a3a235703bb8924695fe1b465f0fdbb, type: 3}
