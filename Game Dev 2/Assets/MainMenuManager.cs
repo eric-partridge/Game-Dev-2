@@ -16,7 +16,7 @@ public class MainMenuManager : MonoBehaviour
     void Update()
     {
         //select
-        if (Input.GetButton("X P1") || Input.GetButton("X P2") /*|| Input.GetButton("X P3") || Input.GetButton("X P4")*/|| Input.GetKeyDown(KeyCode.Return)) {
+        if (Input.GetButton("X P1") || Input.GetButton("X P2") || Input.GetButton("X P3") || Input.GetButton("X P4") || Input.GetKeyDown(KeyCode.Return)) {
             if (arrow_state == 0) {
                 mm.ChangeMenu("1p");
             } else if(arrow_state == 1) {
