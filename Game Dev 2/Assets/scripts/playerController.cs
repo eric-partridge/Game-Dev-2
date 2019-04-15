@@ -25,6 +25,7 @@ public class playerController : MonoBehaviour {
     public AudioSource BGM;
     public AudioSource Sampler;
     public RaceManager raceManager;
+    public ParticleSystem boostParticles;
 
     private bool drifting = false;
     private Resample Resampler;
@@ -57,6 +58,7 @@ public class playerController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        //boostParticles = GameObject.Find("BoostParticle").GetComponent<ParticleSystem>();
         Resampler = Master.GetComponent<Resample>();
         rb = this.GetComponent<Rigidbody>();
         defaultSensitivity = sensitivity;
@@ -228,6 +230,7 @@ public class playerController : MonoBehaviour {
         if((boostTime + 0.75f) <= Time.fixedTime && boosting){
             maxSpeed /= boostChange;
             boosting = false;
+            boostParticles.Stop();
             //print("Not boosting");
             //camReference.GetComponent<cameraScript>().rotateCamera(-5f);
         }
@@ -309,9 +312,10 @@ public class playerController : MonoBehaviour {
             // UP
             if(other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
-                if(Input.GetAxis(RSY) > 0.3)
+                if(Input.GetAxis(RSY) > 0.3 && BPM_Clock.trigger)
                 {
-                    rb.AddForce(transform.forward * 2 * speed , ForceMode.VelocityChange);
+                    boost();
+                    waitTime = Resampler.ResampleLoop();
                 }
             }
             // DOWN
@@ -329,7 +333,7 @@ public class playerController : MonoBehaviour {
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(-other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
-                    waitTime = Resampler.ResampleLoop();
+                    //waitTime = Resampler.ResampleLoop();
                     //rb.velocity = rb.velocity - Vector3.Project(rb.velocity,  transform.forward);
                 }
             }
@@ -340,7 +344,7 @@ public class playerController : MonoBehaviour {
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
-                    waitTime = Resampler.ResampleLoop();
+                    //waitTime = Resampler.ResampleLoop();
                 }
             }
         }
@@ -352,6 +356,7 @@ public class playerController : MonoBehaviour {
             maxSpeed = maxSpeed * boostChange;
             boostTime = Time.fixedTime;
             boosting = true;
+            boostParticles.Play();
         }        
     }
 
