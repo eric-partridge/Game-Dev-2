@@ -34,7 +34,7 @@ public class MainMenuManager : MonoBehaviour
             changeTime = Time.fixedTime;
             MoveArrow(1);
         }
-        if ((Input.GetAxis("DPadY P1") < 0 || Input.GetAxis("Vertical P1") < 0 || Input.GetKeyDown(KeyCode.UpArrow)) && Time.fixedTime > changeTime + .25f) {
+        if ((Input.GetAxis("DPadY P1") < 0 || Input.GetAxis("Vertical P1") < 0 || Input.GetKeyDown(KeyCode.UpArrow)) && Time.fixedTime > changeTime + .5f) {
             changeTime = Time.fixedTime;
             MoveArrow(-1);
         }
@@ -43,9 +43,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void MoveArrow(int i) {
         int new_state = arrow_state + i;
-        if(new_state < 0 || new_state > 3) {
-            return;
-        }
+        if(new_state == 4) { new_state = 0; }
+        if(new_state == -1) { new_state = 3; }  
         arrow.GetComponent<RectTransform>().localPosition = new Vector3(-525, -50 - (new_state * 125), 0);
         arrow_state = new_state;
     }
