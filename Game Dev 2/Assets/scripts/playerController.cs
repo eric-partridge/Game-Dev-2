@@ -21,6 +21,8 @@ public class playerController : MonoBehaviour {
     public Vector3 rayNormal;
     public int playerNum;
     public GameObject otherPlayer;
+    public GameObject otherPlayer2;
+    public GameObject otherPlayer3;
     public GameObject Master;
     public AudioSource BGM;
     public AudioSource Sampler;
@@ -71,6 +73,8 @@ public class playerController : MonoBehaviour {
         RSX = "RSX P" + playerNum.ToString();
         RSY = "RSY P" + playerNum.ToString();
         Physics.IgnoreCollision(this.GetComponent<Collider>(), otherPlayer.GetComponent<Collider>());
+        Physics.IgnoreCollision(this.GetComponent<Collider>(), otherPlayer2.GetComponent<Collider>());
+        Physics.IgnoreCollision(this.GetComponent<Collider>(), otherPlayer3.GetComponent<Collider>());
         //print("len: " + Input.GetJoystickNames().Length);
     }
 
