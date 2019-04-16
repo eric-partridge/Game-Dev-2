@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freqBand: 5
   target: {r: 1, g: 1, b: 1, a: 0}
-  maxIntensity: 4
-  minIntensity: 0.5
+  maxIntensity: 3
+  minIntensity: 0.1
 --- !u!1 &6625104674147966745
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6625104674147966747}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.25, y: 15.5, z: 23.25}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
@@ -143,7 +143,7 @@ Transform:
   - {fileID: 3190720721201281901}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5939431879296123207
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -47,6 +47,8 @@ public class playerController : MonoBehaviour {
     private float waitTime = 0f;
     private bool playerCheckpointPassed = false;
     private float playerCheckpointTime;
+    private bool resetStickX = true;
+    private bool resetStickY = true;
 
     Quaternion leftRotate30 = Quaternion.AngleAxis(-30, Vector3.forward);
     Quaternion rightRotate30 = Quaternion.AngleAxis(30, Vector3.forward);
@@ -312,17 +314,18 @@ public class playerController : MonoBehaviour {
             // UP
             if(other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
-                if(Input.GetAxis(RSY) > 0.3 && BPM_Clock.trigger && waitTime < LapTimer.timer)
+                if(Input.GetAxis(RSY) < -0.3 && BPM_Clock.trigger && resetStickY)
                 {
+                    rb.AddForce(transform.forward * 1.5f * speed, ForceMode.VelocityChange);
                     boost();
+                    boostParticles.Play();
                     waitTime = Resampler.ResampleLoop();
-                    waitTime -= BPM_Clock.SPB / 2;
                 }
             }
             // DOWN
             if (other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == -1)
             {
-                if (Input.GetAxis(RSY) < -0.3)
+                if (Input.GetAxis(RSY) > 0.3)
                 {
                     rb.AddForce(-transform.forward * 2 * speed, ForceMode.VelocityChange);
                 }
@@ -330,7 +333,7 @@ public class playerController : MonoBehaviour {
             // LEFT
             if (other.GetComponent<Boost_Pad>().GetType2() == "RIGHT" && other.GetComponent<Boost_Pad>().GetDirection() == -1)
             {
-                if (Input.GetAxis(RSX) < -0.3)
+                if (Input.GetAxis(RSX) < -0.3 && resetStickX)
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(-other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
@@ -341,12 +344,28 @@ public class playerController : MonoBehaviour {
             // RIGHT
             if (other.GetComponent<Boost_Pad>().GetType2() == "RIGHT" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
-                if (Input.GetAxis(RSX) > 0.3)
+                if (Input.GetAxis(RSX) > 0.3 && resetStickX)
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
                     //waitTime = Resampler.ResampleLoop();
                 }
+            }
+            if (Input.GetAxis(RSX) > 0.3f || Input.GetAxis(RSX) < -0.3f)
+            {
+                resetStickX = false;
+            }
+            else if (Input.GetAxis(RSX) < 0.3f && Input.GetAxis(RSX) > -0.3f)
+            {
+                resetStickX = true;
+            }
+            if (Input.GetAxis(RSY) > 0.3f || Input.GetAxis(RSY) < -0.3f)
+            {
+                resetStickY = false;
+            }
+            else if (Input.GetAxis(RSY) < 0.3f && Input.GetAxis(RSY) > -0.3f)
+            {
+                resetStickY = true;
             }
         }
     }

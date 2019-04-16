@@ -13,15 +13,12 @@ public class BPM_Clock : MonoBehaviour {
     public AudioSource aud;
 
     // Use this for initialization
-    private void Awake()
-    {
-        currentTime = Time.time;
-    }
 
     void Start () {
         BPS = BPM / 60;
         SPB = 60 / BPM;
         LapTimer.timer = 0;
+        currentTime = LapTimer.timer;
         aud.Play();
     }
 	
@@ -29,12 +26,12 @@ public class BPM_Clock : MonoBehaviour {
 	void FixedUpdate () {
         currentTime += Time.fixedDeltaTime;
         trigTime += Time.fixedDeltaTime;
-        if (currentTime + 0.02f > SPB)
+        if (currentTime + SPB/8 > SPB)
         {
             trigger = true;
             trigTime = 0;
         }
-        if(trigTime > 0.03f)
+        if(trigTime > SPB/4)
         {
             trigger = false;
         }
