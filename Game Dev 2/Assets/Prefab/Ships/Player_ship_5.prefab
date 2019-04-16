@@ -24228,9 +24228,11 @@ MonoBehaviour:
   rayNormal: {x: 0, y: 0, z: 0}
   playerNum: 1
   otherPlayer: {fileID: 0}
+  otherPlayer2: {fileID: 0}
+  otherPlayer3: {fileID: 0}
   Master: {fileID: 1554342042412714, guid: 98a4578853b1b4a43844ea059ebed649, type: 3}
-  BGM: {fileID: 0}
-  Sampler: {fileID: 0}
+  BGM: {fileID: 82743514743964752, guid: 98a4578853b1b4a43844ea059ebed649, type: 3}
+  Sampler: {fileID: 4040878610547450121, guid: a7b1142dc0242ed4c95aa895a5b320e8, type: 3}
   raceManager: {fileID: 2051318057927876688, guid: 77c4b54afd179e84294b8a5b87fdb0f2,
     type: 3}
   boostParticles: {fileID: 2019754625}
@@ -24405,6 +24407,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship_5-0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 91844768caa32fb45b477f65798021c2, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 91844768caa32fb45b477f65798021c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -24448,10 +24454,6 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 91844768caa32fb45b477f65798021c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 91844768caa32fb45b477f65798021c2, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91844768caa32fb45b477f65798021c2, type: 3}
