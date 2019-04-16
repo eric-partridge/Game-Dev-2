@@ -21059,10 +21059,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countdown: {fileID: 1327425349}
   images:
-  - {fileID: 21300000, guid: 9fa3b847bc327c44ea6097230ba1cf18, type: 3}
-  - {fileID: 21300000, guid: 9b69bc132487613468180fb331414dca, type: 3}
-  - {fileID: 21300000, guid: e97cfa4a56f751a44bc05eeed219d11e, type: 3}
-  manager: {fileID: 747388125}
+  - {fileID: 21300000, guid: 652039ac92dc1904396361ef30489cd4, type: 3}
+  - {fileID: 21300002, guid: 652039ac92dc1904396361ef30489cd4, type: 3}
+  - {fileID: 21300004, guid: 652039ac92dc1904396361ef30489cd4, type: 3}
+  - {fileID: 21300006, guid: 652039ac92dc1904396361ef30489cd4, type: 3}
+  line: {fileID: 831277064}
 --- !u!82 &670018904 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 82743514743964752, guid: 98a4578853b1b4a43844ea059ebed649,
@@ -40886,7 +40887,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 600, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1327425349
 MonoBehaviour:
@@ -40901,7 +40902,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

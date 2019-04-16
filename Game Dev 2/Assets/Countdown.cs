@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Countdown : MonoBehaviour
 {
@@ -9,8 +10,10 @@ public class Countdown : MonoBehaviour
     public Image countdown;
     public List<Sprite> images;
     private float timer;
-    public GameObject manager;
+    public GameObject line;
     int counter = 0;
+    private float speed = 0;
+    public static bool start = false;
 
     void Awake()
     {
@@ -19,7 +22,8 @@ public class Countdown : MonoBehaviour
         {
             ships[i].GetComponent<playerController>().enabled = false;
         }
-        manager.GetComponent<RaceManager>().enabled = false;
+        speed = line.GetComponent<NavMeshAgent>().speed;
+        line.GetComponent<NavMeshAgent>().speed = 0;
         countdown.sprite = images[0];
         timer = 0;
     }
@@ -35,7 +39,6 @@ public class Countdown : MonoBehaviour
     {
         if (counter < images.Count)
         {
-            print(counter);
             //countdown.CrossFadeAlpha(1, BPM_Clock.SPB, false);
             timer += Time.deltaTime;
             if (timer >= BPM_Clock.SPB * 4)
@@ -55,9 +58,10 @@ public class Countdown : MonoBehaviour
             {
                 ships[i].GetComponent<playerController>().enabled = true;
             }
-            manager.GetComponent<RaceManager>().enabled = true;
+            line.GetComponent<NavMeshAgent>().speed = speed;
             countdown.CrossFadeAlpha(0, 0, false);
             counter += 1;
+            start = true;
         }
     }
 }
