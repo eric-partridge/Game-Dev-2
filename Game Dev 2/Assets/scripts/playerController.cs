@@ -405,10 +405,6 @@ public class playerController : MonoBehaviour {
             Destroy(collision.gameObject);
             slowDown();
         }
-        if(collision.gameObject.tag == "DeadZone")
-        {
-            respawnPlayer();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -443,6 +439,10 @@ public class playerController : MonoBehaviour {
             {
                 print("gotta descrease line speed");
             }
+        }
+        else if (other.tag == "DeadZone")
+        {
+            respawnPlayer();
         }
     }
 
