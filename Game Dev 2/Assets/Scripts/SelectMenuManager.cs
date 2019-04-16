@@ -18,6 +18,8 @@ public class SelectMenuManager : MonoBehaviour
     public GameObject arrow_prefab;
     public MenuManager mm;
 
+    public GameObject loadScreen;
+
     void Awake() {
         arrows = new List<GameObject>();
         arrow_states = new List<int>();
@@ -129,7 +131,9 @@ public class SelectMenuManager : MonoBehaviour
         overlay[arrow_states[p]].GetComponent<UnityEngine.UI.Image>().sprite = overlay_sprites[p];
         arrows[p].GetComponent<UnityEngine.UI.Image>().enabled = false;
         if (arrow_lock.Count == arrows.Count) {
-            SceneManager.LoadScene("Ice_World");
+            loadScreen.SetActive(true);
+          
+            StartCoroutine(LoadNewScene());
         }
     }
 
@@ -163,5 +167,17 @@ public class SelectMenuManager : MonoBehaviour
             tracks[i].transform.localPosition = v;
         }
         
+    }
+
+    IEnumerator LoadNewScene() {
+        yield return new WaitForSeconds(1);
+        // Start an asynchronous operation to load the scene that was passed to the LoadNewScene coroutine.
+        AsyncOperation async = Application.LoadLevelAsync("Ice_World");
+
+        // While the asynchronous operation to load the new scene is not yet complete, continue waiting until it's done.
+        while (!async.isDone) {
+            yield return null;
+        }
+
     }
 }
