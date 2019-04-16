@@ -17,21 +17,21 @@ public class BPM_Clock : MonoBehaviour {
     void Start () {
         BPS = BPM / 60;
         SPB = 60 / BPM;
-        LapTimer.timer = 0;
-        currentTime = LapTimer.timer;
         aud.Play();
+        LapTimer.timer = aud.time;
+        currentTime = LapTimer.timer;
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
         currentTime += Time.fixedDeltaTime;
         trigTime += Time.fixedDeltaTime;
-        if (currentTime + SPB/8 > SPB)
+        if (currentTime + SPB/6 > SPB)
         {
             trigger = true;
             trigTime = 0;
         }
-        if(trigTime > SPB/4)
+        if(trigTime > SPB/3)
         {
             trigger = false;
         }

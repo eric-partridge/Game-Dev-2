@@ -225,10 +225,6 @@ public class playerController : MonoBehaviour {
             {
                 shipModel.transform.localRotation = Quaternion.RotateTowards(shipModel.transform.localRotation, rightRotate30, 1.5f);
             }
-            if(boosting)
-            {
-                rb.AddForce(new Vector3(0f, airGravity, -0f), ForceMode.Acceleration);
-            }
         }
         float rotDegrees = 180f;
         Vector3 newVelocity = Vector3.RotateTowards(rb.velocity, transform.forward, rotDegrees * Time.deltaTime * Mathf.Deg2Rad, 0);
@@ -328,7 +324,8 @@ public class playerController : MonoBehaviour {
                 }
                 else if(Input.GetAxis(RSY) < -0.3f && !BPM_Clock.trigger)
                 {
-                    rb.velocity = rb.velocity * deacceleration;
+                    rb.velocity = rb.velocity * (deacceleration - (1 - deacceleration));
+                    CheckPoint.score -= 50;
                 }
             }
             // DOWN
@@ -465,4 +462,5 @@ public class playerController : MonoBehaviour {
         yield return new WaitForSeconds(waitTime);
         Physics.IgnoreLayerCollision(12, 12, false);
     }
+
 }
