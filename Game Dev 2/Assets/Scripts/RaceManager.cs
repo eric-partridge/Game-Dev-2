@@ -69,6 +69,7 @@ public class RaceManager : MonoBehaviour
             player1Script = player1.GetComponent<playerController>();
 
             player1Script.playerNum = 1;
+            player1Script.otherPlayer = null;
             player1Script.otherPlayer2 = null;
             player1Script.otherPlayer3 = null;
 
@@ -79,6 +80,7 @@ public class RaceManager : MonoBehaviour
             //sets up weapon script
             player1WeaponScript = player1.GetComponent<weaponScript>();
             player1WeaponScript.playerNum = 1;
+            player1WeaponScript.currEnergy = 0;
 
             line.SetActive(false);
             Countdown.ships.Add(player1);
@@ -123,10 +125,12 @@ public class RaceManager : MonoBehaviour
             //player 1 weapon script
             player1WeaponScript = player1.GetComponent<weaponScript>();
             player1WeaponScript.playerNum = 1;
+            player1WeaponScript.currEnergy = 0;
 
             //player 2 weapon script
             player2WeaponScript = player2.GetComponent<weaponScript>();
             player2WeaponScript.playerNum = 2;
+            player2WeaponScript.currEnergy = 0;
 
             Countdown.ships.Add(player1);
             Countdown.ships.Add(player2);
@@ -196,18 +200,22 @@ public class RaceManager : MonoBehaviour
             //player 1 weapon script
             player1WeaponScript = player1.GetComponent<weaponScript>();
             player1WeaponScript.playerNum = 1;
+            player1WeaponScript.currEnergy = 0;
 
             //player 2 weapon script
             player2WeaponScript = player2.GetComponent<weaponScript>();
             player2WeaponScript.playerNum = 2;
+            player2WeaponScript.currEnergy = 0;
 
             //player 3 weapon script
             player3WeaponScript = player3.GetComponent<weaponScript>();
             player3WeaponScript.playerNum = 3;
+            player3WeaponScript.currEnergy = 0;
 
             //player 4 weapon script
             player4WeaponScript = player4.GetComponent<weaponScript>();
             player4WeaponScript.playerNum = 4;
+            player4WeaponScript.currEnergy = 0;
 
             Countdown.ships.Add(player1);
             Countdown.ships.Add(player2);
