@@ -450,6 +450,7 @@ public class playerController : MonoBehaviour {
 
     private void respawnPlayer()
     {
+        print("Respawning player " + playerNum + " @ time: " + Time.fixedTime);
         this.gameObject.transform.position = otherPlayer.transform.position;
         this.gameObject.transform.rotation = otherPlayer.transform.rotation;
         this.gameObject.SetActive(true);

@@ -40,6 +40,7 @@ public class RaceManager : MonoBehaviour
     private playerController player3Script;
     private playerController player4Script;
     private float lineStopTime = 5f;
+    private navMeshController navMeshScript;
 
     public PositionUI pos_ui;
 
@@ -48,6 +49,7 @@ public class RaceManager : MonoBehaviour
     {
 
         Countdown.ships = new List<GameObject>();
+        navMeshScript = line.GetComponent<navMeshController>();
 
         if (PlayerPrefs.GetInt("num_p") == 1)
         {
@@ -202,10 +204,12 @@ public class RaceManager : MonoBehaviour
 
             if (Countdown.start && Time.fixedTime > lineStopTime + 2f)
             {
+                print("Resetting speed");
                 line.SetActive(true);
                 line.GetComponent<NavMeshAgent>().speed = firstPlace.GetComponent<playerController>().maxSpeed * 1.1f;
                 line.GetComponent<NavMeshAgent>().angularSpeed = line.GetComponent<NavMeshAgent>().speed * 1.5f;
                 line.GetComponent<NavMeshAgent>().acceleration = line.GetComponent<NavMeshAgent>().speed * 1.5f;
+                navMeshScript.agent.SetDestination(navMeshScript.targets[navMeshScript.i].position);
             }
         }
 

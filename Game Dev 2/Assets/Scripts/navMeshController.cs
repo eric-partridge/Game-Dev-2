@@ -6,10 +6,10 @@ using UnityEngine.AI;
 public class navMeshController : MonoBehaviour
 {
 
-    private NavMeshAgent agent;
+    public NavMeshAgent agent;
     public Transform[] targets;
 
-    private int i = 0;
+    public int i = 0;
     private bool incremented = false;
     private float distAway = 5f;
 
