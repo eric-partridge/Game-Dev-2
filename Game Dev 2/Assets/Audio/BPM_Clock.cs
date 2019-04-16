@@ -26,7 +26,7 @@ public class BPM_Clock : MonoBehaviour {
 	void FixedUpdate () {
         currentTime += Time.fixedDeltaTime;
         trigTime += Time.fixedDeltaTime;
-        if (currentTime + SPB/5 > SPB)
+        if (currentTime + SPB/8 > SPB)
         {
             trigger = true;
             trigTime = 0;

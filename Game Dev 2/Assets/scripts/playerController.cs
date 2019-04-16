@@ -377,6 +377,15 @@ public class playerController : MonoBehaviour {
                 resetStickY = true;
             }
         }
+        if(other.tag == "Jump" )
+        {
+            if (boosting)
+            {
+                maxSpeed /= boostChange;
+                boosting = false;
+                boostParticles.Stop();
+            }
+        }
     }
 
     void boost()
@@ -449,6 +458,7 @@ public class playerController : MonoBehaviour {
         {
             if (boosting)
             {
+                print("wtf");
                 maxSpeed /= boostChange;
                 boosting = false;
                 boostParticles.Stop();
