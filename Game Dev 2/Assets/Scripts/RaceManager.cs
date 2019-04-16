@@ -67,8 +67,10 @@ public class RaceManager : MonoBehaviour
             player1 = GameObject.Instantiate(ships[PlayerPrefs.GetInt("p0")]);
             player1.transform.position = new Vector3(0, 17, -20.5f);
             player1Script = player1.GetComponent<playerController>();
-
             player1Script.playerNum = 1;
+            player1Script.raceManager = this;
+
+            player1Script.otherPlayer = null;
             player1Script.otherPlayer2 = null;
             player1Script.otherPlayer3 = null;
 
@@ -79,6 +81,7 @@ public class RaceManager : MonoBehaviour
             //sets up weapon script
             player1WeaponScript = player1.GetComponent<weaponScript>();
             player1WeaponScript.playerNum = 1;
+            player1WeaponScript.currEnergy = 0;
 
             line.SetActive(false);
             Countdown.ships.Add(player1);
@@ -123,10 +126,12 @@ public class RaceManager : MonoBehaviour
             //player 1 weapon script
             player1WeaponScript = player1.GetComponent<weaponScript>();
             player1WeaponScript.playerNum = 1;
+            player1WeaponScript.currEnergy = 0;
 
             //player 2 weapon script
             player2WeaponScript = player2.GetComponent<weaponScript>();
             player2WeaponScript.playerNum = 2;
+            player2WeaponScript.currEnergy = 0;
 
             Countdown.ships.Add(player1);
             Countdown.ships.Add(player2);
@@ -196,18 +201,22 @@ public class RaceManager : MonoBehaviour
             //player 1 weapon script
             player1WeaponScript = player1.GetComponent<weaponScript>();
             player1WeaponScript.playerNum = 1;
+            player1WeaponScript.currEnergy = 0;
 
             //player 2 weapon script
             player2WeaponScript = player2.GetComponent<weaponScript>();
             player2WeaponScript.playerNum = 2;
+            player2WeaponScript.currEnergy = 0;
 
             //player 3 weapon script
             player3WeaponScript = player3.GetComponent<weaponScript>();
             player3WeaponScript.playerNum = 3;
+            player3WeaponScript.currEnergy = 0;
 
             //player 4 weapon script
             player4WeaponScript = player4.GetComponent<weaponScript>();
             player4WeaponScript.playerNum = 4;
+            player4WeaponScript.currEnergy = 0;
 
             Countdown.ships.Add(player1);
             Countdown.ships.Add(player2);
@@ -280,7 +289,6 @@ public class RaceManager : MonoBehaviour
     }
 
     public void updatePlayer1Checkpoint() {
-        print("Updating P1 checkc");
         if(player1Checkpoint == 7)
         {
             player1Checkpoint = 1;
@@ -302,6 +310,41 @@ public class RaceManager : MonoBehaviour
         {
             player2Checkpoint++;
         }
+    }
+
+    public void updatePlayer3Checkpoint()
+    {
+        if (player3Checkpoint == 7)
+        {
+            player3Checkpoint = 1;
+            player3Lap++;
+        }
+        else
+        {
+            player3Checkpoint++;
+        }
+    }
+
+    public void updatePlayer4Checkpoint()
+    {
+        if (player4Checkpoint == 7)
+        {
+            player4Checkpoint = 1;
+            player4Lap++;
+        }
+        else
+        {
+            player4Checkpoint++;
+        }
+    }
+
+    public int getCheckpointNum(int p)
+    {
+        if(p == 1) { return player1Checkpoint; }
+        else if(p == 2) { return player2Checkpoint; }
+        else if(p == 3) { return player3Checkpoint; }
+        else if(p == 4) { return player4Checkpoint; }
+        else { return -1; }
     }
 
     public GameObject getFirstPlace() { return firstPlace; }

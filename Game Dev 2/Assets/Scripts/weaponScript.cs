@@ -303,7 +303,7 @@ public class weaponScript : MonoBehaviour {
         {
             if(Time.time > shootTime)
             {
-                currEnergy++;
+                currEnergy = 1;
                 shootTime = Time.time + coolDownTime;
             }
         }
