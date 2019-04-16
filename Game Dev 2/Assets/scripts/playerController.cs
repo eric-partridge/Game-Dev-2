@@ -51,6 +51,7 @@ public class playerController : MonoBehaviour {
     private float playerCheckpointTime;
     private bool resetStickX = true;
     private bool resetStickY = true;
+    private string respawnCheckpoint;
 
     Quaternion leftRotate30 = Quaternion.AngleAxis(-30, Vector3.forward);
     Quaternion rightRotate30 = Quaternion.AngleAxis(30, Vector3.forward);
@@ -246,7 +247,7 @@ public class playerController : MonoBehaviour {
             //print("Not slowed");
         }
 
-        if(playerCheckpointTime + 3f <= Time.fixedTime)
+        if(playerCheckpointTime + 10f <= Time.fixedTime)
         {
             playerCheckpointPassed = false;
         }
@@ -424,18 +425,34 @@ public class playerController : MonoBehaviour {
         if(other.tag == "CheckPoint")
         {
             //if player 1 goes through a checkpoint
-            if(playerNum == 1 && !playerCheckpointPassed) {
+            if(playerNum == 1 && !playerCheckpointPassed && respawnCheckpoint != other.name) {
                 raceManager.updatePlayer1Checkpoint();
                 playerCheckpointPassed = true;
                 playerCheckpointTime = Time.fixedTime;
-                print("Player: " + playerNum + " passed a checkpoint");
+                respawnCheckpoint = "";
             }
             //if player 2 goes through a checkpoint
-            if(playerNum == 2 && !playerCheckpointPassed) {
+            else if(playerNum == 2 && !playerCheckpointPassed && respawnCheckpoint != other.name) {
                 raceManager.updatePlayer2Checkpoint();
                 playerCheckpointPassed = true;
                 playerCheckpointTime = Time.fixedTime;
-                print("Player: " + playerNum + " passed a checkpoint");
+                respawnCheckpoint = "";
+            }
+            //if player 3 goes through a checkpoint
+            else if (playerNum == 3 && !playerCheckpointPassed && respawnCheckpoint != other.name)
+            {
+                raceManager.updatePlayer3Checkpoint();
+                playerCheckpointPassed = true;
+                playerCheckpointTime = Time.fixedTime;
+                respawnCheckpoint = "";
+            }
+            //if player 4 goes through a checkpoint
+            else if (playerNum == 4 && !playerCheckpointPassed && respawnCheckpoint != other.name)
+            {
+                raceManager.updatePlayer3Checkpoint();
+                playerCheckpointPassed = true;
+                playerCheckpointTime = Time.fixedTime;
+                respawnCheckpoint = "";
             }
         }
         //if its the line
@@ -453,6 +470,7 @@ public class playerController : MonoBehaviour {
         if (other.tag == "DeadZone")
         {
             respawnPlayer();
+            print("Deadzone respawn");
         }
         if (other.tag == "Jump")
         {
@@ -469,10 +487,20 @@ public class playerController : MonoBehaviour {
 
     private void respawnPlayer()
     {
-        print("Respawning player " + playerNum + " @ time: " + Time.fixedTime);
-        this.gameObject.transform.position = otherPlayer.transform.position;
-        this.gameObject.transform.rotation = otherPlayer.transform.rotation;
-        this.gameObject.SetActive(true);
+        if (PlayerPrefs.GetInt("num_p") != 1)
+        {
+            this.gameObject.transform.position = otherPlayer.transform.position;
+            this.gameObject.transform.rotation = otherPlayer.transform.rotation;
+            this.gameObject.SetActive(true);
+        }
+        else
+        {
+            this.gameObject.transform.position = raceManager.checkPoints[raceManager.getCheckpointNum(playerNum)-1].GetComponent<Renderer>().bounds.center;
+            respawnCheckpoint = raceManager.checkPoints[raceManager.getCheckpointNum(playerNum) - 1].name;
+            this.gameObject.transform.rotation = raceManager.checkPoints[raceManager.getCheckpointNum(playerNum)].rotation;
+            this.gameObject.transform.Rotate(0, 90, 0);
+            this.gameObject.SetActive(true);
+        }
         slowDown();
         StartCoroutine(Immune(1f));
     }
