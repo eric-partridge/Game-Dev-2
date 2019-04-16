@@ -156,9 +156,9 @@ public class SelectMenuManager : MonoBehaviour
         Vector3 v;
         for(int i = 0; i < tracks.Length; i++) {
             v = tracks[i].transform.localPosition;
-            v.z += 250 * Time.deltaTime;
-            if (v.z >= 250) {
-                v.z -= (375 * 3);
+            v.z -= 250 * Time.deltaTime;
+            if (v.z <= -575) {
+                v.z += (375 * 3);
             }
             tracks[i].transform.localPosition = v;
         }

@@ -38639,7 +38639,6 @@ GameObject:
   - component: {fileID: 4532950475443076}
   - component: {fileID: 33928129066036278}
   - component: {fileID: 23049539318869754}
-  - component: {fileID: 114891362744173086}
   m_Layer: 0
   m_Name: ship_0-1
   m_TagString: Untagged
@@ -38706,20 +38705,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &114891362744173086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446946829977462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1609fd212a7aafc4b889afd54ea75394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {r: 0, g: 0.94368553, b: 1, a: 0}
-  rate: 0.75
 --- !u!1 &1498237205738096
 GameObject:
   m_ObjectHideFlags: 0
@@ -38892,7 +38877,7 @@ GameObject:
   - component: {fileID: 4751073569889346}
   - component: {fileID: 33463174697434244}
   - component: {fileID: 23459879987862862}
-  - component: {fileID: 5469755496204571401}
+  - component: {fileID: 5250198889673099394}
   m_Layer: 10
   m_Name: ship_0-0
   m_TagString: Untagged
@@ -38959,7 +38944,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &5469755496204571401
+--- !u!135 &5250198889673099394
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

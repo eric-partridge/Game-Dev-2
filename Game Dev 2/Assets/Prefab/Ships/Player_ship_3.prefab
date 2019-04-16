@@ -14299,6 +14299,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!135 &2423808120068467081
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160404589712319151}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 40
+  m_Center: {x: 0, y: 30, z: 0}
 --- !u!114 &1004374614489308847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19610,11 +19623,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: c97c2142c3b9245428ad575654e2f2ce, type: 3}
+      propertyPath: m_Name
+      value: Ship_3-0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c97c2142c3b9245428ad575654e2f2ce, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97c2142c3b9245428ad575654e2f2ce, type: 3}
 --- !u!4 &160404589712162445 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: c97c2142c3b9245428ad575654e2f2ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 160404589712286735}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &160404589712319151 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: c97c2142c3b9245428ad575654e2f2ce,
     type: 3}
   m_PrefabInstance: {fileID: 160404589712286735}
   m_PrefabAsset: {fileID: 0}

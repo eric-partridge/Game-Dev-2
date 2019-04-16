@@ -44,9 +44,11 @@ public class playerController : MonoBehaviour {
     private string Horizontal;
     private string RSX;
     private string RSY;
-    private float waitTime;
+    private float waitTime = 0f;
     private bool playerCheckpointPassed = false;
     private float playerCheckpointTime;
+    private bool resetStickX = true;
+    private bool resetStickY = true;
 
     Quaternion leftRotate30 = Quaternion.AngleAxis(-30, Vector3.forward);
     Quaternion rightRotate30 = Quaternion.AngleAxis(30, Vector3.forward);
@@ -313,16 +315,22 @@ public class playerController : MonoBehaviour {
             // UP
             if(other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
-                if(Input.GetAxis(RSY) > 0.3 && BPM_Clock.trigger)
+                if(Input.GetAxis(RSY) < -0.3 && BPM_Clock.trigger && resetStickY)
                 {
+                    rb.AddForce(transform.forward * 1.5f * speed, ForceMode.VelocityChange);
                     boost();
+                    boostParticles.Play();
                     waitTime = Resampler.ResampleLoop();
+                }
+                else if(Input.GetAxis(RSY) < -0.3f && !BPM_Clock.trigger)
+                {
+                    rb.velocity = rb.velocity * deacceleration;
                 }
             }
             // DOWN
             if (other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == -1)
             {
-                if (Input.GetAxis(RSY) < -0.3)
+                if (Input.GetAxis(RSY) > 0.3)
                 {
                     rb.AddForce(-transform.forward * 2 * speed, ForceMode.VelocityChange);
                 }
@@ -330,7 +338,7 @@ public class playerController : MonoBehaviour {
             // LEFT
             if (other.GetComponent<Boost_Pad>().GetType2() == "RIGHT" && other.GetComponent<Boost_Pad>().GetDirection() == -1)
             {
-                if (Input.GetAxis(RSX) < -0.1)
+                if (Input.GetAxis(RSX) < -0.3 && resetStickX)
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(-other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
@@ -341,12 +349,29 @@ public class playerController : MonoBehaviour {
             // RIGHT
             if (other.GetComponent<Boost_Pad>().GetType2() == "RIGHT" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
-                if (Input.GetAxis(RSX) > 0.1)
+                if (Input.GetAxis(RSX) > 0.3 && resetStickX)
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
                     //waitTime = Resampler.ResampleLoop();
                 }
+            }
+            //makes you have to actually flick the stick (cant hold it)
+            if (Input.GetAxis(RSX) > 0.3f || Input.GetAxis(RSX) < -0.3f)
+            {
+                resetStickX = false;
+            }
+            else if (Input.GetAxis(RSX) < 0.3f && Input.GetAxis(RSX) > -0.3f)
+            {
+                resetStickX = true;
+            }
+            if (Input.GetAxis(RSY) > 0.3f || Input.GetAxis(RSY) < -0.3f)
+            {
+                resetStickY = false;
+            }
+            else if (Input.GetAxis(RSY) < 0.3f && Input.GetAxis(RSY) > -0.3f)
+            {
+                resetStickY = true;
             }
         }
     }
@@ -380,7 +405,10 @@ public class playerController : MonoBehaviour {
             Destroy(collision.gameObject);
             slowDown();
         }
-
+        if(collision.gameObject.tag == "DeadZone")
+        {
+            respawnPlayer();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -429,5 +457,13 @@ public class playerController : MonoBehaviour {
         this.gameObject.transform.rotation = otherPlayer.transform.rotation;
         this.gameObject.SetActive(true);
         slowDown();
+        StartCoroutine(Immune(1f));
+    }
+
+    private IEnumerator Immune(float waitTime)
+    {
+        Physics.IgnoreLayerCollision(12, 12, true);
+        yield return new WaitForSeconds(waitTime);
+        Physics.IgnoreLayerCollision(12, 12, false);
     }
 }

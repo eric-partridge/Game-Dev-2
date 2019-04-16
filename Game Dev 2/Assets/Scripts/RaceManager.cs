@@ -98,9 +98,12 @@ public class RaceManager : MonoBehaviour
                 else { firstPlace = player2; }
             }
         }
-        line.GetComponent<NavMeshAgent>().speed = player1.GetComponent<playerController>().maxSpeed * 1.25f;
-        line.GetComponent<NavMeshAgent>().angularSpeed = line.GetComponent<NavMeshAgent>().speed * 1.5f;
-        line.GetComponent<NavMeshAgent>().acceleration = line.GetComponent<NavMeshAgent>().speed * 1.5f;
+        if (Countdown.start)
+        {
+            line.GetComponent<NavMeshAgent>().speed = player1.GetComponent<playerController>().maxSpeed * 1.25f;
+            line.GetComponent<NavMeshAgent>().angularSpeed = line.GetComponent<NavMeshAgent>().speed * 1.5f;
+            line.GetComponent<NavMeshAgent>().acceleration = line.GetComponent<NavMeshAgent>().speed * 1.5f;
+        }
     }
 
     public void updatePlayer1Checkpoint() {
