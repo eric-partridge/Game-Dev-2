@@ -21252,7 +21252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BGM: {fileID: 670018904}
-  Sampler: {fileID: 758604042}
+  Sampler: {fileID: 0}
   samplerate: 44100
   frequency: 440
   position: 0
@@ -24707,7 +24707,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 758604041}
-  - component: {fileID: 758604042}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -24727,14 +24726,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 670018906}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &758604042
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4040878610547450121, guid: a7b1142dc0242ed4c95aa895a5b320e8,
-    type: 3}
-  m_PrefabInstance: {fileID: 4040878611300925443}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &763783516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52909,6 +52902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd8a4eed39824a42b25f9248568565b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 0}
   targets:
   - {fileID: 0}
   - {fileID: 0}
@@ -52921,6 +52915,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  i: 0
 --- !u!195 &1764475598
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -53120,7 +53115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd8a4eed39824a42b25f9248568565b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 0}
   targets: []
+  i: 0
 --- !u!195 &1768976291
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -54762,7 +54759,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Sampler
       value: 
-      objectReference: {fileID: 758604042}
+      objectReference: {fileID: 0}
     - target: {fileID: 114918045578418204, guid: 13f7b0753fecb024ea9ff3cb793c3bb7,
         type: 3}
       propertyPath: raceManager
@@ -55202,7 +55199,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 74, y: 293}
+  m_AnchoredPosition: {x: 900, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1914610887
@@ -59251,7 +59248,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Sampler
       value: 
-      objectReference: {fileID: 758604042}
+      objectReference: {fileID: 0}
     - target: {fileID: 6708535920460370490, guid: 1fad16a4c1590de428cd65cdb22746e5,
         type: 3}
       propertyPath: raceManager
@@ -59377,7 +59374,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Sampler
       value: 
-      objectReference: {fileID: 758604042}
+      objectReference: {fileID: 0}
     - target: {fileID: 6913605589341590696, guid: 9ac3aeaf5008c2d46a0e4cd09587730a,
         type: 3}
       propertyPath: raceManager
@@ -59486,7 +59483,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Sampler
       value: 
-      objectReference: {fileID: 758604042}
+      objectReference: {fileID: 0}
     - target: {fileID: 6136949677820258048, guid: ddebddf07aabaa54d8c9bff4cad780fd,
         type: 3}
       propertyPath: raceManager
@@ -59765,7 +59762,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Sampler
       value: 
-      objectReference: {fileID: 758604042}
+      objectReference: {fileID: 0}
     - target: {fileID: 4587056134256088067, guid: 0d8448787f09c7c409ad591c52a4fa37,
         type: 3}
       propertyPath: raceManager
@@ -59880,7 +59877,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Sampler
       value: 
-      objectReference: {fileID: 758604042}
+      objectReference: {fileID: 0}
     - target: {fileID: 4792263279079490136, guid: 71f7edc186e90dc46a6e5ded703fed3c,
         type: 3}
       propertyPath: raceManager
