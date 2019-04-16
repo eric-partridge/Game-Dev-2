@@ -39093,7 +39093,7 @@ MonoBehaviour:
   maxSpeed: 85
   sensitivity: 1.5
   driftSensitivity: 2.75
-  deacceleration: 0.99
+  deacceleration: 0.97
   shipModel: {fileID: 1601359492895528}
   pitchGO: {fileID: 5502277701694558938}
   ignoreLayer:
@@ -39107,6 +39107,8 @@ MonoBehaviour:
   rayNormal: {x: 0, y: 0, z: 0}
   playerNum: 1
   otherPlayer: {fileID: 0}
+  otherPlayer2: {fileID: 0}
+  otherPlayer3: {fileID: 0}
   Master: {fileID: 1554342042412714, guid: 98a4578853b1b4a43844ea059ebed649, type: 3}
   BGM: {fileID: 0}
   Sampler: {fileID: 0}

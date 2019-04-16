@@ -19277,20 +19277,22 @@ MonoBehaviour:
   maxSpeed: 85
   sensitivity: 1.5
   driftSensitivity: 2.75
-  deacceleration: 0.99
+  deacceleration: 0.97
   shipModel: {fileID: 7353011995061452415}
   pitchGO: {fileID: 1312322752009018990}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 512
   normalGravity: -9.81
-  airGravity: -400
+  airGravity: -350
   boostChange: 2
   hitChange: 0.5
   grounded: 0
   rayNormal: {x: 0, y: 0, z: 0}
   playerNum: 2
   otherPlayer: {fileID: 0}
+  otherPlayer2: {fileID: 0}
+  otherPlayer3: {fileID: 0}
   Master: {fileID: 1554342042412714, guid: 98a4578853b1b4a43844ea059ebed649, type: 3}
   BGM: {fileID: 0}
   Sampler: {fileID: 0}
@@ -19579,6 +19581,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship_3-0
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: c97c2142c3b9245428ad575654e2f2ce, type: 3}
+      propertyPath: m_Name
+      value: Ship_3-0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c97c2142c3b9245428ad575654e2f2ce, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c97c2142c3b9245428ad575654e2f2ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -19622,14 +19632,6 @@ PrefabInstance:
     - target: {fileID: 400002, guid: c97c2142c3b9245428ad575654e2f2ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: c97c2142c3b9245428ad575654e2f2ce, type: 3}
-      propertyPath: m_Name
-      value: Ship_3-0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: c97c2142c3b9245428ad575654e2f2ce, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97c2142c3b9245428ad575654e2f2ce, type: 3}
