@@ -6,6 +6,7 @@ TextureImporter:
     21300002: countdown_1
     21300004: countdown_2
     21300006: countdown_3
+    21300008: countdown_4
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -51,7 +52,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -114,6 +115,26 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 720
+        width: 600
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f74e1bc32acef8b4fa912cfa1bdaaa04
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: countdown_1
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 540
         width: 600
         height: 180
@@ -124,13 +145,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6cc7a819958d2734a93079bac26e56f6
+      spriteID: be5704c6e6b241e41b04bc638d7588a7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: countdown_1
+      name: countdown_2
       rect:
         serializedVersion: 2
         x: 0
@@ -144,13 +165,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8a85383f71eb7148a2ce0df240c5cf6
+      spriteID: bfb05df5109c1fe4f93a87fa27ad576b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: countdown_2
+      name: countdown_3
       rect:
         serializedVersion: 2
         x: 0
@@ -164,13 +185,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16d03699d63368f4b92bcec2f89a199a
+      spriteID: 7af62212e993fe64e860c81805d4ae06
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: countdown_3
+      name: countdown_4
       rect:
         serializedVersion: 2
         x: 0
@@ -184,7 +205,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4396a33ade06b941803a7effa968e46
+      spriteID: 097fc5399a05932488d1ece1cbdb5500
       vertices: []
       indices: 
       edges: []
