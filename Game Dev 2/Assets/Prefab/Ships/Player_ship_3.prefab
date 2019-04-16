@@ -19278,10 +19278,11 @@ MonoBehaviour:
   rayNormal: {x: 0, y: 0, z: 0}
   playerNum: 2
   otherPlayer: {fileID: 0}
-  Master: {fileID: 0}
+  Master: {fileID: 1554342042412714, guid: 98a4578853b1b4a43844ea059ebed649, type: 3}
   BGM: {fileID: 0}
   Sampler: {fileID: 0}
-  raceManager: {fileID: 0}
+  raceManager: {fileID: 2051318057927876688, guid: 77c4b54afd179e84294b8a5b87fdb0f2,
+    type: 3}
   boostParticles: {fileID: 2119253577}
 --- !u!114 &6916605843704239608
 MonoBehaviour:
@@ -19561,6 +19562,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7350010358471440381}
     m_Modifications:
+    - target: {fileID: 100002, guid: c97c2142c3b9245428ad575654e2f2ce, type: 3}
+      propertyPath: m_Name
+      value: Ship_3-0
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c97c2142c3b9245428ad575654e2f2ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -19605,10 +19610,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: c97c2142c3b9245428ad575654e2f2ce, type: 3}
-      propertyPath: m_Name
-      value: Ship_3-0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c97c2142c3b9245428ad575654e2f2ce, type: 3}
 --- !u!4 &160404589712162445 stripped
@@ -19624,6 +19625,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7350010358471440381}
     m_Modifications:
+    - target: {fileID: 100002, guid: 2a0ad08bb38546a46848eecdf33ba1b4, type: 3}
+      propertyPath: m_Name
+      value: Ship_3-2
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 2a0ad08bb38546a46848eecdf33ba1b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -19668,10 +19673,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 2a0ad08bb38546a46848eecdf33ba1b4, type: 3}
-      propertyPath: m_Name
-      value: Ship_3-2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a0ad08bb38546a46848eecdf33ba1b4, type: 3}
 --- !u!4 &1004374614489006732 stripped
@@ -19693,6 +19694,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7350010358471440381}
     m_Modifications:
+    - target: {fileID: 100002, guid: f5c48a407189ed4489a55490d120b333, type: 3}
+      propertyPath: m_Name
+      value: Ship_3-3
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f5c48a407189ed4489a55490d120b333, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -19737,10 +19742,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: f5c48a407189ed4489a55490d120b333, type: 3}
-      propertyPath: m_Name
-      value: Ship_3-3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f5c48a407189ed4489a55490d120b333, type: 3}
 --- !u!4 &1814027507628783668 stripped
@@ -19762,6 +19763,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7350010358471440381}
     m_Modifications:
+    - target: {fileID: 100002, guid: 1a02b50f135d036449ac8c28044d6e5c, type: 3}
+      propertyPath: m_Name
+      value: Ship_3-1
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 1a02b50f135d036449ac8c28044d6e5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -19806,10 +19811,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 1a02b50f135d036449ac8c28044d6e5c, type: 3}
-      propertyPath: m_Name
-      value: Ship_3-1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a02b50f135d036449ac8c28044d6e5c, type: 3}
 --- !u!4 &2098213800774444518 stripped
@@ -19831,6 +19832,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7350010358471440381}
     m_Modifications:
+    - target: {fileID: 100002, guid: f0015bcc9442f5741802a6c42e46caf4, type: 3}
+      propertyPath: m_Name
+      value: Ship_3-4
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f0015bcc9442f5741802a6c42e46caf4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -19874,10 +19879,6 @@ PrefabInstance:
     - target: {fileID: 400002, guid: f0015bcc9442f5741802a6c42e46caf4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: f0015bcc9442f5741802a6c42e46caf4, type: 3}
-      propertyPath: m_Name
-      value: Ship_3-4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0015bcc9442f5741802a6c42e46caf4, type: 3}

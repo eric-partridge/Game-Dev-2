@@ -33479,10 +33479,11 @@ MonoBehaviour:
   rayNormal: {x: 0, y: 0, z: 0}
   playerNum: 2
   otherPlayer: {fileID: 0}
-  Master: {fileID: 0}
+  Master: {fileID: 1554342042412714, guid: 98a4578853b1b4a43844ea059ebed649, type: 3}
   BGM: {fileID: 0}
   Sampler: {fileID: 0}
-  raceManager: {fileID: 0}
+  raceManager: {fileID: 2051318057927876688, guid: 77c4b54afd179e84294b8a5b87fdb0f2,
+    type: 3}
   boostParticles: {fileID: 57578245}
 --- !u!114 &4796120259156443912
 MonoBehaviour:
@@ -33794,6 +33795,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3001013311711942209}
     m_Modifications:
+    - target: {fileID: 1629027836292212, guid: 7cafe6223d5712a43a4236ff157a5444, type: 3}
+      propertyPath: m_Name
+      value: Ship_1
+      objectReference: {fileID: 0}
     - target: {fileID: 4107357276710390, guid: 7cafe6223d5712a43a4236ff157a5444, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -33837,10 +33842,6 @@ PrefabInstance:
     - target: {fileID: 4107357276710390, guid: 7cafe6223d5712a43a4236ff157a5444, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1629027836292212, guid: 7cafe6223d5712a43a4236ff157a5444, type: 3}
-      propertyPath: m_Name
-      value: Ship_1
       objectReference: {fileID: 0}
     - target: {fileID: 1787672035462156, guid: 7cafe6223d5712a43a4236ff157a5444, type: 3}
       propertyPath: m_Layer

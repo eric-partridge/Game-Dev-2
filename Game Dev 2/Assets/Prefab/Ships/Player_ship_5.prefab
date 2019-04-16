@@ -24215,10 +24215,11 @@ MonoBehaviour:
   rayNormal: {x: 0, y: 0, z: 0}
   playerNum: 1
   otherPlayer: {fileID: 0}
-  Master: {fileID: 0}
+  Master: {fileID: 1554342042412714, guid: 98a4578853b1b4a43844ea059ebed649, type: 3}
   BGM: {fileID: 0}
   Sampler: {fileID: 0}
-  raceManager: {fileID: 0}
+  raceManager: {fileID: 2051318057927876688, guid: 77c4b54afd179e84294b8a5b87fdb0f2,
+    type: 3}
   boostParticles: {fileID: 2019754625}
 --- !u!114 &6135139431101834832
 MonoBehaviour:
@@ -24450,6 +24451,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6106050206984167032}
     m_Modifications:
+    - target: {fileID: 100002, guid: dab8b7c84a63fbd46b11b84fd6ce9ad7, type: 3}
+      propertyPath: m_Name
+      value: Ship_5-2
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: dab8b7c84a63fbd46b11b84fd6ce9ad7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -24493,10 +24498,6 @@ PrefabInstance:
     - target: {fileID: 400002, guid: dab8b7c84a63fbd46b11b84fd6ce9ad7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: dab8b7c84a63fbd46b11b84fd6ce9ad7, type: 3}
-      propertyPath: m_Name
-      value: Ship_5-2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dab8b7c84a63fbd46b11b84fd6ce9ad7, type: 3}

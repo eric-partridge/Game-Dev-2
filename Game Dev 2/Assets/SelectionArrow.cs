@@ -56,7 +56,7 @@ public class SelectionArrow : MonoBehaviour{
                 smm.Move(player, "down");
                 changeTime = Time.fixedTime;
             }
-            if ((Input.GetAxis(select) > 0 || Input.GetKeyDown(KeyCode.Return)) && Time.fixedTime > loadTime + .5f)
+            if ((Input.GetAxis(select) > 0 || Input.GetKeyDown(KeyCode.Return)) && Time.fixedTime > loadTime + .25f)
             {   
                 smm.Select(player);
             }

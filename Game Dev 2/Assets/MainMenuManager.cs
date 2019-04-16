@@ -34,7 +34,7 @@ public class MainMenuManager : MonoBehaviour
             changeTime = Time.fixedTime;
             MoveArrow(1);
         }
-        if ((Input.GetAxis("DPadY P1") < 0 || Input.GetAxis("Vertical P1") < 0 || Input.GetKeyDown(KeyCode.UpArrow)) && Time.fixedTime > changeTime + .5f) {
+        if ((Input.GetAxis("DPadY P1") < 0 || Input.GetAxis("Vertical P1") < 0 || Input.GetKeyDown(KeyCode.UpArrow)) && Time.fixedTime > changeTime + .25f) {
             changeTime = Time.fixedTime;
             MoveArrow(-1);
         }
