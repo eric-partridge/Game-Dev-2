@@ -26,12 +26,12 @@ public class BPM_Clock : MonoBehaviour {
 	void FixedUpdate () {
         currentTime += Time.fixedDeltaTime;
         trigTime += Time.fixedDeltaTime;
-        if (currentTime + SPB/6 > SPB)
+        if (currentTime + SPB/5 > SPB)
         {
             trigger = true;
             trigTime = 0;
         }
-        if(trigTime > SPB/3)
+        if(trigTime > SPB/2.5)
         {
             trigger = false;
         }

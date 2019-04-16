@@ -235,6 +235,7 @@ public class playerController : MonoBehaviour {
             maxSpeed /= boostChange;
             boosting = false;
             boostParticles.Stop();
+            
             //print("Not boosting");
             //camReference.GetComponent<cameraScript>().rotateCamera(-5f);
         }
@@ -301,6 +302,7 @@ public class playerController : MonoBehaviour {
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * hit.distance, Color.red);
             rb.AddForce(new Vector3(0f, airGravity, -0f), ForceMode.Acceleration);
+            
         }
         change++;
         print("Is grounded: " + ret);
@@ -456,10 +458,20 @@ public class playerController : MonoBehaviour {
                 raceManager.adjustLineSpeed();
             }
         }
-        else if (other.tag == "DeadZone")
+        if (other.tag == "DeadZone")
         {
             respawnPlayer();
             print("Deadzone respawn");
+        }
+        if (other.tag == "Jump")
+        {
+            if (boosting)
+            {
+                maxSpeed /= boostChange;
+                boosting = false;
+                boostParticles.Stop();
+                rb.AddForce(new Vector3(0f, airGravity, -0f), ForceMode.VelocityChange);
+            }
         }
     }
 
