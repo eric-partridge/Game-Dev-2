@@ -430,15 +430,13 @@ public class playerController : MonoBehaviour {
         //if its the line
         else if(other.tag == "Line" && other is BoxCollider)
         {
-            //print("Name: " + raceManager.getFirstPlace().name);
-            if(raceManager.getFirstPlace().GetComponent<playerController>().playerNum != this.playerNum)
+            if(raceManager.getFirstPlace().name != this.name)
             {
-                this.gameObject.SetActive(false);
                 respawnPlayer();
             }
             else
             {
-                print("gotta descrease line speed");
+                raceManager.adjustLineSpeed();
             }
         }
         else if (other.tag == "DeadZone")
@@ -449,6 +447,7 @@ public class playerController : MonoBehaviour {
 
     private void respawnPlayer()
     {
+        print("Respawning player " + playerNum + " @ time: " + Time.fixedTime);
         this.gameObject.transform.position = otherPlayer.transform.position;
         this.gameObject.transform.rotation = otherPlayer.transform.rotation;
         this.gameObject.SetActive(true);

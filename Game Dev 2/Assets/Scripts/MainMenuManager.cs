@@ -31,20 +31,20 @@ public class MainMenuManager : MonoBehaviour
         }
 
         //move arrow
-        if((Input.GetAxis("DPadY P1") > 0.3 || Input.GetAxis("Vertical P1") > 0.3 || Input.GetKeyDown(KeyCode.DownArrow)) && resetStickY)
+        if((Input.GetAxis("DPadY P1") > 0.3f || Input.GetAxis("Vertical P1") > 0.3f || Input.GetKeyDown(KeyCode.DownArrow)) && resetStickY)
         {
             MoveArrow(1);
         }
-        if ((Input.GetAxis("DPadY P1") < -0.3 || Input.GetAxis("Vertical P1") < -0.3 || Input.GetKeyDown(KeyCode.UpArrow)) && resetStickY)
+        if ((Input.GetAxis("DPadY P1") < -0.3f || Input.GetAxis("Vertical P1") < -0.3f || Input.GetKeyDown(KeyCode.UpArrow)) && resetStickY)
         {
             MoveArrow(-1);
         }
         //makes you have to actually flick the stick (cant hold it)
-        if (Input.GetAxis("Vertical P1") > 0.3f || Input.GetAxis("Vertical P1") < -0.3f || Input.GetAxis("DPadY P1") > 0.3 || Input.GetAxis("DPadY P1") < -0.3)
+        if (Input.GetAxis("Vertical P1") > 0.3f || Input.GetAxis("Vertical P1") < -0.3f || Input.GetAxis("DPadY P1") > 0.3f || Input.GetAxis("DPadY P1") < -0.3)
         {
             resetStickY = false;
         }
-        else if (Input.GetAxis("Vertical P1") < 0.3f && Input.GetAxis("Vertical P1") > -0.3f && Input.GetAxis("DPadY P1") < 0.3 && Input.GetAxis("DPadY P1") > -0.3)
+        else if (Input.GetAxis("Vertical P1") < 0.3f && Input.GetAxis("Vertical P1") > -0.3f && Input.GetAxis("DPadY P1") < 0.3f && Input.GetAxis("DPadY P1") > -0.3)
         {
             resetStickY = true;
         }

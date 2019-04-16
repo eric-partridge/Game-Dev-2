@@ -18,6 +18,7 @@ public class RaceManager : MonoBehaviour
     public GameObject line;
     public GameObject[] ships;
 
+    private GameObject firstPlace;
     private int player1Checkpoint = 0;
     private int player2Checkpoint = 0;
     private int player3Checkpoint = 0;
@@ -30,7 +31,6 @@ public class RaceManager : MonoBehaviour
     private float player2Distance = 0;
     private float player3Distance = 0;
     private float player4Distance = 0;
-    private GameObject firstPlace;
     private cameraScript cam1Script;
     private cameraScript cam2Script;
     private cameraScript cam3Script;
@@ -39,7 +39,8 @@ public class RaceManager : MonoBehaviour
     private playerController player2Script;
     private playerController player3Script;
     private playerController player4Script;
-    private float lineStopTime = 0f;
+    private float lineStopTime = 5f;
+    private navMeshController navMeshScript;
 
     public PositionUI pos_ui;
 
@@ -48,6 +49,7 @@ public class RaceManager : MonoBehaviour
     {
 
         Countdown.ships = new List<GameObject>();
+        navMeshScript = line.GetComponent<navMeshController>();
 
         if (PlayerPrefs.GetInt("num_p") == 1)
         {
@@ -86,12 +88,14 @@ public class RaceManager : MonoBehaviour
             player1.transform.position = new Vector3(8.5f, 17, -20.5f);
             player1Script = player1.GetComponent<playerController>();
             player1Script.playerNum = 1;
+            player1Script.raceManager = this;
 
             //instantiates player2
             player2 = GameObject.Instantiate(ships[PlayerPrefs.GetInt("p1")]);
             player2.transform.position = new Vector3(-8.5f, 17, -20.5f);
             player2Script = player2.GetComponent<playerController>();
             player2Script.playerNum = 2;
+            player2Script.raceManager = this;
 
             player1Script.otherPlayer = player2;
             player2Script.otherPlayer = player1;
@@ -177,27 +181,36 @@ public class RaceManager : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        player1Distance = Vector3.Distance(player1.transform.position, checkPoints[player1Checkpoint].position);
-        player2Distance = Vector3.Distance(player2.transform.position, checkPoints[player2Checkpoint].position);
-
-        //determines whose in first place by lap number > checkpoint number > distance to next checkpoint
-        if (player1Lap > player2Lap) { firstPlace = player1; }
-        else if (player2Lap > player1Lap) { firstPlace = player2; }
-        else
+        print("Updating");
+        if (PlayerPrefs.GetInt("num_p") != 1)
         {
-            if (player1Checkpoint > player2Checkpoint) { firstPlace = player1; }
-            else if (player2Checkpoint > player1Checkpoint) { firstPlace = player2; }
+            player1Distance = Vector3.Distance(player1.transform.position, checkPoints[player1Checkpoint].position);
+            player2Distance = Vector3.Distance(player2.transform.position, checkPoints[player2Checkpoint].position);
+
+            //determines whose in first place by lap number > checkpoint number > distance to next checkpoint
+            if (player1Lap > player2Lap) { firstPlace = player1; }
+            else if (player2Lap > player1Lap) { firstPlace = player2; }
             else
             {
-                if (player1Distance < player2Distance) { firstPlace = player1; }
-                else { firstPlace = player2; }
+                if (player1Checkpoint > player2Checkpoint) { firstPlace = player1; }
+                else if (player2Checkpoint > player1Checkpoint) { firstPlace = player2; }
+                else
+                {
+                    if (player1Distance < player2Distance) { firstPlace = player1; }
+                    else { firstPlace = player2; }
+                }
             }
-        }
-        if (Countdown.start || Time.fixedTime > lineStopTime + 2f)
-        {
-            line.GetComponent<NavMeshAgent>().speed = firstPlace.GetComponent<playerController>().maxSpeed * 1.25f;
-            line.GetComponent<NavMeshAgent>().angularSpeed = line.GetComponent<NavMeshAgent>().speed * 1.5f;
-            line.GetComponent<NavMeshAgent>().acceleration = line.GetComponent<NavMeshAgent>().speed * 1.5f;
+            print("first: " + firstPlace.name);
+
+            if (Countdown.start && Time.fixedTime > lineStopTime + 2f)
+            {
+                print("Resetting speed");
+                line.SetActive(true);
+                line.GetComponent<NavMeshAgent>().speed = firstPlace.GetComponent<playerController>().maxSpeed * 1.1f;
+                line.GetComponent<NavMeshAgent>().angularSpeed = line.GetComponent<NavMeshAgent>().speed * 1.5f;
+                line.GetComponent<NavMeshAgent>().acceleration = line.GetComponent<NavMeshAgent>().speed * 1.5f;
+                navMeshScript.agent.SetDestination(navMeshScript.targets[navMeshScript.i].position);
+            }
         }
 
         //get and display scores
@@ -229,6 +242,7 @@ public class RaceManager : MonoBehaviour
     }
 
     public void updatePlayer1Checkpoint() {
+        print("Updating P1 checkc");
         if(player1Checkpoint == 7)
         {
             player1Checkpoint = 1;
@@ -256,6 +270,7 @@ public class RaceManager : MonoBehaviour
 
     public void adjustLineSpeed()
     {
+        line.SetActive(false);
         line.GetComponent<NavMeshAgent>().speed = 0;
         line.GetComponent<NavMeshAgent>().angularSpeed = 0;
         line.GetComponent<NavMeshAgent>().acceleration = 0;
