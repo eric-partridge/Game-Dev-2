@@ -44,7 +44,7 @@ public class playerController : MonoBehaviour {
     private string Horizontal;
     private string RSX;
     private string RSY;
-    private float waitTime;
+    private float waitTime = 0f;
     private bool playerCheckpointPassed = false;
     private float playerCheckpointTime;
 
@@ -312,10 +312,11 @@ public class playerController : MonoBehaviour {
             // UP
             if(other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
-                if(Input.GetAxis(RSY) > 0.3 && BPM_Clock.trigger)
+                if(Input.GetAxis(RSY) > 0.3 && BPM_Clock.trigger && waitTime < LapTimer.timer)
                 {
                     boost();
                     waitTime = Resampler.ResampleLoop();
+                    waitTime -= BPM_Clock.SPB / 2;
                 }
             }
             // DOWN
@@ -329,7 +330,7 @@ public class playerController : MonoBehaviour {
             // LEFT
             if (other.GetComponent<Boost_Pad>().GetType2() == "RIGHT" && other.GetComponent<Boost_Pad>().GetDirection() == -1)
             {
-                if (Input.GetAxis(RSX) < -0.1)
+                if (Input.GetAxis(RSX) < -0.3)
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(-other.transform.right * 1.5f * speed, ForceMode.VelocityChange);
@@ -340,7 +341,7 @@ public class playerController : MonoBehaviour {
             // RIGHT
             if (other.GetComponent<Boost_Pad>().GetType2() == "RIGHT" && other.GetComponent<Boost_Pad>().GetDirection() == 1)
             {
-                if (Input.GetAxis(RSX) > 0.1)
+                if (Input.GetAxis(RSX) > 0.3)
                 {
                     rb.velocity = new Vector3(0, 0, 0);
                     rb.AddForce(other.transform.right * 1.5f * speed, ForceMode.VelocityChange);

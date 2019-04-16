@@ -6,7 +6,7 @@ public class BPM_Clock : MonoBehaviour {
 
     public float BPM;
     private float BPS;
-    private float SPB;
+    public static float SPB;
     public static bool trigger = true;
     public static float currentTime;
     private float trigTime;
