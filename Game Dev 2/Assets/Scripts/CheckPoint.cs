@@ -21,6 +21,10 @@ public class CheckPoint : MonoBehaviour {
 
     }
 
+    public int GetScore() {
+        return score;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "CheckPoint")
