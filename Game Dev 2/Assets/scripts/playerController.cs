@@ -321,6 +321,10 @@ public class playerController : MonoBehaviour {
                     boostParticles.Play();
                     waitTime = Resampler.ResampleLoop();
                 }
+                else if(Input.GetAxis(RSY) < -0.3f && !BPM_Clock.trigger)
+                {
+                    rb.velocity = rb.velocity * deacceleration;
+                }
             }
             // DOWN
             if (other.GetComponent<Boost_Pad>().GetType2() == "UP" && other.GetComponent<Boost_Pad>().GetDirection() == -1)
@@ -351,6 +355,7 @@ public class playerController : MonoBehaviour {
                     //waitTime = Resampler.ResampleLoop();
                 }
             }
+            //makes you have to actually flick the stick (cant hold it)
             if (Input.GetAxis(RSX) > 0.3f || Input.GetAxis(RSX) < -0.3f)
             {
                 resetStickX = false;
@@ -399,7 +404,10 @@ public class playerController : MonoBehaviour {
             Destroy(collision.gameObject);
             slowDown();
         }
-
+        if(collision.gameObject.tag == "DeadZone")
+        {
+            respawnPlayer();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -448,5 +456,13 @@ public class playerController : MonoBehaviour {
         this.gameObject.transform.rotation = otherPlayer.transform.rotation;
         this.gameObject.SetActive(true);
         slowDown();
+        StartCoroutine(Immune(1f));
+    }
+
+    private IEnumerator Immune(float waitTime)
+    {
+        Physics.IgnoreLayerCollision(12, 12, true);
+        yield return new WaitForSeconds(waitTime);
+        Physics.IgnoreLayerCollision(12, 12, false);
     }
 }

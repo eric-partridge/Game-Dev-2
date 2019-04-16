@@ -15,6 +15,7 @@ TagManager:
   - destinationMarker
   - corner
   - Line
+  - DeadZone
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - PlayerSphere
   - Walls
   - PlayerBox
-  - 
+  - DeadZone
   - 
   - 
   - 

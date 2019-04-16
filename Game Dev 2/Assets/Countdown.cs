@@ -31,16 +31,16 @@ public class Countdown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        timer += Time.deltaTime;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (counter < images.Count)
+        if (counter < images.Count - 1)
         {
+            timer += Time.fixedDeltaTime;
             //countdown.CrossFadeAlpha(1, BPM_Clock.SPB, false);
-            timer += Time.deltaTime;
             if (timer >= BPM_Clock.SPB * 4)
             {
                 timer = 0;
@@ -52,16 +52,18 @@ public class Countdown : MonoBehaviour
                 }
             }
         }
-        else if(counter == images.Count)
+        else if (counter == images.Count - 1)
         {
             for (int i = 0; i < ships.Count; i++)
             {
                 ships[i].GetComponent<playerController>().enabled = true;
             }
             line.GetComponent<NavMeshAgent>().speed = speed;
-            countdown.CrossFadeAlpha(0, 0, false);
+            countdown.sprite = images[counter];
+            timer = 0;
             counter += 1;
             start = true;
+            countdown.CrossFadeAlpha(0, BPM_Clock.SPB * 4, false);
         }
     }
 }
