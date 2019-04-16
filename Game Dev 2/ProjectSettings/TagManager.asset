@@ -16,6 +16,7 @@ TagManager:
   - corner
   - Line
   - DeadZone
+  - Jump
   layers:
   - Default
   - TransparentFX
