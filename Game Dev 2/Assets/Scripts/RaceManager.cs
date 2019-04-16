@@ -41,6 +41,8 @@ public class RaceManager : MonoBehaviour
     private playerController player4Script;
     private float lineStopTime = 5f;
 
+    public PositionUI pos_ui;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -206,6 +208,33 @@ public class RaceManager : MonoBehaviour
                 line.GetComponent<NavMeshAgent>().acceleration = line.GetComponent<NavMeshAgent>().speed * 1.5f;
             }
         }
+
+        //get and display scores
+        int[] scores = null;
+        List<KeyValuePair<double, int>> temp = new List<KeyValuePair<double, int>>();
+        if(PlayerPrefs.GetInt("num_p") == 1) {
+            scores = new int[1];
+            scores[0] = PlayerPrefs.GetInt("p0");
+        }else if(PlayerPrefs.GetInt("num_p") == 2) {
+            scores = new int[2];
+            temp.Add(new KeyValuePair<double, int>(player1.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p0")));
+            temp.Add(new KeyValuePair<double, int>(player2.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p1")));
+            temp.Sort();
+            for(int i = 0; i < 2; i++) {
+                scores[i] = temp[i].Value;
+            }
+        } else if(PlayerPrefs.GetInt("num_p") == 4) {
+            scores = new int[4];
+            temp.Add(new KeyValuePair<double, int>(player1.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p0")));
+            temp.Add(new KeyValuePair<double, int>(player2.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p1")));
+            temp.Add(new KeyValuePair<double, int>(player3.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p2")));
+            temp.Add(new KeyValuePair<double, int>(player4.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p3")));
+            temp.Sort();
+            for (int i = 0; i < 4; i++) {
+                scores[i] = temp[i].Value;
+            }
+        }
+        pos_ui.UpdateUI(scores);
     }
 
     public void updatePlayer1Checkpoint() {

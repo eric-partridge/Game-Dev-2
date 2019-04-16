@@ -44,23 +44,23 @@ public class Resample : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             ResampleLoop();
-        }*/
+        }
     }
     public float ResampleLoop()
     {
-        if (waitTime + SPB/4 > LapTimer.timer && waitTime < LapTimer.timer + SPB/2)
+        if (waitTime + SPB/4 > LapTimer.timer)
         {
-            waitTime = LapTimer.timer + SPB;
+            waitTime = LapTimer.timer + SPB * 2;
             Sampler.Play();
             return waitTime;
         }
         else
         {
-            waitTime = LapTimer.timer + SPB;
-            Sampler.clip = MakeSubclip(file, LapTimer.timer - SPB/2, LapTimer.timer + SPB - SPB/2);
+            waitTime = LapTimer.timer + SPB * 2;
+            Sampler.clip = MakeSubclip(file, BGM.time - SPB * 2, BGM.time);
             Sampler.Play();
             return waitTime;
         }

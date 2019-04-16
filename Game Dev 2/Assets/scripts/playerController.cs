@@ -63,7 +63,7 @@ public class playerController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         //boostParticles = GameObject.Find("BoostParticle").GetComponent<ParticleSystem>();
-        Resampler = Master.GetComponent<Resample>();
+        Resampler = GameObject.Find("Master").GetComponent<Resample>();
         rb = this.GetComponent<Rigidbody>();
         defaultSensitivity = sensitivity;
         R2Button = "R2 P" + playerNum.ToString();

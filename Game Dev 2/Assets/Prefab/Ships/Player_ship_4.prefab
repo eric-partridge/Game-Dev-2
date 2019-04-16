@@ -14590,14 +14590,14 @@ MonoBehaviour:
   maxSpeed: 85
   sensitivity: 1.5
   driftSensitivity: 2.75
-  deacceleration: 0.99
+  deacceleration: 0.97
   shipModel: {fileID: 455239135646645972}
   pitchGO: {fileID: 8245033670359457477}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 512
   normalGravity: -9.81
-  airGravity: -400
+  airGravity: -350
   boostChange: 2
   hitChange: 0.5
   grounded: 0
