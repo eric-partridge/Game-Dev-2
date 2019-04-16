@@ -67,8 +67,9 @@ public class RaceManager : MonoBehaviour
             player1 = GameObject.Instantiate(ships[PlayerPrefs.GetInt("p0")]);
             player1.transform.position = new Vector3(0, 17, -20.5f);
             player1Script = player1.GetComponent<playerController>();
-
             player1Script.playerNum = 1;
+            player1Script.raceManager = this;
+
             player1Script.otherPlayer = null;
             player1Script.otherPlayer2 = null;
             player1Script.otherPlayer3 = null;
@@ -288,7 +289,6 @@ public class RaceManager : MonoBehaviour
     }
 
     public void updatePlayer1Checkpoint() {
-        print("Updating P1 checkc");
         if(player1Checkpoint == 7)
         {
             player1Checkpoint = 1;
@@ -310,6 +310,41 @@ public class RaceManager : MonoBehaviour
         {
             player2Checkpoint++;
         }
+    }
+
+    public void updatePlayer3Checkpoint()
+    {
+        if (player3Checkpoint == 7)
+        {
+            player3Checkpoint = 1;
+            player3Lap++;
+        }
+        else
+        {
+            player3Checkpoint++;
+        }
+    }
+
+    public void updatePlayer4Checkpoint()
+    {
+        if (player4Checkpoint == 7)
+        {
+            player4Checkpoint = 1;
+            player4Lap++;
+        }
+        else
+        {
+            player4Checkpoint++;
+        }
+    }
+
+    public int getCheckpointNum(int p)
+    {
+        if(p == 1) { return player1Checkpoint; }
+        else if(p == 2) { return player2Checkpoint; }
+        else if(p == 3) { return player3Checkpoint; }
+        else if(p == 4) { return player4Checkpoint; }
+        else { return -1; }
     }
 
     public GameObject getFirstPlace() { return firstPlace; }
