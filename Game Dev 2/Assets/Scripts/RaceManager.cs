@@ -39,6 +39,10 @@ public class RaceManager : MonoBehaviour
     private playerController player2Script;
     private playerController player3Script;
     private playerController player4Script;
+    private weaponScript player1WeaponScript;
+    private weaponScript player2WeaponScript;
+    private weaponScript player3WeaponScript;
+    private weaponScript player4WeaponScript;
     private float lineStopTime = 5f;
     private navMeshController navMeshScript;
 
@@ -63,12 +67,18 @@ public class RaceManager : MonoBehaviour
             player1 = GameObject.Instantiate(ships[PlayerPrefs.GetInt("p0")]);
             player1.transform.position = new Vector3(0, 17, -20.5f);
             player1Script = player1.GetComponent<playerController>();
+
             player1Script.playerNum = 1;
-            player1Script.otherPlayer = null;
+            player1Script.otherPlayer2 = null;
+            player1Script.otherPlayer3 = null;
 
             //sets up camera
             cam1Script = camera1.GetComponent<cameraScript>();
             cam1Script.player = player1.transform;
+
+            //sets up weapon script
+            player1WeaponScript = player1.GetComponent<weaponScript>();
+            player1WeaponScript.playerNum = 1;
 
             line.SetActive(false);
             Countdown.ships.Add(player1);
@@ -98,13 +108,25 @@ public class RaceManager : MonoBehaviour
             player2Script.raceManager = this;
 
             player1Script.otherPlayer = player2;
+            player1Script.otherPlayer2 = null;
+            player1Script.otherPlayer3 = null;
             player2Script.otherPlayer = player1;
+            player2Script.otherPlayer2 = null;
+            player2Script.otherPlayer3 = null;
 
             //sets up cameras
             cam1Script = camera1.GetComponent<cameraScript>();
             cam1Script.player = player1.transform;
             cam2Script = camera2.GetComponent<cameraScript>();
             cam2Script.player = player2.transform;
+
+            //player 1 weapon script
+            player1WeaponScript = player1.GetComponent<weaponScript>();
+            player1WeaponScript.playerNum = 1;
+
+            //player 2 weapon script
+            player2WeaponScript = player2.GetComponent<weaponScript>();
+            player2WeaponScript.playerNum = 2;
 
             Countdown.ships.Add(player1);
             Countdown.ships.Add(player2);
@@ -170,6 +192,22 @@ public class RaceManager : MonoBehaviour
             cam3Script.player = player3.transform;
             cam4Script = camera4.GetComponent<cameraScript>();
             cam4Script.player = player4.transform;
+
+            //player 1 weapon script
+            player1WeaponScript = player1.GetComponent<weaponScript>();
+            player1WeaponScript.playerNum = 1;
+
+            //player 2 weapon script
+            player2WeaponScript = player2.GetComponent<weaponScript>();
+            player2WeaponScript.playerNum = 2;
+
+            //player 3 weapon script
+            player3WeaponScript = player3.GetComponent<weaponScript>();
+            player3WeaponScript.playerNum = 3;
+
+            //player 4 weapon script
+            player4WeaponScript = player4.GetComponent<weaponScript>();
+            player4WeaponScript.playerNum = 4;
 
             Countdown.ships.Add(player1);
             Countdown.ships.Add(player2);
