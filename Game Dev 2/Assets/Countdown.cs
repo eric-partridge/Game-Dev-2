@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Countdown : MonoBehaviour
 {
@@ -9,16 +10,20 @@ public class Countdown : MonoBehaviour
     public Image countdown;
     public List<Sprite> images;
     private float timer;
+    public GameObject line;
     int counter = 0;
+    private float speed = 0;
+    public static bool start = false;
 
     void Awake()
     {
         ships = new List<GameObject>();
-        images = new List<Sprite>();
         for (int i = 0; i < ships.Count; i++)
         {
             ships[i].GetComponent<playerController>().enabled = false;
         }
+        speed = line.GetComponent<NavMeshAgent>().speed;
+        line.GetComponent<NavMeshAgent>().speed = 0;
         countdown.sprite = images[0];
         timer = 0;
     }
@@ -34,13 +39,13 @@ public class Countdown : MonoBehaviour
     {
         if (counter < images.Count)
         {
-            countdown.CrossFadeAlpha(255, BPM_Clock.SPB, false);
+            //countdown.CrossFadeAlpha(1, BPM_Clock.SPB, false);
             timer += Time.deltaTime;
-            if (timer >= BPM_Clock.SPB * 2)
+            if (timer >= BPM_Clock.SPB * 4)
             {
                 timer = 0;
                 counter += 1;
-                countdown.CrossFadeAlpha(0, 0, false);
+                //countdown.CrossFadeAlpha(0, 0, false);
                 if (counter < images.Count)
                 {
                     countdown.sprite = images[counter];
@@ -53,7 +58,10 @@ public class Countdown : MonoBehaviour
             {
                 ships[i].GetComponent<playerController>().enabled = true;
             }
+            line.GetComponent<NavMeshAgent>().speed = speed;
+            countdown.CrossFadeAlpha(0, 0, false);
             counter += 1;
+            start = true;
         }
     }
 }
