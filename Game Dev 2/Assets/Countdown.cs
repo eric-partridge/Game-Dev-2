@@ -9,16 +9,17 @@ public class Countdown : MonoBehaviour
     public Image countdown;
     public List<Sprite> images;
     private float timer;
+    public GameObject manager;
     int counter = 0;
 
     void Awake()
     {
         ships = new List<GameObject>();
-        images = new List<Sprite>();
         for (int i = 0; i < ships.Count; i++)
         {
             ships[i].GetComponent<playerController>().enabled = false;
         }
+        manager.GetComponent<RaceManager>().enabled = false;
         countdown.sprite = images[0];
         timer = 0;
     }
@@ -34,13 +35,14 @@ public class Countdown : MonoBehaviour
     {
         if (counter < images.Count)
         {
-            countdown.CrossFadeAlpha(255, BPM_Clock.SPB, false);
+            print(counter);
+            //countdown.CrossFadeAlpha(1, BPM_Clock.SPB, false);
             timer += Time.deltaTime;
-            if (timer >= BPM_Clock.SPB * 2)
+            if (timer >= BPM_Clock.SPB * 4)
             {
                 timer = 0;
                 counter += 1;
-                countdown.CrossFadeAlpha(0, 0, false);
+                //countdown.CrossFadeAlpha(0, 0, false);
                 if (counter < images.Count)
                 {
                     countdown.sprite = images[counter];
@@ -53,6 +55,8 @@ public class Countdown : MonoBehaviour
             {
                 ships[i].GetComponent<playerController>().enabled = true;
             }
+            manager.GetComponent<RaceManager>().enabled = true;
+            countdown.CrossFadeAlpha(0, 0, false);
             counter += 1;
         }
     }
