@@ -17,7 +17,12 @@ public class Countdown : MonoBehaviour
 
     void Awake()
     {
-        ships = new List<GameObject>();
+        
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
         for (int i = 0; i < ships.Count; i++)
         {
             ships[i].GetComponent<playerController>().enabled = false;
@@ -26,11 +31,7 @@ public class Countdown : MonoBehaviour
         line.GetComponent<NavMeshAgent>().speed = 0;
         countdown.sprite = images[0];
         timer = 0;
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         timer += Time.deltaTime;
     }
 

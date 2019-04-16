@@ -27,9 +27,12 @@ public class RaceManager : MonoBehaviour
     private playerController player2Script;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        if(PlayerPrefs.GetInt("num_p") == 1)
+
+        Countdown.ships = new List<GameObject>();
+
+        if (PlayerPrefs.GetInt("num_p") == 1)
         {
             //disables other cameras
             camera2.enabled = false;
@@ -47,6 +50,7 @@ public class RaceManager : MonoBehaviour
             cam1Script.player = player1.transform;
 
             line.SetActive(false);
+            Countdown.ships.Add(player1);
         }
         else if (PlayerPrefs.GetInt("num_p") == 2)
         {
@@ -76,6 +80,9 @@ public class RaceManager : MonoBehaviour
             cam1Script.player = player1.transform;
             cam2Script = camera2.GetComponent<cameraScript>();
             cam2Script.player = player2.transform;
+
+            Countdown.ships.Add(player1);
+            Countdown.ships.Add(player2);
         }
     }
 
@@ -111,7 +118,6 @@ public class RaceManager : MonoBehaviour
         {
             player1Checkpoint = 1;
             player1Lap++;
-            print("Updating lap");
         }
         else
         {

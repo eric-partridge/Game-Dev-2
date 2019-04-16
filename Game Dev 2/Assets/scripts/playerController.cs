@@ -434,12 +434,7 @@ public class playerController : MonoBehaviour {
         else if(other.tag == "Line" && other is BoxCollider)
         {
             //print("Name: " + raceManager.getFirstPlace().name);
-            if(raceManager.getFirstPlace().name == "Player_ship_0" && playerNum != 1)
-            {
-                this.gameObject.SetActive(false);
-                respawnPlayer();
-            }
-            else if(raceManager.getFirstPlace().name == "Player_ship_1" && playerNum != 2)
+            if(raceManager.getFirstPlace().GetComponent<playerController>().playerNum != this.playerNum)
             {
                 this.gameObject.SetActive(false);
                 respawnPlayer();
