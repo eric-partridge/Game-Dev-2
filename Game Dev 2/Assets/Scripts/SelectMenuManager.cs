@@ -19,6 +19,7 @@ public class SelectMenuManager : MonoBehaviour
     public MenuManager mm;
 
     public GameObject loadScreen;
+    public AudioSource aud;
 
     void Awake() {
         arrows = new List<GameObject>();
@@ -132,7 +133,8 @@ public class SelectMenuManager : MonoBehaviour
         arrows[p].GetComponent<UnityEngine.UI.Image>().enabled = false;
         if (arrow_lock.Count == arrows.Count) {
             loadScreen.SetActive(true);
-          
+
+            StartCoroutine(FadeOut(aud, 1f));
             StartCoroutine(LoadNewScene());
         }
     }
@@ -172,6 +174,7 @@ public class SelectMenuManager : MonoBehaviour
     IEnumerator LoadNewScene() {
         yield return new WaitForSeconds(1);
         // Start an asynchronous operation to load the scene that was passed to the LoadNewScene coroutine.
+
         AsyncOperation async = Application.LoadLevelAsync("Ice_World");
 
         // While the asynchronous operation to load the new scene is not yet complete, continue waiting until it's done.
@@ -179,5 +182,15 @@ public class SelectMenuManager : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    IEnumerator FadeOut(AudioSource Aud, float FadeTime)
+    {
+        float startVolume = Aud.volume;
+        while (Aud.volume > 0)
+        {
+            Aud.volume -= startVolume * Time.deltaTime / FadeTime;
+            yield return null;
+        }
     }
 }
