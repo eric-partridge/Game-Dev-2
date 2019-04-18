@@ -293,15 +293,17 @@ public class RaceManager : MonoBehaviour
         {
             player1Checkpoint = 1;
             player1Lap++;
+            print("updating player 1 lap");
         }
         else
         {
             player1Checkpoint++;
+            print("updating player 1 checkpoint: " + player1Checkpoint);
         }
     }
 
     public void updatePlayer2Checkpoint() {
-        if (player2Checkpoint == 7)
+        if (player2Checkpoint == 5)
         {
             player2Checkpoint = 1;
             player2Lap++;
@@ -314,7 +316,7 @@ public class RaceManager : MonoBehaviour
 
     public void updatePlayer3Checkpoint()
     {
-        if (player3Checkpoint == 7)
+        if (player3Checkpoint == 5)
         {
             player3Checkpoint = 1;
             player3Lap++;
@@ -327,7 +329,7 @@ public class RaceManager : MonoBehaviour
 
     public void updatePlayer4Checkpoint()
     {
-        if (player4Checkpoint == 7)
+        if (player4Checkpoint == 5)
         {
             player4Checkpoint = 1;
             player4Lap++;

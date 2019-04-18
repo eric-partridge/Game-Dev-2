@@ -247,7 +247,7 @@ public class playerController : MonoBehaviour {
             //print("Not slowed");
         }
 
-        if(playerCheckpointTime + 10f <= Time.fixedTime)
+        if(playerCheckpointTime + 3f <= Time.fixedTime)
         {
             playerCheckpointPassed = false;
         }
@@ -449,7 +449,7 @@ public class playerController : MonoBehaviour {
             //if player 4 goes through a checkpoint
             else if (playerNum == 4 && !playerCheckpointPassed && respawnCheckpoint != other.name)
             {
-                raceManager.updatePlayer3Checkpoint();
+                raceManager.updatePlayer4Checkpoint();
                 playerCheckpointPassed = true;
                 playerCheckpointTime = Time.fixedTime;
                 respawnCheckpoint = "";
