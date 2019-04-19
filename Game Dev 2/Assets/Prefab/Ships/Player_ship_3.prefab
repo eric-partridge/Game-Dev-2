@@ -222,7 +222,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.73333335, g: 0.07058824, b: 0.07058824, a: 0.09803922}
+      maxColor: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 0.09803922}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5009,7 +5009,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.73333335, g: 0.07058824, b: 0.07058824, a: 0.09803922}
+      maxColor: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 0.09803922}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14325,7 +14325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqBand: 4
-  target: {r: 0, g: 1, b: 0.47451687, a: 0}
+  target: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 1}
 --- !u!1 &1312322752009018990
 GameObject:
   m_ObjectHideFlags: 0
@@ -14370,7 +14370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqBand: 2
-  target: {r: 0, g: 0.7373862, b: 1, a: 0}
+  target: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 1}
 --- !u!114 &2098213800774482373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14384,7 +14384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqBand: 6
-  target: {r: 0.6994517, g: 1, b: 0, a: 0}
+  target: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 1}
 --- !u!1 &2668604225483926535
 GameObject:
   m_ObjectHideFlags: 0
@@ -14432,21 +14432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqBand: 0
-  target: {r: 0, g: 0.39271998, b: 1, a: 0}
---- !u!114 &5522722740033988867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5522722740033988866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1609fd212a7aafc4b889afd54ea75394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {r: 0, g: 0.94368553, b: 1, a: 0}
-  rate: 0.75
+  target: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 1}
 --- !u!1 &6803332641690156525
 GameObject:
   m_ObjectHideFlags: 0
@@ -14669,7 +14655,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.73333335, g: 0.07058824, b: 0.07058824, a: 0.09803922}
+      maxColor: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 0.09803922}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -19980,12 +19966,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa4d76bb2e3f72c4aa99364a81cacb31, type: 3}
---- !u!1 &5522722740033988866 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: fa4d76bb2e3f72c4aa99364a81cacb31,
-    type: 3}
-  m_PrefabInstance: {fileID: 5522722740034023330}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5522722740034155808 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: fa4d76bb2e3f72c4aa99364a81cacb31,

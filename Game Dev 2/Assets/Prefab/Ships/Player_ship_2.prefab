@@ -4831,7 +4831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqBand: 0
-  target: {r: 0.21855354, g: 0, b: 1, a: 0}
+  target: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 1}
 --- !u!114 &1859040594231890859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4845,21 +4845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqBand: 3
-  target: {r: 0.47287846, g: 0, b: 1, a: 0}
---- !u!114 &2194736828693956855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2194736828693956854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1609fd212a7aafc4b889afd54ea75394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {r: 0, g: 0.94368553, b: 1, a: 0}
-  rate: 0.75
+  target: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 1}
 --- !u!1 &2874219192007142037
 GameObject:
   m_ObjectHideFlags: 0
@@ -4923,7 +4909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqBand: 6
-  target: {r: 0.70007896, g: 0, b: 1, a: 0}
+  target: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 1}
 --- !u!1 &6665825228930936593
 GameObject:
   m_ObjectHideFlags: 0
@@ -5146,7 +5132,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.81568635, g: 0.07450981, b: 1, a: 0.09803922}
+      maxColor: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 0.09803922}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9902,7 +9888,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.81568635, g: 0.07450981, b: 1, a: 0.09803922}
+      maxColor: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 0.09803922}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14658,7 +14644,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.81568635, g: 0.07450981, b: 1, a: 0.09803922}
+      maxColor: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 0.09803922}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -19414,7 +19400,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.81568635, g: 0.07450981, b: 1, a: 0.09803922}
+      maxColor: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 0.09803922}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -24170,7 +24156,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.81568635, g: 0.07450981, b: 1, a: 0.09803922}
+      maxColor: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 0.09803922}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -28926,7 +28912,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.81568635, g: 0.07450981, b: 1, a: 0.09803922}
+      maxColor: {r: 0.3137255, g: 0.77647066, b: 0.34117648, a: 0.09803922}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -33883,15 +33869,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a8e8957523f2784fac88b310790e680, type: 3}
---- !u!1 &1645412196496044542 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 2a8e8957523f2784fac88b310790e680,
-    type: 3}
-  m_PrefabInstance: {fileID: 1645412196495947614}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1645412196495814108 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 2a8e8957523f2784fac88b310790e680,
+    type: 3}
+  m_PrefabInstance: {fileID: 1645412196495947614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1645412196496044542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 2a8e8957523f2784fac88b310790e680,
     type: 3}
   m_PrefabInstance: {fileID: 1645412196495947614}
   m_PrefabAsset: {fileID: 0}
@@ -34028,12 +34014,6 @@ PrefabInstance:
 --- !u!4 &2194736828693796052 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 3d346ec3304b682419c3a0fa6e4c6762,
-    type: 3}
-  m_PrefabInstance: {fileID: 2194736828693925462}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2194736828693956854 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 3d346ec3304b682419c3a0fa6e4c6762,
     type: 3}
   m_PrefabInstance: {fileID: 2194736828693925462}
   m_PrefabAsset: {fileID: 0}

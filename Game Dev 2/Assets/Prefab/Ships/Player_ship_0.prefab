@@ -38412,7 +38412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqBand: 0
-  target: {r: 0.6339288, g: 0, b: 1, a: 0}
+  target: {r: 0, g: 0.8196079, b: 0.8862746, a: 0}
 --- !u!1 &1272017631678556
 GameObject:
   m_ObjectHideFlags: 0
@@ -38535,7 +38535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqBand: 4
-  target: {r: 1, g: 0, b: 0.30589104, a: 0}
+  target: {r: 0, g: 0.8196079, b: 0.8862746, a: 0}
 --- !u!1 &1411881593924866
 GameObject:
   m_ObjectHideFlags: 0
@@ -38627,7 +38627,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqBand: 2
-  target: {r: 1, g: 0, b: 0.73583317, a: 0}
+  target: {r: 0, g: 0.8196079, b: 0.8862746, a: 0}
 --- !u!1 &1446946829977462
 GameObject:
   m_ObjectHideFlags: 0
@@ -38796,7 +38796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqBand: 6
-  target: {r: 1, g: 0.06666667, b: 0, a: 0}
+  target: {r: 0, g: 0.8196079, b: 0.8862746, a: 0}
 --- !u!1 &1523378144724100
 GameObject:
   m_ObjectHideFlags: 0

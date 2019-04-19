@@ -33554,7 +33554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqBand: 3
-  target: {r: 1, g: 0.4570401, b: 0, a: 0}
+  target: {r: 0.9921569, g: 0.09411766, b: 0.2509804, a: 1}
 --- !u!114 &1101859677482388611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33568,7 +33568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqBand: 1
-  target: {r: 1, g: 0, b: 0, a: 0}
+  target: {r: 0.9921569, g: 0.09411766, b: 0.2509804, a: 1}
 --- !u!114 &2353234301650051065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33582,7 +33582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   freqBand: 0
-  target: {r: 0.95213556, g: 1, b: 0, a: 0}
+  target: {r: 0.9921569, g: 0.09411766, b: 0.2509804, a: 1}
 --- !u!135 &2669117518880676630
 SphereCollider:
   m_ObjectHideFlags: 0
