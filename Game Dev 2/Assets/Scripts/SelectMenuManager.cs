@@ -33,6 +33,7 @@ public class SelectMenuManager : MonoBehaviour
             arrows.Add(Instantiate(arrow_prefab, new Vector3(0, 0, 0), Quaternion.identity));
             arrows[i].transform.parent = gameObject.transform;
             arrows[i].GetComponent<SelectionArrow>().Setup(this, i);
+            arrows[i].GetComponent<UnityEngine.UI.Image>().sprite = arrow_sprites[i];
             arrow_states.Add(i);
             ChangeState(i, i);
         }
@@ -42,17 +43,17 @@ public class SelectMenuManager : MonoBehaviour
         if (s == -1) return;
         arrow_states[a] = s;
         if(s == 0) {
-            arrows[a].GetComponent<RectTransform>().localPosition = new Vector3(-630, 375 - (a * 50), 0);
+            arrows[a].GetComponent<RectTransform>().localPosition = new Vector3(-630, 225 - (a * 50), 0);
         }else if (s == 1) {
-            arrows[a].GetComponent<RectTransform>().localPosition = new Vector3(-630, -25 - (a * 50), 0);
+            arrows[a].GetComponent<RectTransform>().localPosition = new Vector3(-630, -125 - (a * 50), 0);
         }else if (s == 2) {
-            arrows[a].GetComponent<RectTransform>().localPosition = new Vector3(-30, 375 - (a * 50), 0);
+            arrows[a].GetComponent<RectTransform>().localPosition = new Vector3(-30, 225 - (a * 50), 0);
         } else if (s == 3) {
-            arrows[a].GetComponent<RectTransform>().localPosition = new Vector3(-30, -25 - (a * 50), 0);
+            arrows[a].GetComponent<RectTransform>().localPosition = new Vector3(-30, -125 - (a * 50), 0);
         } else if (s == 4) {
-            arrows[a].GetComponent<RectTransform>().localPosition = new Vector3(570, 375 - (a * 50), 0);
+            arrows[a].GetComponent<RectTransform>().localPosition = new Vector3(570, 225 - (a * 50), 0);
         } else if (s == 5) {
-            arrows[a].GetComponent<RectTransform>().localPosition = new Vector3(570, -25 - (a * 50), 0);
+            arrows[a].GetComponent<RectTransform>().localPosition = new Vector3(570, -125 - (a * 50), 0);
         } else {
             arrows[a].GetComponent<RectTransform>().localPosition = new Vector3(-540, -350 - (a * 50), 0);
         }
@@ -157,13 +158,13 @@ public class SelectMenuManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 v;
         for(int i = 0; i < tracks.Length; i++) {
             v = tracks[i].transform.localPosition;
             v.z -= 250 * Time.deltaTime;
-            if (v.z <= -575) {
+            if (v.z <= -725) {
                 v.z += (375 * 3);
             }
             tracks[i].transform.localPosition = v;
