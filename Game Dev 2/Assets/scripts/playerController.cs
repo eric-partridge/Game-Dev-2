@@ -497,6 +497,7 @@ public class playerController : MonoBehaviour {
         {
             this.gameObject.transform.position = raceManager.getFirstPlace().transform.position;
             this.gameObject.transform.rotation = raceManager.getFirstPlace().transform.rotation;
+            gameObject.GetComponent<CheckPoint>().score -= 50;
             this.gameObject.SetActive(true);
         }
         //else spawn them at the most recent checkpoint they passed
@@ -506,6 +507,7 @@ public class playerController : MonoBehaviour {
             respawnCheckpoint = raceManager.checkPoints[raceManager.getCheckpointNum(playerNum) - 1].name;
             this.gameObject.transform.rotation = raceManager.checkPoints[raceManager.getCheckpointNum(playerNum)].rotation;
             this.gameObject.transform.Rotate(0, 90, 0);
+            gameObject.GetComponent<CheckPoint>().score -= 50;
             this.gameObject.SetActive(true);
         }
         slowDown();
