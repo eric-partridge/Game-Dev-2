@@ -255,7 +255,7 @@ public class RaceManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
         //if more than one player get distance to next checkpoint
         if (PlayerPrefs.GetInt("num_p") == 1)
@@ -488,6 +488,8 @@ public class RaceManager : MonoBehaviour
                 //checks if player 2 is about to respawned
                 if (player1 == firstPlace || player3 == firstPlace || player4 == firstPlace)
                 {
+                    print("We in here");
+                    print("About to check p1C: " + player1Checkpoint + " with p2C: " + player2Checkpoint + " and bool: " + !warning2On);
                     if (player1Lap > player2Lap || player3Lap > player2Lap || player4Lap > player2Lap)
                     {
                         if ((player1Checkpoint + 7 >= player2Checkpoint + 1 && !warning2On) || (player3Checkpoint + 7 >= player2Checkpoint + 1 && !warning2On) || (player4Checkpoint + 7 >= player2Checkpoint + 1 && !warning2On))
@@ -741,6 +743,7 @@ public class RaceManager : MonoBehaviour
         else
         {
             player1Checkpoint++;
+            print("Updating player 1 checkpoint to: " + player1Checkpoint);
         }
     }
 
@@ -754,6 +757,7 @@ public class RaceManager : MonoBehaviour
         else
         {
             player2Checkpoint++;
+            print("updating player 2 checkpoint");
         }
     }
 
