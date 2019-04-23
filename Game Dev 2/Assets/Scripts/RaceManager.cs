@@ -317,6 +317,7 @@ public class RaceManager : MonoBehaviour
                     }
                 }
             }
+            //comment
             //checks first place for 4 player
             else
             {
