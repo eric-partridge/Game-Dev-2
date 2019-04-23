@@ -63,7 +63,6 @@ public class RaceManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
         Countdown.ships = new List<GameObject>();
         navMeshScript = line.GetComponent<navMeshController>();
 
@@ -257,7 +256,7 @@ public class RaceManager : MonoBehaviour
         }
         else if (PlayerPrefs.GetInt("num_p") != 1)
         {
-            if (player1Checkpoint == 7)
+            if (player1Checkpoint == checkPoints.Length)
             {
                 player1Distance = Vector3.Distance(player1.transform.position, checkPoints[0].position);
             }
@@ -266,7 +265,7 @@ public class RaceManager : MonoBehaviour
                 player1Distance = Vector3.Distance(player1.transform.position, checkPoints[player1Checkpoint].position);
             }
                 
-            if (player2Checkpoint == 7)
+            if (player2Checkpoint == checkPoints.Length)
             {
                 player2Distance = Vector3.Distance(player2.transform.position, checkPoints[0].position);
             }
@@ -411,11 +410,10 @@ public class RaceManager : MonoBehaviour
             }
         }
         pos_ui.UpdateUI(scores);
-        if(PlayerPrefs.GetInt("num_p") == 1)
+        if (PlayerPrefs.GetInt("num_p") == 1)
         {
             if(player1Lap == laps + 1)
             {
-                print("FINISH");
                 List<KeyValuePair<int, int>> finalScore = new List<KeyValuePair<int, int>>();
                 finalScore.Add(new KeyValuePair<int, int>(PlayerPrefs.GetInt("p0"), player1.GetComponent<CheckPoint>().GetScore()));
                 endCam.SetActive(true);
@@ -423,10 +421,11 @@ public class RaceManager : MonoBehaviour
                 endCanv.GetComponent<EndUI>().UpdateUI(finalScore);
             }
         }
-        if (PlayerPrefs.GetInt("num_p") == 2)
+        else if (PlayerPrefs.GetInt("num_p") == 2)
         {
-            if (player1Lap == laps + 1 && player2Lap == laps + 1)
+            if (player1Lap >= laps + 1 && player2Lap >= laps + 1)
             {
+                print("FINISH");
                 List<KeyValuePair<int, int>> finalScore = new List<KeyValuePair<int, int>>();
                 finalScore.Add(new KeyValuePair<int, int>(PlayerPrefs.GetInt("p0"), player1.GetComponent<CheckPoint>().GetScore()));
                 finalScore.Add(new KeyValuePair<int, int>(PlayerPrefs.GetInt("p1"), player2.GetComponent<CheckPoint>().GetScore()));
@@ -435,9 +434,9 @@ public class RaceManager : MonoBehaviour
                 endCanv.GetComponent<EndUI>().UpdateUI(finalScore);
             }
         }
-        if (PlayerPrefs.GetInt("num_p") == 4)
+        else if (PlayerPrefs.GetInt("num_p") == 4)
         {
-            if (player1Lap == laps + 1 && player2Lap == laps + 1 && player3Lap == laps + 1 && player4Lap == laps + 1)
+            if (player1Lap >= laps + 1 && player2Lap >= laps + 1 && player3Lap >= laps + 1 && player4Lap >= laps + 1)
             {
                 List<KeyValuePair<int, int>> finalScore = new List<KeyValuePair<int, int>>();
                 finalScore.Add(new KeyValuePair<int, int>(PlayerPrefs.GetInt("p0"), player1.GetComponent<CheckPoint>().GetScore()));
@@ -453,7 +452,7 @@ public class RaceManager : MonoBehaviour
 
     //increases player checkpoint/lap numbers
     public void updatePlayer1Checkpoint() {
-        if(player1Checkpoint == 7)
+        if(player1Checkpoint == checkPoints.Length)
         {
             player1Checkpoint = 1;
             player1Lap++;
@@ -465,10 +464,11 @@ public class RaceManager : MonoBehaviour
     }
 
     public void updatePlayer2Checkpoint() {
-        if (player2Checkpoint == 7)
+        if (player2Checkpoint == checkPoints.Length)
         {
             player2Checkpoint = 1;
             player2Lap++;
+            print("updating player 2 lap: " + player2Lap);
         }
         else
         {
@@ -478,7 +478,7 @@ public class RaceManager : MonoBehaviour
 
     public void updatePlayer3Checkpoint()
     {
-        if (player3Checkpoint == 7)
+        if (player3Checkpoint == checkPoints.Length)
         {
             player3Checkpoint = 1;
             player3Lap++;
@@ -491,7 +491,7 @@ public class RaceManager : MonoBehaviour
 
     public void updatePlayer4Checkpoint()
     {
-        if (player4Checkpoint == 7)
+        if (player4Checkpoint == checkPoints.Length)
         {
             player4Checkpoint = 1;
             player4Lap++;
