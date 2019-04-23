@@ -46,8 +46,14 @@ public class RaceManager : MonoBehaviour
     private weaponScript player2WeaponScript;
     private weaponScript player3WeaponScript;
     private weaponScript player4WeaponScript;
+    private float player1WarningTime = 0;
+    private float player2WarningTime = 0;
+    private float player3WarningTime = 0;
+    private float player4WarningTime = 0;
     private float lineStopTime = 5f;
     private navMeshController navMeshScript;
+    private bool warning1On = false;
+    private bool warning2On = false;
 
     public PositionUI pos_ui;
 
@@ -136,6 +142,7 @@ public class RaceManager : MonoBehaviour
             player2WeaponScript.playerNum = 2;
             player2WeaponScript.currEnergy = 0;
 
+            line.SetActive(false);
             Countdown.ships.Add(player1);
             Countdown.ships.Add(player2);
         }
@@ -234,8 +241,22 @@ public class RaceManager : MonoBehaviour
         print("Updating");
         if (PlayerPrefs.GetInt("num_p") != 1)
         {
-            player1Distance = Vector3.Distance(player1.transform.position, checkPoints[player1Checkpoint].position);
-            player2Distance = Vector3.Distance(player2.transform.position, checkPoints[player2Checkpoint].position);
+            if (player1Checkpoint == 7)
+            {
+                player1Distance = Vector3.Distance(player1.transform.position, checkPoints[0].position);
+            }
+            else
+            {
+                player1Distance = Vector3.Distance(player1.transform.position, checkPoints[player1Checkpoint].position);
+            }
+                
+            if (player2Checkpoint == 7)
+            {
+                player2Distance = Vector3.Distance(player2.transform.position, checkPoints[0].position);
+            }
+            else { 
+                player2Distance = Vector3.Distance(player2.transform.position, checkPoints[player2Checkpoint].position);
+            }
 
             //determines whose in first place by lap number > checkpoint number > distance to next checkpoint
             if (player1Lap > player2Lap) { firstPlace = player1; }
@@ -250,8 +271,64 @@ public class RaceManager : MonoBehaviour
                     else { firstPlace = player2; }
                 }
             }
-            print("first: " + firstPlace.name);
+            
+            if(player1 == firstPlace)
+            {
+                if(player1Lap > player2Lap)
+                {
+                    if(player1Checkpoint + 7 >= player2Checkpoint + 2 && !warning2On)
+                    {
+                        player2WarningTime = Time.fixedTime;
+                        warning2On = true;
+                    }
+                }
+                else if(player1Checkpoint >= player2Checkpoint + 2 && !warning2On)
+                {
+                    player2WarningTime = Time.fixedTime;
+                    warning2On = true;
+                }
+            }
+            if (Time.fixedTime >= (player2WarningTime + 2f) && warning2On)
+            {
+                player2Script.respawnPlayer();
+                player2Checkpoint = player1Checkpoint;
+                player2Lap = player1Lap;    
+                warning2On = false;
+            }
 
+            else if (player2 == firstPlace)
+            {
+                if (player2Lap > player1Lap)
+                {
+                    if (player2Checkpoint + 7 >= player1Checkpoint + 2 && !warning1On)
+                    {
+                        player1WarningTime = Time.fixedTime;
+                        warning1On = true;
+                    }
+                }
+                else if (player2Checkpoint >= player1Checkpoint + 2 && !warning1On)
+                {
+                    player1WarningTime = Time.fixedTime;
+                    warning1On = true;
+                }
+            }
+            if (Time.fixedTime >= (player1WarningTime + 2f) && warning1On)
+            {
+                player1Script.respawnPlayer();
+                player1Checkpoint = player2Checkpoint;
+                player1Lap = player2Lap;
+                warning1On = false;
+            }
+
+            if(player1Checkpoint == player2Checkpoint)
+            {
+                warning1On = false;
+                warning2On = false;
+            }
+            print("Player 1 checkpoint: " + player1Checkpoint + " player 2 checkpoint: " + player2Checkpoint);
+            //print("first: " + firstPlace.name);
+
+            /*
             if (Countdown.start && Time.fixedTime > lineStopTime + 2f)
             {
                 print("Resetting speed");
@@ -260,7 +337,7 @@ public class RaceManager : MonoBehaviour
                 line.GetComponent<NavMeshAgent>().angularSpeed = line.GetComponent<NavMeshAgent>().speed * 1.5f;
                 line.GetComponent<NavMeshAgent>().acceleration = line.GetComponent<NavMeshAgent>().speed * 1.5f;
                 navMeshScript.agent.SetDestination(navMeshScript.targets[navMeshScript.i].position);
-            }
+            }*/
         }
 
         //get and display scores
@@ -339,7 +416,7 @@ public class RaceManager : MonoBehaviour
         else
         {
             player1Checkpoint++;
-            print("updating player 1 checkpoint: " + player1Checkpoint);
+            //print("updating player 1 checkpoint: " + player1Checkpoint);
         }
     }
 

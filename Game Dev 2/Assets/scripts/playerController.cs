@@ -485,12 +485,12 @@ public class playerController : MonoBehaviour {
         }
     }
 
-    private void respawnPlayer()
+    public void respawnPlayer()
     {
         if (PlayerPrefs.GetInt("num_p") != 1)
         {
-            this.gameObject.transform.position = otherPlayer.transform.position;
-            this.gameObject.transform.rotation = otherPlayer.transform.rotation;
+            this.gameObject.transform.position = raceManager.getFirstPlace().transform.position;
+            this.gameObject.transform.rotation = raceManager.getFirstPlace().transform.rotation;
             this.gameObject.SetActive(true);
         }
         else
