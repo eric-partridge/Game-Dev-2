@@ -355,18 +355,18 @@ public class RaceManager : MonoBehaviour
             scores[0] = PlayerPrefs.GetInt("p0");
         }else if(PlayerPrefs.GetInt("num_p") == 2) {
             scores = new int[2];
-            temp.Add(new KeyValuePair<double, int>(player1.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p0")));
-            temp.Add(new KeyValuePair<double, int>(player2.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p1")));
+            temp.Add(new KeyValuePair<int, int>(player1.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p0")));
+            temp.Add(new KeyValuePair<int, int>(player2.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p1")));
             temp.Sort((x, y) => x.Key.CompareTo(y.Key));
             for (int i = 0; i < 2; i++) {
                 scores[i] = temp[i].Value;
             }
         } else if(PlayerPrefs.GetInt("num_p") == 4) {
             scores = new int[4];
-            temp.Add(new KeyValuePair<double, int>(player1.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p0")));
-            temp.Add(new KeyValuePair<double, int>(player2.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p1")));
-            temp.Add(new KeyValuePair<double, int>(player3.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p2")));
-            temp.Add(new KeyValuePair<double, int>(player4.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p3")));
+            temp.Add(new KeyValuePair<int, int>(player1.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p0")));
+            temp.Add(new KeyValuePair<int, int>(player2.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p1")));
+            temp.Add(new KeyValuePair<int, int>(player3.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p2")));
+            temp.Add(new KeyValuePair<int, int>(player4.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p3")));
             temp.Sort((x, y) => x.Key.CompareTo(y.Key));
             for (int i = 0; i < 4; i++) {
                 scores[i] = temp[i].Value;
