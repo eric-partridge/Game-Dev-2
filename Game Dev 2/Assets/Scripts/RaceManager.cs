@@ -23,6 +23,8 @@ public class RaceManager : MonoBehaviour
     public GameObject endCanv;
     public Text warningTextP1;
     public Text warningTextP2;
+    public Image warningBoxP1;
+    public Image warningBoxP2;
 
     private GameObject firstPlace;
     private int player1Checkpoint = 0;
@@ -186,6 +188,7 @@ public class RaceManager : MonoBehaviour
             player4Script = player2.GetComponent<playerController>();
             player4Script.playerNum = 4;
 
+            //sets up other players to avoid sphere colliders
             player1Script.otherPlayer = player2;
             player1Script.otherPlayer2 = player3;
             player1Script.otherPlayer3 = player4;
@@ -246,7 +249,7 @@ public class RaceManager : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        print("Updating");
+        //if more than one player get distance to next checkpoint
         if (PlayerPrefs.GetInt("num_p") != 1)
         {
             if (player1Checkpoint == 7)
@@ -279,32 +282,9 @@ public class RaceManager : MonoBehaviour
                     else { firstPlace = player2; }
                 }
             }
-            
-            if(player1 == firstPlace)
-            {
-                if(player1Lap > player2Lap)
-                {
-                    if(player1Checkpoint + 7 >= player2Checkpoint + 1 && !warning2On)
-                    {
-                        player2WarningTime = Time.fixedTime;
-                        warning2On = true;
-                    }
-                }
-                else if(player1Checkpoint >= player2Checkpoint + 1 && !warning2On)
-                {
-                    player2WarningTime = Time.fixedTime;
-                    warning2On = true;
-                }
-            }
-            if (Time.fixedTime >= (player2WarningTime + 5f) && warning2On)
-            {
-                player2Script.respawnPlayer();
-                player2Checkpoint = player1Checkpoint;
-                player2Lap = player1Lap;    
-                warning2On = false;
-            }
 
-            else if (player2 == firstPlace)
+            //checks if player 1 is about to be respawned
+            if (player2 == firstPlace)
             {
                 if (player2Lap > player1Lap)
                 {
@@ -320,40 +300,73 @@ public class RaceManager : MonoBehaviour
                     warning1On = true;
                 }
             }
-            if (Time.fixedTime >= (player1WarningTime + 5f) && warning1On)
+            //if player 1 reached time limit respawn
+            if (Time.fixedTime >= (player1WarningTime + 4f) && warning1On)
             {
                 player1Script.respawnPlayer();
+                player1WeaponScript.currEnergy = 0;
                 player1Checkpoint = player2Checkpoint;
                 player1Lap = player2Lap;
                 warning1On = false;
             }
 
+            //checks if player2 is about to be respawned
+            if (player1 == firstPlace)
+            {
+                if(player1Lap > player2Lap)
+                {
+                    if(player1Checkpoint + 7 >= player2Checkpoint + 1 && !warning2On)
+                    {
+                        player2WarningTime = Time.fixedTime;
+                        warning2On = true;
+                    }
+                }
+                else if(player1Checkpoint >= player2Checkpoint + 1 && !warning2On)
+                {
+                    player2WarningTime = Time.fixedTime;
+                    warning2On = true;
+                }
+            }
+            //if player2 reached time limit respawn
+            if (Time.fixedTime >= (player2WarningTime + 4f) && warning2On)
+            {
+                player2Script.respawnPlayer();
+                player2Checkpoint = player1Checkpoint;
+                player2WeaponScript.currEnergy = 0;
+                player2Lap = player1Lap;    
+                warning2On = false;
+            }
+
+            //bug handling
             if(player1Checkpoint == player2Checkpoint)
             {
                 warning1On = false;
                 warning2On = false;
             }
 
+            //printing warning on UI
             if (warning1On)
             {
-                warningTextP1.text = ((player1WarningTime + 5f) - Time.fixedTime).ToString("F1") + "s until Respawn";
+                warningBoxP1.enabled = true;
+                warningTextP1.text = ((player1WarningTime + 4f) - Time.fixedTime).ToString("F1") + "s until Respawn";
             }
             else
             {
+                warningBoxP1.enabled = false;
                 warningTextP1.text = "";
             }
             if (warning2On)
             {
-                warningTextP2.text = ((player2WarningTime + 5f) - Time.fixedTime).ToString("F1") + "s until Respawn";
+                warningBoxP2.enabled = true;
+                warningTextP2.text = ((player2WarningTime + 4f) - Time.fixedTime).ToString("F1") + "s until Respawn";
             }
             else
             {
+                warningBoxP2.enabled = false;
                 warningTextP2.text = "";
             }
-            //print("Player 1 checkpoint: " + player1Checkpoint + " player 2 checkpoint: " + player2Checkpoint);
-            //print("first: " + firstPlace.name);
 
-            /*
+            /* no longer need this but this is the line code
             if (Countdown.start && Time.fixedTime > lineStopTime + 2f)
             {
                 print("Resetting speed");
@@ -431,6 +444,7 @@ public class RaceManager : MonoBehaviour
         }
     }
 
+    //increases player checkpoint/lap numbers
     public void updatePlayer1Checkpoint() {
         if(player1Checkpoint == 7)
         {
@@ -483,6 +497,7 @@ public class RaceManager : MonoBehaviour
         }
     }
 
+    //gets a specfifc players checkpoint number
     public int getCheckpointNum(int p)
     {
         if(p == 1) { return player1Checkpoint; }
@@ -492,8 +507,10 @@ public class RaceManager : MonoBehaviour
         else { return -1; }
     }
 
+    //returns the game object of whoever is in first place 
     public GameObject getFirstPlace() { return firstPlace; }
 
+    //prolly dont need this anymore
     public void adjustLineSpeed()
     {
         line.SetActive(false);
