@@ -30,8 +30,9 @@ public class SelectMenuManager : MonoBehaviour
     public void InitArrows(int a) {
         CleanUp();
         for (int i = 0; i < a; i++) {
-            arrows.Add(Instantiate(arrow_prefab, new Vector3(0, 0, 0), Quaternion.identity));
+            arrows.Add(Instantiate(arrow_prefab));
             arrows[i].transform.parent = gameObject.transform;
+            arrows[i].GetComponent<SelectionArrow>().Setup(this, i);
             arrows[i].GetComponent<SelectionArrow>().Setup(this, i);
             arrows[i].GetComponent<UnityEngine.UI.Image>().sprite = arrow_sprites[i];
             arrow_states.Add(i);

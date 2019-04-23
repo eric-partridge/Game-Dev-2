@@ -77,6 +77,7 @@ public class RaceManager : MonoBehaviour
             //sets up camera
             cam1Script = camera1.GetComponent<cameraScript>();
             cam1Script.player = player1.transform;
+            camera1.GetComponent<PlayerUI>().player = player1;
 
             //sets up weapon script
             player1WeaponScript = player1.GetComponent<weaponScript>();
@@ -120,8 +121,10 @@ public class RaceManager : MonoBehaviour
             //sets up cameras
             cam1Script = camera1.GetComponent<cameraScript>();
             cam1Script.player = player1.transform;
+            camera1.GetComponent<PlayerUI>().player = player1;
             cam2Script = camera2.GetComponent<cameraScript>();
             cam2Script.player = player2.transform;
+            camera2.GetComponent<PlayerUI>().player = player2;
 
             //player 1 weapon script
             player1WeaponScript = player1.GetComponent<weaponScript>();
@@ -191,12 +194,16 @@ public class RaceManager : MonoBehaviour
             //sets up cameras
             cam1Script = camera1.GetComponent<cameraScript>();
             cam1Script.player = player1.transform;
+            camera1.GetComponent<PlayerUI>().player = player1;
             cam2Script = camera2.GetComponent<cameraScript>();
             cam2Script.player = player2.transform;
+            camera2.GetComponent<PlayerUI>().player = player2;
             cam3Script = camera3.GetComponent<cameraScript>();
             cam3Script.player = player3.transform;
+            camera3.GetComponent<PlayerUI>().player = player3;
             cam4Script = camera4.GetComponent<cameraScript>();
             cam4Script.player = player4.transform;
+            camera4.GetComponent<PlayerUI>().player = player4;
 
             //player 1 weapon script
             player1WeaponScript = player1.GetComponent<weaponScript>();
@@ -270,8 +277,8 @@ public class RaceManager : MonoBehaviour
             scores = new int[2];
             temp.Add(new KeyValuePair<double, int>(player1.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p0")));
             temp.Add(new KeyValuePair<double, int>(player2.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p1")));
-            temp.Sort();
-            for(int i = 0; i < 2; i++) {
+            temp.Sort((x, y) => x.Key.CompareTo(y.Key));
+            for (int i = 0; i < 2; i++) {
                 scores[i] = temp[i].Value;
             }
         } else if(PlayerPrefs.GetInt("num_p") == 4) {
@@ -280,7 +287,7 @@ public class RaceManager : MonoBehaviour
             temp.Add(new KeyValuePair<double, int>(player2.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p1")));
             temp.Add(new KeyValuePair<double, int>(player3.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p2")));
             temp.Add(new KeyValuePair<double, int>(player4.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p3")));
-            temp.Sort();
+            temp.Sort((x, y) => x.Key.CompareTo(y.Key));
             for (int i = 0; i < 4; i++) {
                 scores[i] = temp[i].Value;
             }
