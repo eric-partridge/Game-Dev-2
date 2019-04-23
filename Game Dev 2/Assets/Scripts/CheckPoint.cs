@@ -8,7 +8,7 @@ public class CheckPoint : MonoBehaviour {
     public Text lapTime;
     private float diff = 0;
     private float checkTime;
-    public static int score = 0;
+    public int score = 0;
 
 	// Use this for initialization
 	void Start () {

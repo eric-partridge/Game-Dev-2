@@ -328,7 +328,7 @@ public class playerController : MonoBehaviour {
                 else if(Input.GetAxis(RSY) < -0.3f && !BPM_Clock.trigger)
                 {
                     rb.velocity = rb.velocity * (deacceleration - (1 - deacceleration));
-                    CheckPoint.score -= 50;
+                    gameObject.GetComponent<CheckPoint>().score -= 50;
                 }
             }
             // DOWN
