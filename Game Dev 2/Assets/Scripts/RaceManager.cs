@@ -250,7 +250,12 @@ public class RaceManager : MonoBehaviour
     void LateUpdate()
     {
         //if more than one player get distance to next checkpoint
-        if (PlayerPrefs.GetInt("num_p") != 1)
+        if (PlayerPrefs.GetInt("num_p") == 1)
+        {
+            warningBoxP1.enabled = false;
+            warningTextP1.text = "";
+        }
+        else if (PlayerPrefs.GetInt("num_p") != 1)
         {
             if (player1Checkpoint == 7)
             {
