@@ -94,7 +94,7 @@ public class playerController : MonoBehaviour {
         // print(Input.GetAxis("RSX"));
         //print(Input.GetAxis("RSY"));
         float leftStickX = Input.GetAxis(Horizontal);
-        print("Horizontal is: " + Horizontal);
+        //print("Horizontal is: " + Horizontal);
         bool gas = Input.GetButton(R2Button);
         bool brake = (Input.GetButton(L2Button) || Input.GetButton(L1Button));
         Vector3 force = new Vector3(0,0,0);

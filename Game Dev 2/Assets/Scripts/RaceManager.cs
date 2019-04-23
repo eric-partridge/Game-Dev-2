@@ -23,9 +23,13 @@ public class RaceManager : MonoBehaviour
     public GameObject endCanv;
     public Text warningTextP1;
     public Text warningTextP2;
+    public Text warningTextP3;
+    public Text warningTextP4;
     public Image warningBoxP1;
     public Image warningBoxP2;
     public Canvas mainCanvas;
+    public Image warningBoxP3;
+    public Image warningBoxP4;
 
     private GameObject firstPlace;
     private int player1Checkpoint = 0;
@@ -54,10 +58,14 @@ public class RaceManager : MonoBehaviour
     private weaponScript player4WeaponScript;
     private float player1WarningTime = 0;
     private float player2WarningTime = 0;
+    private float player3WarningTime = 0;
+    private float player4WarningTime = 0;
     private float lineStopTime = 5f;
     private navMeshController navMeshScript;
     private bool warning1On = false;
     private bool warning2On = false;
+    private bool warning3On = false;
+    private bool warning4On = false;
 
     public PositionUI pos_ui;
 
@@ -185,7 +193,7 @@ public class RaceManager : MonoBehaviour
             //instantiates player4
             player4 = GameObject.Instantiate(ships[PlayerPrefs.GetInt("p3")]);
             player4.transform.position = new Vector3(-11, 17, -20.5f);
-            player4Script = player2.GetComponent<playerController>();
+            player4Script = player4.GetComponent<playerController>();
             player4Script.playerNum = 4;
 
             //sets up other players to avoid sphere colliders
@@ -273,103 +281,373 @@ public class RaceManager : MonoBehaviour
             else { 
                 player2Distance = Vector3.Distance(player2.transform.position, checkPoints[player2Checkpoint].position);
             }
-
-            //determines whose in first place by lap number > checkpoint number > distance to next checkpoint
-            if (player1Lap > player2Lap) { firstPlace = player1; }
-            else if (player2Lap > player1Lap) { firstPlace = player2; }
-            else
+            if(PlayerPrefs.GetInt("num_p") == 4)
             {
-                if (player1Checkpoint > player2Checkpoint) { firstPlace = player1; }
-                else if (player2Checkpoint > player1Checkpoint) { firstPlace = player2; }
+                if (player3Checkpoint == checkPoints.Length)
+                {
+                    player3Distance = Vector3.Distance(player3.transform.position, checkPoints[0].position);
+                }
                 else
                 {
-                    if (player1Distance < player2Distance) { firstPlace = player1; }
-                    else { firstPlace = player2; }
+                    player3Distance = Vector3.Distance(player3.transform.position, checkPoints[player3Checkpoint].position);
+                }
+                if (player4Checkpoint == checkPoints.Length)
+                {
+                    player4Distance = Vector3.Distance(player4.transform.position, checkPoints[0].position);
+                }
+                else
+                {
+                    player4Distance = Vector3.Distance(player4.transform.position, checkPoints[player4Checkpoint].position);
                 }
             }
 
-            //checks if player 1 is about to be respawned
-            if (player2 == firstPlace)
+            if (PlayerPrefs.GetInt("num_p") == 2)
             {
-                if (player2Lap > player1Lap)
+                //determines whose in first place by lap number > checkpoint number > distance to next checkpoint
+                if (player1Lap > player2Lap) { firstPlace = player1; }
+                else if (player2Lap > player1Lap) { firstPlace = player2; }
+                else
                 {
-                    if (player2Checkpoint + 7 >= player1Checkpoint + 1 && !warning1On)
+                    if (player1Checkpoint > player2Checkpoint) { firstPlace = player1; }
+                    else if (player2Checkpoint > player1Checkpoint) { firstPlace = player2; }
+                    else
+                    {
+                        if (player1Distance < player2Distance) { firstPlace = player1; }
+                        else { firstPlace = player2; }
+                    }
+                }
+            }
+            //checks first place for 4 player
+            else
+            {
+                if(player1Lap > player2Lap && player1Lap > player3Lap && player1Lap > player4Lap) { firstPlace = player1; }
+                else if(player2Lap > player1Lap && player2Lap > player3Lap && player2Lap > player4Lap) { firstPlace = player2; }
+                else if(player3Lap > player1Lap && player3Lap > player2Lap && player3Lap > player4Lap) { firstPlace = player3; }
+                else if (player4Lap > player1Lap && player4Lap > player2Lap && player4Lap > player3Lap) { firstPlace = player4; }
+                else
+                {
+                    if(player1Checkpoint > player2Checkpoint && player1Checkpoint > player3Checkpoint && player1Checkpoint > player4Checkpoint) { firstPlace = player1; }
+                    else if(player2Checkpoint > player1Checkpoint && player2Checkpoint > player3Checkpoint && player2Checkpoint > player4Checkpoint) { firstPlace = player2; }
+                    else if(player3Checkpoint > player1Checkpoint && player3Checkpoint > player2Checkpoint && player3Checkpoint > player4Checkpoint) { firstPlace = player3; }
+                    else if(player4Checkpoint > player1Checkpoint && player4Checkpoint > player2Checkpoint && player4Checkpoint > player3Checkpoint) { firstPlace = player4; }
+                    else
+                    {
+                        if(player1Distance > player2Distance && player1Distance > player3Distance && player1Distance > player4Distance) { firstPlace = player1; }
+                        else if(player2Distance > player1Distance && player2Distance > player3Distance && player2Distance > player4Distance) { firstPlace = player2; }
+                        else if(player3Distance > player1Distance && player3Distance > player2Distance && player3Distance > player4Distance) { firstPlace = player3; }
+                        else { firstPlace = player4; }
+                    }
+                }
+
+                print("4 player first place: " + firstPlace);
+            }
+
+            //respawning for 2 player
+            if(PlayerPrefs.GetInt("num_p") == 2)
+            {
+                //checks if player 1 is about to be respawned
+                if (player2 == firstPlace)
+                {
+                    if (player2Lap > player1Lap)
+                    {
+                        if (player2Checkpoint + 7 >= player1Checkpoint + 1 && !warning1On)
+                        {
+                            player1WarningTime = Time.fixedTime;
+                            warning1On = true;
+                        }
+                    }
+                    else if (player2Checkpoint >= player1Checkpoint + 1 && !warning1On)
                     {
                         player1WarningTime = Time.fixedTime;
                         warning1On = true;
                     }
                 }
-                else if (player2Checkpoint >= player1Checkpoint + 1 && !warning1On)
+                //if player 1 reached time limit respawn
+                if (Time.fixedTime >= (player1WarningTime + 4f) && warning1On)
                 {
-                    player1WarningTime = Time.fixedTime;
-                    warning1On = true;
+                    player1Script.respawnPlayer();
+                    player1WeaponScript.currEnergy = 0;
+                    player1Checkpoint = player2Checkpoint;
+                    player1Lap = player2Lap;
+                    warning1On = false;
                 }
-            }
-            //if player 1 reached time limit respawn
-            if (Time.fixedTime >= (player1WarningTime + 4f) && warning1On)
-            {
-                player1Script.respawnPlayer();
-                player1WeaponScript.currEnergy = 0;
-                player1Checkpoint = player2Checkpoint;
-                player1Lap = player2Lap;
-                warning1On = false;
-            }
 
-            //checks if player2 is about to be respawned
-            if (player1 == firstPlace)
-            {
-                if(player1Lap > player2Lap)
+                //checks if player2 is about to be respawned
+                if (player1 == firstPlace)
                 {
-                    if(player1Checkpoint + 7 >= player2Checkpoint + 1 && !warning2On)
+                    if (player1Lap > player2Lap)
+                    {
+                        if (player1Checkpoint + 7 >= player2Checkpoint + 1 && !warning2On)
+                        {
+                            player2WarningTime = Time.fixedTime;
+                            warning2On = true;
+                        }
+                    }
+                    else if (player1Checkpoint >= player2Checkpoint + 1 && !warning2On)
                     {
                         player2WarningTime = Time.fixedTime;
                         warning2On = true;
                     }
                 }
-                else if(player1Checkpoint >= player2Checkpoint + 1 && !warning2On)
+                //if player2 reached time limit respawn
+                if (Time.fixedTime >= (player2WarningTime + 4f) && warning2On)
                 {
-                    player2WarningTime = Time.fixedTime;
-                    warning2On = true;
+                    player2Script.respawnPlayer();
+                    player2Checkpoint = player1Checkpoint;
+                    player2WeaponScript.currEnergy = 0;
+                    player2Lap = player1Lap;
+                    warning2On = false;
+                }
+
+                //bug handling
+                if (player1Checkpoint == player2Checkpoint)
+                {
+                    warning1On = false;
+                    warning2On = false;
+                }
+
+                //printing warning on UI
+                if (warning1On)
+                {
+                    warningBoxP1.enabled = true;
+                    warningTextP1.text = ((player1WarningTime + 4f) - Time.fixedTime).ToString("F1") + "s until Respawn";
+                }
+                else
+                {
+                    warningBoxP1.enabled = false;
+                    warningTextP1.text = "";
+                }
+                if (warning2On)
+                {
+                    warningBoxP2.enabled = true;
+                    warningTextP2.text = ((player2WarningTime + 4f) - Time.fixedTime).ToString("F1") + "s until Respawn";
+                }
+                else
+                {
+                    warningBoxP2.enabled = false;
+                    warningTextP2.text = "";
+                }
+                if(warning1On && player1Checkpoint == player2Checkpoint)
+                {
+                    warning1On = false;
+                    warningBoxP2.enabled = false;
+                    warningTextP2.text = "";
+                }
+                if(warning2On && player2Checkpoint == player1Checkpoint)
+                {
+                    warning2On = false;
+                    warningBoxP2.enabled = false;
+                    warningTextP2.text = "";
                 }
             }
-            //if player2 reached time limit respawn
-            if (Time.fixedTime >= (player2WarningTime + 4f) && warning2On)
-            {
-                player2Script.respawnPlayer();
-                player2Checkpoint = player1Checkpoint;
-                player2WeaponScript.currEnergy = 0;
-                player2Lap = player1Lap;    
-                warning2On = false;
-            }
-
-            //bug handling
-            if(player1Checkpoint == player2Checkpoint)
-            {
-                warning1On = false;
-                warning2On = false;
-            }
-
-            //printing warning on UI
-            if (warning1On)
-            {
-                warningBoxP1.enabled = true;
-                warningTextP1.text = ((player1WarningTime + 4f) - Time.fixedTime).ToString("F1") + "s until Respawn";
-            }
+            //respawning 4 player
             else
             {
-                warningBoxP1.enabled = false;
-                warningTextP1.text = "";
+                print("Checking respawnign for 4 player");  
+                //checks if player 1 is about to respawned
+                if (player2 == firstPlace ||  player3 == firstPlace || player4 == firstPlace)
+                {
+                    if (player2Lap > player1Lap || player3Lap > player1Lap || player4Lap > player1Lap)
+                    {
+                        if ((player2Checkpoint + 7 >= player1Checkpoint + 1 && !warning1On) || (player3Checkpoint + 7 >= player1Checkpoint + 1 && !warning1On) || (player4Checkpoint + 7 >= player1Checkpoint + 1 && !warning1On))
+                        {
+                            player1WarningTime = Time.fixedTime;
+                            warning1On = true;
+                        }
+                    }
+                    else if ((player2Checkpoint >= player1Checkpoint + 1 && !warning1On) || (player3Checkpoint >= player1Checkpoint + 1 && !warning1On) || (player4Checkpoint >= player1Checkpoint + 1 && !warning1On))
+                    {
+                        player1WarningTime = Time.fixedTime;
+                        warning1On = true;
+                    }
+                }
+                //if player 1 reached time limit respawn
+                if (Time.fixedTime >= (player1WarningTime + 4f) && warning1On)
+                {
+                    player1Script.respawnPlayer();
+                    player1WeaponScript.currEnergy = 0;
+                    if (player2 == firstPlace)
+                    {
+                        player1Checkpoint = player2Checkpoint;
+                        player1Lap = player2Lap;
+                    }
+                    else if (player3 == firstPlace)
+                    {
+                        player1Checkpoint = player3Checkpoint;
+                        player1Lap = player3Lap;
+                    }
+                    else
+                    {
+                        player1Checkpoint = player4Checkpoint;
+                        player1Lap = player4Lap;
+                    }
+                    warning1On = false;
+                }
+
+                //checks if player 2 is about to respawned
+                if (player1 == firstPlace || player3 == firstPlace || player4 == firstPlace)
+                {
+                    if (player1Lap > player2Lap || player3Lap > player2Lap || player4Lap > player2Lap)
+                    {
+                        if ((player1Checkpoint + 7 >= player2Checkpoint + 1 && !warning2On) || (player3Checkpoint + 7 >= player2Checkpoint + 1 && !warning2On) || (player4Checkpoint + 7 >= player2Checkpoint + 1 && !warning2On))
+                        {
+                            player2WarningTime = Time.fixedTime;
+                            warning2On = true;
+                        }
+                    }
+                    else if ((player1Checkpoint >= player2Checkpoint + 1 && !warning2On) || (player3Checkpoint >= player2Checkpoint + 1 && !warning2On) || (player4Checkpoint >= player2Checkpoint + 1 && !warning2On))
+                    {
+                        player2WarningTime = Time.fixedTime;
+                        warning2On = true;
+                        print("Warning for P2");
+                    }
+                }
+                //if player 2 reached time limit respawn
+                if (Time.fixedTime >= (player2WarningTime + 4f) && warning2On)
+                {
+                    player2Script.respawnPlayer();
+                    player2WeaponScript.currEnergy = 0;
+                    if (player1 == firstPlace)
+                    {
+                        player2Checkpoint = player1Checkpoint;
+                        player2Lap = player1Lap;
+                    }
+                    else if (player3 == firstPlace)
+                    {
+                        player2Checkpoint = player3Checkpoint;
+                        player2Lap = player3Lap;
+                    }
+                    else
+                    {
+                        player2Checkpoint = player4Checkpoint;
+                        player2Lap = player4Lap;
+                    }
+                    warning2On = false;
+                }
+
+                //checks if player 3 is about to respawned
+                if (player1 == firstPlace || player2 == firstPlace || player4 == firstPlace)
+                {
+                    if (player1Lap > player3Lap || player2Lap > player3Lap || player4Lap > player3Lap)
+                    {
+                        if ((player1Checkpoint + 7 >= player3Checkpoint + 1 && !warning3On) || (player2Checkpoint + 7 >= player3Checkpoint + 1 && !warning3On) || (player4Checkpoint + 7 >= player3Checkpoint + 1 && !warning3On))
+                        {
+                            player3WarningTime = Time.fixedTime;
+                            warning3On = true;
+                        }
+                    }
+                    else if ((player1Checkpoint >= player3Checkpoint + 1 && !warning3On) || (player2Checkpoint >= player3Checkpoint + 1 && !warning3On) || (player4Checkpoint >= player3Checkpoint + 1 && !warning3On))
+                    {
+                        player3WarningTime = Time.fixedTime;
+                        warning3On = true;
+                    }
+                }
+                //if player 3 reached time limit respawn
+                if (Time.fixedTime >= (player3WarningTime + 4f) && warning3On)
+                {
+                    player3Script.respawnPlayer();
+                    player3WeaponScript.currEnergy = 0;
+                    if (player1 == firstPlace)
+                    {
+                        player3Checkpoint = player1Checkpoint;
+                        player3Lap = player1Lap;
+                    }
+                    else if (player2 == firstPlace)
+                    {
+                        player3Checkpoint = player2Checkpoint;
+                        player3Lap = player2Lap;
+                    }
+                    else
+                    {
+                        player3Checkpoint = player4Checkpoint;
+                        player3Lap = player4Lap;
+                    }
+                    warning3On = false;
+                }
+
+                //checks if player 3 is about to respawned
+                if (player1 == firstPlace || player2 == firstPlace || player2 == firstPlace)
+                {
+                    if (player1Lap > player4Lap || player2Lap > player4Lap || player3Lap > player4Lap)
+                    {
+                        if ((player1Checkpoint + 7 >= player4Checkpoint + 1 && !warning4On) || (player2Checkpoint + 7 >= player4Checkpoint + 1 && !warning4On) || (player3Checkpoint + 7 >= player4Checkpoint + 1 && !warning4On))
+                        {
+                            player4WarningTime = Time.fixedTime;
+                            warning4On = true;
+                        }
+                    }
+                    else if ((player1Checkpoint >= player4Checkpoint + 1 && !warning4On) || (player2Checkpoint >= player4Checkpoint + 1 && !warning4On) || (player3Checkpoint >= player4Checkpoint + 1 && !warning4On))
+                    {
+                        player4WarningTime = Time.fixedTime;
+                        warning4On = true;
+                    }
+                }
+                //if player 3 reached time limit respawn
+                if (Time.fixedTime >= (player4WarningTime + 4f) && warning4On)
+                {
+                    player4Script.respawnPlayer();
+                    player4WeaponScript.currEnergy = 0;
+                    if (player1 == firstPlace)
+                    {
+                        player4Checkpoint = player1Checkpoint;
+                        player4Lap = player1Lap;
+                    }
+                    else if (player2 == firstPlace)
+                    {
+                        player4Checkpoint = player2Checkpoint;
+                        player4Lap = player2Lap;
+                    }
+                    else
+                    {
+                        player4Checkpoint = player3Checkpoint;
+                        player4Lap = player3Lap;
+                    }
+                    warning4On = false;
+                }
+
+                //printing warning on UI
+                if (warning1On)
+                {
+                    warningBoxP1.enabled = true;
+                    warningTextP1.text = ((player1WarningTime + 4f) - Time.fixedTime).ToString("F1") + "s until Respawn";
+                }
+                else
+                {
+                    warningBoxP1.enabled = false;
+                    warningTextP1.text = "";
+                }
+                if (warning2On)
+                {
+                    warningBoxP2.enabled = true;
+                    warningTextP2.text = ((player2WarningTime + 4f) - Time.fixedTime).ToString("F1") + "s until Respawn";
+                }
+                else
+                {
+                    warningBoxP2.enabled = false;
+                    warningTextP2.text = "";
+                }
+                if (warning3On)
+                {
+                    warningBoxP3.enabled = true;
+                    warningTextP3.text = ((player3WarningTime + 4f) - Time.fixedTime).ToString("F1") + "s until Respawn";
+                }
+                else
+                {
+                    warningBoxP3.enabled = false;
+                    warningTextP3.text = "";
+                }
+                if (warning4On)
+                {
+                    warningBoxP4.enabled = true;
+                    warningTextP4.text = ((player4WarningTime + 4f) - Time.fixedTime).ToString("F1") + "s until Respawn";
+                }
+                else
+                {
+                    warningBoxP4.enabled = false;
+                    warningTextP4.text = "";
+                }
             }
-            if (warning2On)
-            {
-                warningBoxP2.enabled = true;
-                warningTextP2.text = ((player2WarningTime + 4f) - Time.fixedTime).ToString("F1") + "s until Respawn";
-            }
-            else
-            {
-                warningBoxP2.enabled = false;
-                warningTextP2.text = "";
-            }
+            
 
             print("Player 1 Lap:" + player1Lap + " Checkpoint: " + player1Checkpoint + "\nPlayer 2 Lap: " + player2Lap + " Checkpoint: " + player2Checkpoint);
 
