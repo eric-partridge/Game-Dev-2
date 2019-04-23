@@ -16,7 +16,7 @@ public class EndUI : MonoBehaviour
 
     private bool resetStickY = true;
 
-    public void UpdateUI(List<KeyValuePair<int,double>> l) {
+    public void UpdateUI(List<KeyValuePair<int,int>> l) {
         for (int i = 0; i < pics.Length; i++) {
             pics[i].gameObject.SetActive(false);
         }

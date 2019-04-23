@@ -7,9 +7,10 @@ public class BPM_Clock : MonoBehaviour {
     public float BPM;
     private float BPS;
     public static float SPB;
-    public static bool trigger = true;
+    public static bool trigger = false;
     public static float currentTime;
     private float trigTime;
+    private int currentBeat = 1;
     public AudioSource aud;
 
     // Use this for initialization
@@ -19,25 +20,24 @@ public class BPM_Clock : MonoBehaviour {
         SPB = 60 / BPM;
         aud.Play();
         LapTimer.timer = aud.time;
-        currentTime = LapTimer.timer;
+        currentTime = aud.time;
+        InvokeRepeating("Beat", currentTime - SPB / 6f,  SPB);
+        InvokeRepeating("Off",  currentTime + SPB / 2.75f, SPB);
     }
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-        currentTime += Time.fixedDeltaTime;
-        trigTime += Time.fixedDeltaTime;
-        if (currentTime + SPB/6 > SPB)
-        {
-            trigger = true;
-            trigTime = 0;
-        }
-        if(trigTime > SPB/2.5)
-        {
-            trigger = false;
-        }
-        if (currentTime > SPB)
-        {
-            currentTime = 0;
-        }
+	void Update () {
+        print(trigger);
+    }
+
+    private void Beat()
+    {
+        trigger = true;
+
+    }
+    private void Off()
+    {
+        trigger = false;
+
     }
 }
