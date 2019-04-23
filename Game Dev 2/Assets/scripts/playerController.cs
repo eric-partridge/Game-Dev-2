@@ -325,10 +325,10 @@ public class playerController : MonoBehaviour {
                     boostParticles.Play();
                     waitTime = Resampler.ResampleLoop();
                 }
-                else if(Input.GetAxis(RSY) < -0.3f && !BPM_Clock.trigger)
+                else if(Input.GetAxis(RSY) < -0.3f && !BPM_Clock.trigger && resetStickY)
                 {
                     rb.velocity = rb.velocity * (deacceleration - (1 - deacceleration));
-                    gameObject.GetComponent<CheckPoint>().score -= 50;
+                    gameObject.GetComponent<CheckPoint>().score -= 25;
                 }
             }
             // DOWN

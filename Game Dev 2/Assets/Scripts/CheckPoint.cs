@@ -5,20 +5,28 @@ using UnityEngine.UI;
 
 public class CheckPoint : MonoBehaviour {
 
-    public Text lapTime;
     private float diff = 0;
     private float checkTime;
     public int score = 0;
+    private List<GameObject> hitList;
 
 	// Use this for initialization
 	void Start () {
         checkTime = LapTimer.timer;
         score = 0;
-	}
+        hitList = new List<GameObject>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-
+        for(int i = 0; i < hitList.Count; i++)
+        {
+            if(hitList[i].GetComponent<CheckPointData>().hit == false)
+            {
+                hitList.Remove(hitList[i]);
+                i--;
+            }
+        }
     }
 
     public int GetScore() {
@@ -31,15 +39,15 @@ public class CheckPoint : MonoBehaviour {
         {
             if (!other.GetComponent<CheckPointData>().hit)
             {
-                other.GetComponent<CheckPointData>().hit = true;
+                other.gameObject.GetComponent<CheckPointData>().hit = true;
+                hitList.Add(other.gameObject);
                 score += 150;
-                lapTime.text = string.Format("{0} GET: {1}", score, 150);
             }
-            else
+            else if(!hitList.Contains(other.gameObject))
             {
+                hitList.Add(other.gameObject);
                 diff = LapTimer.timer - other.GetComponent<CheckPointData>().hitTime;
-                score += Mathf.RoundToInt(15 - (diff * 5)) * 10;
-                lapTime.text = string.Format("{0} GET: {1}", score, Mathf.RoundToInt(15 - diff) * 10);
+                score += Mathf.RoundToInt(15 - (diff * 3)) * 10;
             }
         }
     }
