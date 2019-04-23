@@ -20,7 +20,7 @@ public class EndUI : MonoBehaviour
         for (int i = 0; i < pics.Length; i++) {
             pics[i].gameObject.SetActive(false);
         }
-        l.Sort();
+        l.Sort((x, y) => x.Value.CompareTo(y.Value));
         for (int i = 0; i < l.Count; i++) {
             pics[i].gameObject.SetActive(true);
             pics[i].sprite = pic_sprites[l[i].Key];
