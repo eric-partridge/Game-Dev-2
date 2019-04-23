@@ -25,6 +25,7 @@ public class RaceManager : MonoBehaviour
     public Text warningTextP2;
     public Image warningBoxP1;
     public Image warningBoxP2;
+    public Canvas mainCanvas;
 
     private GameObject firstPlace;
     private int player1Checkpoint = 0;
@@ -418,6 +419,7 @@ public class RaceManager : MonoBehaviour
                 finalScore.Add(new KeyValuePair<int, int>(PlayerPrefs.GetInt("p0"), player1.GetComponent<CheckPoint>().GetScore()));
                 endCam.SetActive(true);
                 endCanv.SetActive(true);
+                mainCanvas.gameObject.SetActive(false);
                 endCanv.GetComponent<EndUI>().UpdateUI(finalScore);
             }
         }

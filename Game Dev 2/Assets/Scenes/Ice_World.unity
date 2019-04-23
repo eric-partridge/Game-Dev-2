@@ -25441,6 +25441,7 @@ MonoBehaviour:
   warningTextP2: {fileID: 0}
   warningBoxP1: {fileID: 0}
   warningBoxP2: {fileID: 0}
+  mainCanvas: {fileID: 0}
   pos_ui: {fileID: 0}
 --- !u!1 &758604040
 GameObject:
@@ -34015,6 +34016,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1753420303976172, guid: b8c68740aab39fb47b0e577374cb37c1, type: 3}
+      propertyPath: m_Name
+      value: MainCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 224678615789244588, guid: b8c68740aab39fb47b0e577374cb37c1,
         type: 3}
       propertyPath: m_RootOrder
@@ -34115,6 +34120,12 @@ PrefabInstance:
 --- !u!224 &1052571628 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224678615789244588, guid: b8c68740aab39fb47b0e577374cb37c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1052571627}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &1052571629 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 223167003380873978, guid: b8c68740aab39fb47b0e577374cb37c1,
     type: 3}
   m_PrefabInstance: {fileID: 1052571627}
   m_PrefabAsset: {fileID: 0}
@@ -42972,6 +42983,11 @@ PrefabInstance:
       propertyPath: warningBoxP2
       value: 
       objectReference: {fileID: 252519606}
+    - target: {fileID: 2051318057927876688, guid: 77c4b54afd179e84294b8a5b87fdb0f2,
+        type: 3}
+      propertyPath: mainCanvas
+      value: 
+      objectReference: {fileID: 1052571629}
     - target: {fileID: 2051318057927876689, guid: 77c4b54afd179e84294b8a5b87fdb0f2,
         type: 3}
       propertyPath: m_LocalPosition.x
