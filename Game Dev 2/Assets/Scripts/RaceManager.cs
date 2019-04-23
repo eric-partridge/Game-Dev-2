@@ -394,7 +394,7 @@ public class RaceManager : MonoBehaviour
             scores = new int[2];
             temp.Add(new KeyValuePair<int, int>(player1.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p0")));
             temp.Add(new KeyValuePair<int, int>(player2.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p1")));
-            temp.Sort((x, y) => x.Key.CompareTo(y.Key));
+            temp.Sort((x, y) => y.Key.CompareTo(x.Key));
             for (int i = 0; i < 2; i++) {
                 scores[i] = temp[i].Value;
             }
@@ -404,7 +404,7 @@ public class RaceManager : MonoBehaviour
             temp.Add(new KeyValuePair<int, int>(player2.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p1")));
             temp.Add(new KeyValuePair<int, int>(player3.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p2")));
             temp.Add(new KeyValuePair<int, int>(player4.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p3")));
-            temp.Sort((x, y) => x.Key.CompareTo(y.Key));
+            temp.Sort((x, y) => y.Key.CompareTo(x.Key));
             for (int i = 0; i < 4; i++) {
                 scores[i] = temp[i].Value;
             }
