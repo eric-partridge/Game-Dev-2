@@ -60,7 +60,7 @@ public class EndUI : MonoBehaviour
         int new_state = arrow_state + i;
         if (new_state == 2) { new_state = 0; }
         if (new_state == -1) { new_state = 1; }
-        arrow.GetComponent<RectTransform>().localPosition = new Vector3(-535, -325 - (new_state * 75), 0);
+        arrow.GetComponent<RectTransform>().localPosition = new Vector3(-535, -325 - (new_state * 125), 0);
         arrow_state = new_state;
     }
 
