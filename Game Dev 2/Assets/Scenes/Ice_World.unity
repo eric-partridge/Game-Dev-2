@@ -11123,6 +11123,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 208025649}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &211964801 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2000435136, guid: 9b7657b8b34fae14985bd81ba782b58a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1789557461}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &223370956 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5567253760651928472, guid: a5607a3d20545a6419c2cec3301b7142,
@@ -42794,7 +42806,7 @@ PrefabInstance:
         type: 3}
       propertyPath: warningTextP2
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 211964801}
     - target: {fileID: 2051318057927876689, guid: 77c4b54afd179e84294b8a5b87fdb0f2,
         type: 3}
       propertyPath: m_LocalPosition.x

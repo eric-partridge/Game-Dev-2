@@ -284,19 +284,19 @@ public class RaceManager : MonoBehaviour
             {
                 if(player1Lap > player2Lap)
                 {
-                    if(player1Checkpoint + 7 >= player2Checkpoint + 2 && !warning2On)
+                    if(player1Checkpoint + 7 >= player2Checkpoint + 1 && !warning2On)
                     {
                         player2WarningTime = Time.fixedTime;
                         warning2On = true;
                     }
                 }
-                else if(player1Checkpoint >= player2Checkpoint + 2 && !warning2On)
+                else if(player1Checkpoint >= player2Checkpoint + 1 && !warning2On)
                 {
                     player2WarningTime = Time.fixedTime;
                     warning2On = true;
                 }
             }
-            if (Time.fixedTime >= (player2WarningTime + 2f) && warning2On)
+            if (Time.fixedTime >= (player2WarningTime + 5f) && warning2On)
             {
                 player2Script.respawnPlayer();
                 player2Checkpoint = player1Checkpoint;
@@ -308,19 +308,19 @@ public class RaceManager : MonoBehaviour
             {
                 if (player2Lap > player1Lap)
                 {
-                    if (player2Checkpoint + 7 >= player1Checkpoint + 2 && !warning1On)
+                    if (player2Checkpoint + 7 >= player1Checkpoint + 1 && !warning1On)
                     {
                         player1WarningTime = Time.fixedTime;
                         warning1On = true;
                     }
                 }
-                else if (player2Checkpoint >= player1Checkpoint + 2 && !warning1On)
+                else if (player2Checkpoint >= player1Checkpoint + 1 && !warning1On)
                 {
                     player1WarningTime = Time.fixedTime;
                     warning1On = true;
                 }
             }
-            if (Time.fixedTime >= (player1WarningTime + 2f) && warning1On)
+            if (Time.fixedTime >= (player1WarningTime + 5f) && warning1On)
             {
                 player1Script.respawnPlayer();
                 player1Checkpoint = player2Checkpoint;
@@ -336,7 +336,7 @@ public class RaceManager : MonoBehaviour
 
             if (warning1On)
             {
-                warningTextP1.text = ((player1WarningTime + 2f) - Time.fixedTime).ToString("F1") + "s until Respawn";
+                warningTextP1.text = ((player1WarningTime + 5f) - Time.fixedTime).ToString("F1") + "s until Respawn";
             }
             else
             {
@@ -344,7 +344,7 @@ public class RaceManager : MonoBehaviour
             }
             if (warning2On)
             {
-                warningTextP2.text = ((player2WarningTime + 2f) - Time.fixedTime).ToString("F1") + "s until Respawn";
+                warningTextP2.text = ((player2WarningTime + 5f) - Time.fixedTime).ToString("F1") + "s until Respawn";
             }
             else
             {
