@@ -17,16 +17,19 @@ public class RaceManager : MonoBehaviour
     public Camera camera4;
     public GameObject line;
     public GameObject[] ships;
+    public int laps = 2;
+    public GameObject endCam;
+    public GameObject endCanv;
 
     private GameObject firstPlace;
     private int player1Checkpoint = 0;
     private int player2Checkpoint = 0;
     private int player3Checkpoint = 0;
     private int player4Checkpoint = 0;
-    private int player1Lap = 0;
-    private int player2Lap = 0;
-    private int player3Lap = 0;
-    private int player4Lap = 0;
+    private int player1Lap = 1;
+    private int player2Lap = 1;
+    private int player3Lap = 1;
+    private int player4Lap = 1;
     private float player1Distance = 0;
     private float player2Distance = 0;
     private float player3Distance = 0;
@@ -262,30 +265,68 @@ public class RaceManager : MonoBehaviour
 
         //get and display scores
         int[] scores = null;
-        List<KeyValuePair<double, int>> temp = new List<KeyValuePair<double, int>>();
+        List<KeyValuePair<int, int>> temp = new List<KeyValuePair<int, int>>();
         if(PlayerPrefs.GetInt("num_p") == 1) {
             scores = new int[1];
             scores[0] = PlayerPrefs.GetInt("p0");
         }else if(PlayerPrefs.GetInt("num_p") == 2) {
             scores = new int[2];
-            temp.Add(new KeyValuePair<double, int>(player1.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p0")));
-            temp.Add(new KeyValuePair<double, int>(player2.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p1")));
+            temp.Add(new KeyValuePair<int, int>(player1.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p0")));
+            temp.Add(new KeyValuePair<int, int>(player2.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p1")));
             temp.Sort();
             for(int i = 0; i < 2; i++) {
                 scores[i] = temp[i].Value;
             }
         } else if(PlayerPrefs.GetInt("num_p") == 4) {
             scores = new int[4];
-            temp.Add(new KeyValuePair<double, int>(player1.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p0")));
-            temp.Add(new KeyValuePair<double, int>(player2.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p1")));
-            temp.Add(new KeyValuePair<double, int>(player3.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p2")));
-            temp.Add(new KeyValuePair<double, int>(player4.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p3")));
+            temp.Add(new KeyValuePair<int, int>(player1.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p0")));
+            temp.Add(new KeyValuePair<int, int>(player2.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p1")));
+            temp.Add(new KeyValuePair<int, int>(player3.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p2")));
+            temp.Add(new KeyValuePair<int, int>(player4.GetComponent<CheckPoint>().GetScore(), PlayerPrefs.GetInt("p3")));
             temp.Sort();
             for (int i = 0; i < 4; i++) {
                 scores[i] = temp[i].Value;
             }
         }
         pos_ui.UpdateUI(scores);
+        if(PlayerPrefs.GetInt("num_p") == 1)
+        {
+            if(player1Lap == laps + 1)
+            {
+                print("FINISH");
+                List<KeyValuePair<int, int>> finalScore = new List<KeyValuePair<int, int>>();
+                finalScore.Add(new KeyValuePair<int, int>(PlayerPrefs.GetInt("p0"), player1.GetComponent<CheckPoint>().GetScore()));
+                endCam.SetActive(true);
+                endCanv.SetActive(true);
+                endCanv.GetComponent<EndUI>().UpdateUI(finalScore);
+            }
+        }
+        if (PlayerPrefs.GetInt("num_p") == 2)
+        {
+            if (player1Lap == laps + 1 && player2Lap == laps + 1)
+            {
+                List<KeyValuePair<int, int>> finalScore = new List<KeyValuePair<int, int>>();
+                finalScore.Add(new KeyValuePair<int, int>(PlayerPrefs.GetInt("p0"), player1.GetComponent<CheckPoint>().GetScore()));
+                finalScore.Add(new KeyValuePair<int, int>(PlayerPrefs.GetInt("p1"), player2.GetComponent<CheckPoint>().GetScore()));
+                endCam.SetActive(true);
+                endCanv.SetActive(true);
+                endCanv.GetComponent<EndUI>().UpdateUI(finalScore);
+            }
+        }
+        if (PlayerPrefs.GetInt("num_p") == 4)
+        {
+            if (player1Lap == laps + 1 && player2Lap == laps + 1 && player3Lap == laps + 1 && player4Lap == laps + 1)
+            {
+                List<KeyValuePair<int, int>> finalScore = new List<KeyValuePair<int, int>>();
+                finalScore.Add(new KeyValuePair<int, int>(PlayerPrefs.GetInt("p0"), player1.GetComponent<CheckPoint>().GetScore()));
+                finalScore.Add(new KeyValuePair<int, int>(PlayerPrefs.GetInt("p1"), player2.GetComponent<CheckPoint>().GetScore()));
+                finalScore.Add(new KeyValuePair<int, int>(PlayerPrefs.GetInt("p2"), player3.GetComponent<CheckPoint>().GetScore()));
+                finalScore.Add(new KeyValuePair<int, int>(PlayerPrefs.GetInt("p3"), player4.GetComponent<CheckPoint>().GetScore()));
+                endCam.SetActive(true);
+                endCanv.SetActive(true);
+                endCanv.GetComponent<EndUI>().UpdateUI(finalScore);
+            }
+        }
     }
 
     public void updatePlayer1Checkpoint() {
@@ -293,7 +334,7 @@ public class RaceManager : MonoBehaviour
         {
             player1Checkpoint = 1;
             player1Lap++;
-            print("updating player 1 lap");
+            print("updating player 1 lap: " + player1Lap);
         }
         else
         {
