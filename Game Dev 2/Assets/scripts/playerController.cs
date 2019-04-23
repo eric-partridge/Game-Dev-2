@@ -73,10 +73,15 @@ public class playerController : MonoBehaviour {
         Horizontal = "Horizontal P" + playerNum.ToString();
         RSX = "RSX P" + playerNum.ToString();
         RSY = "RSY P" + playerNum.ToString();
-        Physics.IgnoreCollision(this.GetComponent<Collider>(), otherPlayer.GetComponent<Collider>());
-        Physics.IgnoreCollision(this.GetComponent<Collider>(), otherPlayer2.GetComponent<Collider>());
-        Physics.IgnoreCollision(this.GetComponent<Collider>(), otherPlayer3.GetComponent<Collider>());
-        //print("len: " + Input.GetJoystickNames().Length);
+        if(PlayerPrefs.GetInt("num_p") == 2)
+        {
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), otherPlayer.GetComponent<Collider>());
+        }
+        else if(PlayerPrefs.GetInt("num_p") == 4)
+        {
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), otherPlayer2.GetComponent<Collider>());
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), otherPlayer3.GetComponent<Collider>());
+        }
     }
 
     void Update()
@@ -487,12 +492,14 @@ public class playerController : MonoBehaviour {
 
     public void respawnPlayer()
     {
+        //if multiplayer spawn player at position of whoever is in first place
         if (PlayerPrefs.GetInt("num_p") != 1)
         {
             this.gameObject.transform.position = raceManager.getFirstPlace().transform.position;
             this.gameObject.transform.rotation = raceManager.getFirstPlace().transform.rotation;
             this.gameObject.SetActive(true);
         }
+        //else spawn them at the most recent checkpoint they passed
         else
         {
             this.gameObject.transform.position = raceManager.checkPoints[raceManager.getCheckpointNum(playerNum)-1].GetComponent<Renderer>().bounds.center;

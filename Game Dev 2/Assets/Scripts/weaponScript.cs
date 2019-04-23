@@ -42,7 +42,6 @@ public class weaponScript : MonoBehaviour {
 
     WeaponDefinition def;
 
-    private float shootTime = 0f;
     private float checkPointTime = 0f;
     private string Horizontal;
     private string Triangle;
@@ -86,7 +85,7 @@ public class weaponScript : MonoBehaviour {
 
         float leftStickX = Input.GetAxis(Horizontal);
 
-        if (Input.GetButton(Triangle) && currEnergy > 0 && Time.time > shootTime)
+        if (Input.GetButton(Triangle) && currEnergy > 0)
         {
             switch (Front_type)
             {
@@ -127,10 +126,9 @@ public class weaponScript : MonoBehaviour {
 
                     break;
             }
-            shootTime = Time.time + coolDownTime;
             currEnergy--;
         }
-        if (Input.GetButton(Circle) && currEnergy > 0 && Time.time > shootTime)
+        if (Input.GetButton(Circle) && currEnergy > 0)
         {
             switch (Side_type)
             {
@@ -152,7 +150,6 @@ public class weaponScript : MonoBehaviour {
                     }
 
                     rb.velocity = newVelocity;
-                    shootTime = Time.time + coolDownTime;
                     currEnergy--;
                     Destroy(tempProjectile, 5f);
                     break;
@@ -193,22 +190,19 @@ public class weaponScript : MonoBehaviour {
                     }
 
                     rbM.velocity = newVelocity2;
-                    shootTime = Time.time + coolDownTime;
                     currEnergy--;
                     Destroy(tempProjectileM, 5f);
                     rbR.velocity = newVelocity2;
-                    shootTime = Time.time + coolDownTime;
                     currEnergy--;
                     Destroy(tempProjectileR, 5f);
                     rbL.velocity = newVelocity2;
-                    shootTime = Time.time + coolDownTime;
                     currEnergy--;
                     Destroy(tempProjectileL, 5f);
                     break;
             }
 
         }
-        if (Input.GetButton(Square) && currEnergy > 0 && Time.time > shootTime)
+        if (Input.GetButton(Square) && currEnergy > 0)
         {
             switch (Side_type)
             {
@@ -229,7 +223,6 @@ public class weaponScript : MonoBehaviour {
                         newVelocity = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity) * 1.5f, -transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
                     }
                     rb.velocity = newVelocity;
-                    shootTime = Time.time + coolDownTime;
                     currEnergy--;
                     Destroy(tempProjectile, 5f);
                     break;
@@ -269,21 +262,18 @@ public class weaponScript : MonoBehaviour {
                         newVelocity2 = Vector3.RotateTowards((player.GetComponent<Rigidbody>().velocity) * 1.5f, -transform.right, 180f * Time.deltaTime * Mathf.Deg2Rad, 0);
                     }
                     rbM.velocity = newVelocity2;
-                    shootTime = Time.time + coolDownTime;
                     currEnergy--;
                     Destroy(tempProjectileM, 5f);
                     rbR.velocity = newVelocity2;
-                    shootTime = Time.time + coolDownTime;
                     currEnergy--;
                     Destroy(tempProjectileR, 5f);
                     rbL.velocity = newVelocity2;
-                    shootTime = Time.time + coolDownTime;
                     currEnergy--;
                     Destroy(tempProjectileL, 5f);
                     break;
             }
         }
-        if (Input.GetButton(X) && currEnergy > 0 && Time.time > shootTime)
+        if (Input.GetButton(X) && currEnergy > 0)
         {
             GameObject tempProjectile = Instantiate(def.projectilePrefab) as GameObject;
             Physics.IgnoreCollision(tempProjectile.GetComponent<BoxCollider>(), player.GetComponent<BoxCollider>());
@@ -291,7 +281,6 @@ public class weaponScript : MonoBehaviour {
             tempProjectile.transform.position = backBarrel.position + (-transform.forward);
             Rigidbody rbM = tempProjectile.GetComponent<Rigidbody>();
             rbM.AddForce(-transform.forward * 100f, ForceMode.VelocityChange);
-            shootTime = Time.time + coolDownTime;
             currEnergy--;
             Destroy(tempProjectile, 5f);
         }
@@ -301,11 +290,7 @@ public class weaponScript : MonoBehaviour {
     {
         if (other.tag == "CheckPoint")
         {
-            if(Time.time > shootTime)
-            {
-                currEnergy = 1;
-                shootTime = Time.time + coolDownTime;
-            }
+            currEnergy = 1;
         }
     }
 }
