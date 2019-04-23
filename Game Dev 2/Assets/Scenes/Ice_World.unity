@@ -16901,7 +16901,7 @@ PrefabInstance:
     - target: {fileID: 3137633313404092474, guid: 4246ff8bf1e799e44a4ae654f1da4c84,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3137633313404092474, guid: 4246ff8bf1e799e44a4ae654f1da4c84,
         type: 3}
@@ -42610,11 +42610,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2051318057927876691, guid: 77c4b54afd179e84294b8a5b87fdb0f2,
-        type: 3}
-      propertyPath: m_Name
-      value: RaceManager
-      objectReference: {fileID: 0}
     - target: {fileID: 2051318057927876688, guid: 77c4b54afd179e84294b8a5b87fdb0f2,
         type: 3}
       propertyPath: checkPoints.Array.size
@@ -43155,6 +43150,11 @@ PrefabInstance:
       propertyPath: pos_ui
       value: 
       objectReference: {fileID: 1914610887}
+    - target: {fileID: 2051318057927876691, guid: 77c4b54afd179e84294b8a5b87fdb0f2,
+        type: 3}
+      propertyPath: m_Name
+      value: RaceManager
+      objectReference: {fileID: 0}
     - target: {fileID: 2051318057927876689, guid: 77c4b54afd179e84294b8a5b87fdb0f2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -60345,16 +60345,16 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 114065840420061118, guid: 98a4578853b1b4a43844ea059ebed649,
-        type: 3}
-      propertyPath: currentTime
-      value: 
-      objectReference: {fileID: 772188171}
     - target: {fileID: 114398953696097070, guid: 98a4578853b1b4a43844ea059ebed649,
         type: 3}
       propertyPath: BPM
       value: 175
       objectReference: {fileID: 0}
+    - target: {fileID: 114065840420061118, guid: 98a4578853b1b4a43844ea059ebed649,
+        type: 3}
+      propertyPath: currentTime
+      value: 
+      objectReference: {fileID: 772188171}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98a4578853b1b4a43844ea059ebed649, type: 3}
 --- !u!4 &4313147070411279 stripped
