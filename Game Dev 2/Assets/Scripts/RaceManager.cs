@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class RaceManager : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class RaceManager : MonoBehaviour
     public int laps = 2;
     public GameObject endCam;
     public GameObject endCanv;
+    public Text warningTextP1;
+    public Text warningTextP2;
 
     private GameObject firstPlace;
     private int player1Checkpoint = 0;
@@ -48,8 +51,6 @@ public class RaceManager : MonoBehaviour
     private weaponScript player4WeaponScript;
     private float player1WarningTime = 0;
     private float player2WarningTime = 0;
-    private float player3WarningTime = 0;
-    private float player4WarningTime = 0;
     private float lineStopTime = 5f;
     private navMeshController navMeshScript;
     private bool warning1On = false;
@@ -332,7 +333,24 @@ public class RaceManager : MonoBehaviour
                 warning1On = false;
                 warning2On = false;
             }
-            print("Player 1 checkpoint: " + player1Checkpoint + " player 2 checkpoint: " + player2Checkpoint);
+
+            if (warning1On)
+            {
+                warningTextP1.text = ((player1WarningTime + 2f) - Time.fixedTime).ToString("F1") + "s until Respawn";
+            }
+            else
+            {
+                warningTextP1.text = "";
+            }
+            if (warning2On)
+            {
+                warningTextP2.text = ((player2WarningTime + 2f) - Time.fixedTime).ToString("F1") + "s until Respawn";
+            }
+            else
+            {
+                warningTextP2.text = "";
+            }
+            //print("Player 1 checkpoint: " + player1Checkpoint + " player 2 checkpoint: " + player2Checkpoint);
             //print("first: " + firstPlace.name);
 
             /*
